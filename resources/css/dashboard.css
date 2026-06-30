@@ -1,0 +1,8 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom dashboard styles */
+.sidebar-link.active {
+    @apply bg-blue-600 text-white;
+}
