@@ -491,10 +491,6 @@
                                 <i class="fas fa-user-friends"></i>
                                 <span>Geriatric Care</span>
                             </a>
-                            <a href="{{ route('services.neurology-neurosurgery') }}" class="service-link-item">
-                                <i class="fas fa-brain"></i>
-                                <span>Neurology & Neurosurgery</span>
-                            </a>
                             <a href="{{ route('services.paediatrics') }}" class="service-link-item">
                                 <i class="fas fa-child"></i>
                                 <span>Paediatrics</span>
@@ -513,7 +509,7 @@
                             </a>
                             <a href="{{ route('services.eye-care') }}" class="service-link-item">
                                 <i class="fas fa-eye"></i>
-                                <span>Eye Care</span>
+                                <span>Eye Clinic</span>
                             </a>
                             <a href="{{ route('services.plastic-surgery') }}" class="service-link-item">
                                 <i class="fas fa-user-md"></i>

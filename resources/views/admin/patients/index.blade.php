@@ -75,10 +75,84 @@
                 </div>
             </div>
 
+            <!-- Registered Patients (internal appointment system) -->
+            <div class="admin-card mb-4">
+                <div class="admin-card-header">
+                    <h5><i class="fas fa-address-book me-2"></i>Registered Patients</h5>
+                    <div class="d-flex gap-2">
+                        <a href="{{ route('admin.patients.import-form') }}" class="btn btn-success btn-sm">
+                            <i class="fas fa-file-import me-1"></i>Import Patients
+                        </a>
+                    </div>
+                </div>
+                <div class="admin-card-body">
+                    <p class="text-muted small">Patients registered directly (via import or internal appointment booking), with a name, phone, and optional address.</p>
+
+                    <form method="GET" class="mb-4">
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <input type="text" name="registered_search" class="form-control" placeholder="Search by name, phone, or address..." value="{{ request('registered_search') }}">
+                            </div>
+                            <div class="col-md-6">
+                                <button type="submit" class="btn btn-primary">
+                                    <i class="fas fa-search me-1"></i>Search
+                                </button>
+                                <a href="{{ route('admin.patients.index') }}" class="btn btn-secondary">
+                                    <i class="fas fa-redo me-1"></i>Reset
+                                </a>
+                            </div>
+                        </div>
+                    </form>
+
+                    @if($registeredPatients->count() > 0)
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Patient Name</th>
+                                    <th>Phone</th>
+                                    <th>Address</th>
+                                    <th>Appointments</th>
+                                    <th>Registered</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach($registeredPatients as $registeredPatient)
+                                <tr>
+                                    <td>
+                                        <div class="d-flex align-items-center">
+                                            <div class="avatar-circle bg-primary text-white me-2">
+                                                {{ strtoupper(substr($registeredPatient->full_name, 0, 1)) }}
+                                            </div>
+                                            <strong>{{ $registeredPatient->full_name }}</strong>
+                                        </div>
+                                    </td>
+                                    <td><i class="fas fa-phone text-muted me-1"></i>{{ $registeredPatient->phone }}</td>
+                                    <td>{{ $registeredPatient->address ?: '—' }}</td>
+                                    <td><span class="badge bg-info">{{ $registeredPatient->appointments_count }}</span></td>
+                                    <td><small class="text-muted">{{ $registeredPatient->created_at->format('M d, Y') }}</small></td>
+                                </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="mt-3">
+                        {{ $registeredPatients->appends(['registered_search' => request('registered_search')])->links() }}
+                    </div>
+                    @else
+                    <div class="text-center py-4 text-muted">
+                        <i class="fas fa-address-book fa-3x mb-3" style="opacity: 0.3;"></i>
+                        <h6>No registered patients yet</h6>
+                        <p class="small">Import a CSV or book an internal appointment to add one.</p>
+                    </div>
+                    @endif
+                </div>
+            </div>
+
             <!-- Patients Table -->
             <div class="admin-card">
                 <div class="admin-card-header">
-                    <h5><i class="fas fa-users me-2"></i>All Patients</h5>
+                    <h5><i class="fas fa-users me-2"></i>Public Booking Patients</h5>
                     <div class="d-flex gap-2">
                         <a href="{{ route('admin.patients.export') }}" class="btn btn-success btn-sm">
                             <i class="fas fa-download me-1"></i>Export CSV

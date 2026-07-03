@@ -50,7 +50,7 @@
                 <div class="container">
                     <p class="hero-subtitle" style="color: #a8d68f; font-size: 0.9rem; font-weight: 600; letter-spacing: 2px; margin-bottom: 1rem; background: rgba(168, 214, 143, 0.2); padding: 8px 20px; border-radius: 25px; display: inline-block; border: 1px solid #a8d68f;">SPECIALIZED MEDICAL CARE</p>
                     <h1>Expert Care Across <span class="highlight" style="color: #d946a6;">All Specialties</span></h1>
-                    <p>From geriatrics to neurosurgery, our team of highly skilled professionals provides comprehensive care tailored to your needs.</p>
+                    <p>From geriatrics to general surgery, our team of highly skilled professionals provides comprehensive care tailored to your needs.</p>
                     <div class="hero-slide-buttons">
                         <a href="<?php echo e(route('services.index')); ?>" class="btn btn-primary-custom btn-lg">
                             Our Services
@@ -76,6 +76,22 @@
             </div>
         </div>
 
+        <!-- Slide 4 -->
+        <div class="hero-slide" style="background-image: url('images/sliders/3.jpg');">
+            <div class="hero-slide-content">
+                <div class="container">
+                    <p class="hero-subtitle" style="color: #a8d68f; font-size: 0.9rem; font-weight: 600; letter-spacing: 2px; margin-bottom: 1rem; background: rgba(168, 214, 143, 0.2); padding: 8px 20px; border-radius: 25px; display: inline-block; border: 1px solid #a8d68f;">AFFORDABLE HEALTHCARE</p>
+                    <h1>Get Your Physicals Done <span class="highlight" style="color: #a8d68f;">At a Fraction of the Cost</span></h1>
+                    <p>Under the care of board certified physicians, get comprehensive physical examinations without breaking the bank.</p>
+                    <div class="hero-slide-buttons">
+                        <a href="<?php echo e(route('clinic-appointments.index')); ?>" class="btn btn-primary-custom btn-lg">
+                            Book an Appointment
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <!-- Slider Navigation Arrows -->
         <div class="slider-arrow prev" onclick="changeSlide(-1)">
             <i class="fas fa-chevron-left"></i>
@@ -89,6 +105,7 @@
             <span class="slider-dot active" onclick="currentSlide(0)"></span>
             <span class="slider-dot" onclick="currentSlide(1)"></span>
             <span class="slider-dot" onclick="currentSlide(2)"></span>
+            <span class="slider-dot" onclick="currentSlide(3)"></span>
         </div>
     </section>
 
@@ -283,27 +300,10 @@
                     </div>
                 </div>
 
-                <!-- Service 5: Neurology & Neurosurgery -->
-                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="500">
-                    <div class="medical-service-card">
-                        <div class="service-number-badge">05</div>
-                        <div class="service-card-image">
-                            <img src="<?php echo e(asset('images/services/neurology-neurosurgery.jpg')); ?>" alt="Neurology & Neurosurgery">
-                        </div>
-                        <div class="service-card-body">
-                            <h3 class="service-card-title">Neurology & Neurosurgery</h3>
-                            <p class="service-card-text">Advanced neurological care and surgical interventions for brain and nervous system conditions.</p>
-                            <a href="<?php echo e(route('services.index')); ?>" class="service-explore-link">
-                                Explore Service <i class="fas fa-arrow-right"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Service 6: Paediatrics -->
+                <!-- Service 5: Paediatrics -->
                 <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="600">
                     <div class="medical-service-card">
-                        <div class="service-number-badge">06</div>
+                        <div class="service-number-badge">05</div>
                         <div class="service-card-image">
                             <img src="<?php echo e(asset('images/services/1.webp')); ?>" alt="Paediatrics">
                         </div>
@@ -781,6 +781,16 @@
                 <div class="col-lg-4" data-aos="fade-right">
                     <div class="partners-image-card">
                         <img src="<?php echo e(asset('images/gallery/eldercare.jpeg')); ?>" alt="Elder Care at Metro Health" class="partners-feature-image">
+                        <div class="eldercare-badges">
+                            <a href="<?php echo e(route('services.index')); ?>" class="eldercare-badge">
+                                <i class="fas fa-house-medical"></i>
+                                <span>Home Visit</span>
+                            </a>
+                            <a href="<?php echo e(route('services.geriatric-care')); ?>" class="eldercare-badge">
+                                <i class="fas fa-hand-holding-heart"></i>
+                                <span>Center for Aging and Elderlycare</span>
+                            </a>
+                        </div>
                     </div>
                 </div>
 
@@ -1701,6 +1711,74 @@ unset($__errorArgs, $__bag); ?>
             width: 100%;
             height: 100%;
             object-fit: cover;
+        }
+
+        .eldercare-badges {
+            position: absolute;
+            bottom: 30px;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            padding: 0 20px;
+            z-index: 2;
+        }
+
+        .eldercare-badge {
+            width: 120px;
+            height: 120px;
+            flex-shrink: 0;
+            border-radius: 50%;
+            background: #5c2d82;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            text-decoration: none;
+            padding: 12px;
+            border: 3px solid rgba(255, 255, 255, 0.35);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .eldercare-badge i {
+            font-size: 1.7rem;
+            margin-bottom: 8px;
+        }
+
+        .eldercare-badge span {
+            font-size: 0.72rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            line-height: 1.2;
+        }
+
+        .eldercare-badge:hover {
+            background: #4a2268;
+            color: white;
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.35);
+        }
+
+        @media (max-width: 576px) {
+            .eldercare-badge {
+                width: 95px;
+                height: 95px;
+                padding: 8px;
+            }
+
+            .eldercare-badge i {
+                font-size: 1.3rem;
+                margin-bottom: 5px;
+            }
+
+            .eldercare-badge span {
+                font-size: 0.6rem;
+            }
         }
 
         .partners-image-overlay {

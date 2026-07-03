@@ -114,9 +114,6 @@ Route::prefix('services')->name('services.')->group(function () {
     Route::get('/geriatric-care', function () {
         return view('services.geriatric-care');
     })->name('geriatric-care');
-    Route::get('/neurology-neurosurgery', function () {
-        return view('services.neurology-neurosurgery');
-    })->name('neurology-neurosurgery');
     Route::get('/paediatrics', function () {
         return view('services.paediatrics');
     })->name('paediatrics');
@@ -225,18 +222,28 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::get('/login', [AdminController::class, 'showLogin'])->name('login');
     Route::post('/login', [AdminController::class, 'login'])->name('login.submit');
     
-    Route::middleware('auth')->group(function () {
+    Route::middleware(['auth', 'restrict.staff'])->group(function () {
         Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
         Route::post('/logout', [AdminController::class, 'logout'])->name('logout');
-        
+
+        // Clinical staff (doctor/nurse) scoped mini-dashboard + quick-add
+        Route::get('/my-dashboard', [\App\Http\Controllers\Admin\StaffDashboardController::class, 'dashboard'])->name('staff-dashboard');
+        Route::post('/my-dashboard/quick-add', [\App\Http\Controllers\Admin\StaffDashboardController::class, 'quickAdd'])->name('staff-dashboard.quick-add');
+
+        // Staff Account Management (admin only, enforced in RestrictStaffAccess)
+        Route::resource('staff', \App\Http\Controllers\Admin\StaffController::class)->except(['show']);
+
         // Appointment/Booking Management
         Route::get('/bookings', [AdminController::class, 'bookings'])->name('bookings');
         Route::put('/bookings/{id}', [AdminController::class, 'updateBookingStatus'])->name('bookings.update');
         
         // Patient Management
         Route::get('/patients', [\App\Http\Controllers\Admin\PatientController::class, 'index'])->name('patients.index');
-        Route::get('/patients/{email}', [\App\Http\Controllers\Admin\PatientController::class, 'show'])->name('patients.show');
+        Route::get('/patients/import', [\App\Http\Controllers\Admin\PatientController::class, 'importForm'])->name('patients.import-form');
+        Route::post('/patients/import', [\App\Http\Controllers\Admin\PatientController::class, 'import'])->name('patients.import');
+        Route::get('/patients/import/template', [\App\Http\Controllers\Admin\PatientController::class, 'importTemplate'])->name('patients.import-template');
         Route::get('/patients/export/csv', [\App\Http\Controllers\Admin\PatientController::class, 'export'])->name('patients.export');
+        Route::get('/patients/{email}', [\App\Http\Controllers\Admin\PatientController::class, 'show'])->name('patients.show');
         
         // Email Campaign Management
         Route::get('/emails', [\App\Http\Controllers\Admin\EmailCampaignController::class, 'index'])->name('emails.index');
@@ -247,7 +254,28 @@ Route::prefix('admin')->name('admin.')->group(function () {
         
         // Medical Services Management
         Route::resource('services', \App\Http\Controllers\Admin\ServiceController::class)->except(['show']);
-        
+
+        // Internal Appointments (staff-booked, distinct from public /clinic-appointments)
+        Route::resource('appointments', \App\Http\Controllers\Admin\AppointmentController::class)->except(['show']);
+        Route::patch('/appointments/{appointment}/status', [\App\Http\Controllers\Admin\AppointmentController::class, 'updateStatus'])->name('appointments.update-status');
+        Route::get('/appointments-patient-search', [\App\Http\Controllers\Admin\AppointmentController::class, 'searchPatient'])->name('appointments.patient-search');
+
+        // Doctor Registry
+        Route::resource('doctors', \App\Http\Controllers\Admin\DoctorController::class)->except(['show']);
+
+        // Clinic Services (independent list used by internal appointments & doctors)
+        Route::resource('clinic-services', \App\Http\Controllers\Admin\ClinicServiceController::class)->except(['show']);
+
+        // Bulk SMS
+        Route::prefix('sms')->name('sms.')->group(function () {
+            Route::get('/', [\App\Http\Controllers\Admin\BulkSmsController::class, 'index'])->name('index');
+            Route::get('/create', [\App\Http\Controllers\Admin\BulkSmsController::class, 'create'])->name('create');
+            Route::get('/recipient-count', [\App\Http\Controllers\Admin\BulkSmsController::class, 'recipientCount'])->name('recipient-count');
+            Route::post('/send', [\App\Http\Controllers\Admin\BulkSmsController::class, 'send'])->name('send');
+            Route::post('/test', [\App\Http\Controllers\Admin\BulkSmsController::class, 'testSms'])->name('test');
+            Route::get('/logs', [\App\Http\Controllers\Admin\BulkSmsController::class, 'logs'])->name('logs');
+        });
+
         // Contact Messages
         Route::get('/contact-messages', [\App\Http\Controllers\Admin\ContactMessageController::class, 'index'])->name('contact-messages.index');
         Route::get('/contact-messages/{message}', [\App\Http\Controllers\Admin\ContactMessageController::class, 'show'])->name('contact-messages.show');

@@ -31,6 +31,7 @@ class User extends Model implements AuthenticatableContract
         'profile_picture',
         'password',
         'role',
+        'doctor_id',
         'permissions',
         'is_active',
         'last_login_at',
@@ -86,6 +87,38 @@ class User extends Model implements AuthenticatableContract
     }
 
     /**
+     * Check if user is a doctor
+     */
+    public function isDoctor()
+    {
+        return $this->role === 'doctor';
+    }
+
+    /**
+     * Check if user is a nurse
+     */
+    public function isNurse()
+    {
+        return $this->role === 'nurse';
+    }
+
+    /**
+     * Check if user is a receptionist
+     */
+    public function isReceptionist()
+    {
+        return $this->role === 'receptionist';
+    }
+
+    /**
+     * Check if user is clinical staff (doctor or nurse) — scoped to their own service(s)
+     */
+    public function isClinicalStaff()
+    {
+        return in_array($this->role, ['doctor', 'nurse']);
+    }
+
+    /**
      * Check if user is active
      */
     public function isActive()
@@ -99,6 +132,22 @@ class User extends Model implements AuthenticatableContract
     public function activityLogs()
     {
         return $this->hasMany(ActivityLog::class);
+    }
+
+    /**
+     * Clinic service(s) this staff member (doctor/nurse) is assigned to.
+     */
+    public function clinicServices()
+    {
+        return $this->belongsToMany(ClinicService::class, 'staff_clinic_service');
+    }
+
+    /**
+     * The public Doctor directory entry linked to this login, if any.
+     */
+    public function doctor()
+    {
+        return $this->belongsTo(Doctor::class);
     }
 
     /**
@@ -142,10 +191,13 @@ class User extends Model implements AuthenticatableContract
     public function getRoleBadgeColor()
     {
         return match($this->role) {
-            'admin' => 'red',
-            'editor' => 'blue',
-            'viewer' => 'gray',
-            default => 'gray',
+            'admin' => 'danger',
+            'editor' => 'primary',
+            'viewer' => 'secondary',
+            'doctor' => 'success',
+            'nurse' => 'info',
+            'receptionist' => 'warning',
+            default => 'secondary',
         };
     }
 

@@ -3,96 +3,123 @@
         <img src="{{ asset('images/logo/logo.png') }}" alt="Metro Health Logo" style="height: 60px; margin-bottom: 10px;">
         <p style="font-size: 0.75rem; color: #84a33f; margin: 0; letter-spacing: 1px; text-transform: uppercase; font-weight: 600;">Healthcare Management</p>
     </div>
-    
+
     <nav class="sidebar-nav">
-        <a href="{{ route('admin.dashboard') }}" class="sidebar-link {{ request()->routeIs('admin.dashboard') ? 'active' : '' }}">
-            <i class="fas fa-home"></i>
-            <span>Dashboard</span>
-        </a>
-        
-        <!-- Healthcare Services Section -->
-        <div class="sidebar-section">
-            <p style="padding: 0.5rem 1.5rem; margin: 0.5rem 0; font-size: 0.7rem; color: #84a33f; text-transform: uppercase; font-weight: 600; letter-spacing: 0.5px;">Healthcare Services</p>
-        </div>
-        
-        <a href="{{ route('admin.services.index') }}" class="sidebar-link {{ request()->routeIs('admin.services.*') ? 'active' : '' }}">
-            <i class="fas fa-stethoscope"></i>
-            <span>Medical Services</span>
-        </a>
-        
-        <a href="{{ route('admin.bookings') }}" class="sidebar-link {{ request()->routeIs('admin.bookings') ? 'active' : '' }}">
-            <i class="fas fa-calendar-check"></i>
-            <span>Appointments</span>
-            @php
-                $pending_appointments = \App\Models\ClinicAppointment::where('status', 'pending')->orWhereNull('status')->count();
-            @endphp
-            @if($pending_appointments > 0)
-            <span class="badge bg-warning ms-auto">{{ $pending_appointments }}</span>
+        @if(auth()->user()->isClinicalStaff())
+            <a href="{{ route('admin.staff-dashboard') }}" class="sidebar-link {{ request()->routeIs('admin.staff-dashboard') || request()->routeIs('admin.dashboard') ? 'active' : '' }}">
+                <i class="fas fa-home"></i>
+                <span>My Dashboard</span>
+            </a>
+        @else
+            <a href="{{ route('admin.dashboard') }}" class="sidebar-link {{ request()->routeIs('admin.dashboard') ? 'active' : '' }}">
+                <i class="fas fa-home"></i>
+                <span>Dashboard</span>
+            </a>
+
+            <!-- Healthcare Services Section -->
+            <div class="sidebar-section">
+                <p style="padding: 0.5rem 1.5rem; margin: 0.5rem 0; font-size: 0.7rem; color: #84a33f; text-transform: uppercase; font-weight: 600; letter-spacing: 0.5px;">Healthcare Services</p>
+            </div>
+
+            <a href="{{ route('admin.patients.index') }}" class="sidebar-link {{ request()->routeIs('admin.patients.*') ? 'active' : '' }}">
+                <i class="fas fa-users"></i>
+                <span>Patients</span>
+            </a>
+
+            <a href="{{ route('admin.appointments.index') }}" class="sidebar-link {{ request()->routeIs('admin.appointments.*') ? 'active' : '' }}">
+                <i class="fas fa-calendar-plus"></i>
+                <span>Book Appointment</span>
+            </a>
+
+            @unless(auth()->user()->isReceptionist())
+            <a href="{{ route('admin.doctors.index') }}" class="sidebar-link {{ request()->routeIs('admin.doctors.*') ? 'active' : '' }}">
+                <i class="fas fa-user-md"></i>
+                <span>Doctors</span>
+            </a>
+
+            <a href="{{ route('admin.clinic-services.index') }}" class="sidebar-link {{ request()->routeIs('admin.clinic-services.*') ? 'active' : '' }}">
+                <i class="fas fa-list-alt"></i>
+                <span>Clinic Services</span>
+            </a>
+            @endunless
+
+            @unless(auth()->user()->isReceptionist())
+            <!-- Communication Section -->
+            <div class="sidebar-section">
+                <p style="padding: 0.5rem 1.5rem; margin: 0.5rem 0; font-size: 0.7rem; color: #84a33f; text-transform: uppercase; font-weight: 600; letter-spacing: 0.5px;">Communication</p>
+            </div>
+
+            <a href="{{ route('admin.emails.index') }}" class="sidebar-link {{ request()->routeIs('admin.emails.*') ? 'active' : '' }}">
+                <i class="fas fa-envelope"></i>
+                <span>Email Campaigns</span>
+            </a>
+
+            <a href="{{ route('admin.sms.index') }}" class="sidebar-link {{ request()->routeIs('admin.sms.*') ? 'active' : '' }}">
+                <i class="fas fa-sms"></i>
+                <span>Bulk SMS</span>
+            </a>
+
+            <a href="{{ route('admin.contact-messages.index') }}" class="sidebar-link {{ request()->routeIs('admin.contact-messages.*') ? 'active' : '' }}">
+                <i class="fas fa-envelope"></i>
+                <span>Contact Messages</span>
+                @php
+                    $new_messages = \App\Models\ContactSubmission::where('status', 'new')->count();
+                @endphp
+                @if($new_messages > 0)
+                <span class="badge bg-danger ms-auto">{{ $new_messages }}</span>
+                @endif
+            </a>
+
+            <a href="{{ route('admin.reviews.index') }}" class="sidebar-link {{ request()->routeIs('admin.reviews.*') ? 'active' : '' }}">
+                <i class="fas fa-star"></i>
+                <span>Reviews</span>
+                @php
+                    $pending_reviews = \App\Models\Review::where('is_approved', false)->count();
+                @endphp
+                @if($pending_reviews > 0)
+                <span class="badge bg-warning text-dark ms-auto">{{ $pending_reviews }}</span>
+                @endif
+            </a>
+
+            <a href="{{ route('admin.blog.index') }}" class="sidebar-link {{ request()->routeIs('admin.blog.*') ? 'active' : '' }}">
+                <i class="fas fa-newspaper"></i>
+                <span>News & Articles</span>
+                @php
+                    $draft_posts = \App\Models\BlogPost::where('published', false)->count();
+                @endphp
+                @if($draft_posts > 0)
+                <span class="badge bg-info text-dark ms-auto">{{ $draft_posts }}</span>
+                @endif
+            </a>
+            @endunless
+
+            @if(auth()->user()->isAdmin())
+            <!-- Administration Section -->
+            <div class="sidebar-section">
+                <p style="padding: 0.5rem 1.5rem; margin: 0.5rem 0; font-size: 0.7rem; color: #84a33f; text-transform: uppercase; font-weight: 600; letter-spacing: 0.5px;">Administration</p>
+            </div>
+
+            <a href="{{ route('admin.staff.index') }}" class="sidebar-link {{ request()->routeIs('admin.staff.*') ? 'active' : '' }}">
+                <i class="fas fa-user-shield"></i>
+                <span>Staff Accounts</span>
+            </a>
             @endif
-        </a>
-        
-        <a href="{{ route('admin.patients.index') }}" class="sidebar-link {{ request()->routeIs('admin.patients.*') ? 'active' : '' }}">
-            <i class="fas fa-users"></i>
-            <span>Patients</span>
-        </a>
-        
-        <!-- Communication Section -->
-        <div class="sidebar-section">
-            <p style="padding: 0.5rem 1.5rem; margin: 0.5rem 0; font-size: 0.7rem; color: #84a33f; text-transform: uppercase; font-weight: 600; letter-spacing: 0.5px;">Communication</p>
-        </div>
-        
-        <a href="{{ route('admin.emails.index') }}" class="sidebar-link {{ request()->routeIs('admin.emails.*') ? 'active' : '' }}">
-            <i class="fas fa-envelope"></i>
-            <span>Email Campaigns</span>
-        </a>
-        
-        <a href="{{ route('admin.contact-messages.index') }}" class="sidebar-link {{ request()->routeIs('admin.contact-messages.*') ? 'active' : '' }}">
-            <i class="fas fa-envelope"></i>
-            <span>Contact Messages</span>
-            @php
-                $new_messages = \App\Models\ContactSubmission::where('status', 'new')->count();
-            @endphp
-            @if($new_messages > 0)
-            <span class="badge bg-danger ms-auto">{{ $new_messages }}</span>
-            @endif
-        </a>
-        
-        <a href="{{ route('admin.reviews.index') }}" class="sidebar-link {{ request()->routeIs('admin.reviews.*') ? 'active' : '' }}">
-            <i class="fas fa-star"></i>
-            <span>Reviews</span>
-            @php
-                $pending_reviews = \App\Models\Review::where('is_approved', false)->count();
-            @endphp
-            @if($pending_reviews > 0)
-            <span class="badge bg-warning text-dark ms-auto">{{ $pending_reviews }}</span>
-            @endif
-        </a>
-        
-        <a href="{{ route('admin.blog.index') }}" class="sidebar-link {{ request()->routeIs('admin.blog.*') ? 'active' : '' }}">
-            <i class="fas fa-newspaper"></i>
-            <span>News & Articles</span>
-            @php
-                $draft_posts = \App\Models\BlogPost::where('published', false)->count();
-            @endphp
-            @if($draft_posts > 0)
-            <span class="badge bg-info text-dark ms-auto">{{ $draft_posts }}</span>
-            @endif
-        </a>
-        
+        @endif
+
         <div class="sidebar-divider"></div>
-        
+
         <a href="{{ route('home') }}" class="sidebar-link" target="_blank">
             <i class="fas fa-globe"></i>
             <span>View Website</span>
         </a>
-        
-        <a href="{{ route('admin.logout') }}" class="sidebar-link" 
+
+        <a href="{{ route('admin.logout') }}" class="sidebar-link"
            onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
             <i class="fas fa-sign-out-alt"></i>
             <span>Logout</span>
         </a>
     </nav>
-    
+
     <form id="logout-form" action="{{ route('admin.logout') }}" method="POST" style="display: none;">
         @csrf
     </form>

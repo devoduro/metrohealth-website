@@ -238,12 +238,6 @@
                         <span>Geriatric Care</span>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-4 col-sm-6" data-aos="zoom-in" data-aos-delay="300">
-                    <div class="specialty-badge">
-                        <i class="fas fa-brain"></i>
-                        <span>Neurology & Neurosurgery</span>
-                    </div>
-                </div>
                 <div class="col-lg-3 col-md-4 col-sm-6" data-aos="zoom-in" data-aos-delay="350">
                     <div class="specialty-badge">
                         <i class="fas fa-baby"></i>
@@ -271,7 +265,7 @@
                 <div class="col-lg-3 col-md-4 col-sm-6" data-aos="zoom-in" data-aos-delay="550">
                     <div class="specialty-badge">
                         <i class="fas fa-eye"></i>
-                        <span>Eye Care</span>
+                        <span>Eye Clinic</span>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-4 col-sm-6" data-aos="zoom-in" data-aos-delay="600">

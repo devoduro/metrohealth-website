@@ -70,12 +70,24 @@ class HomeController extends Controller
             return view('home-redesign', compact('services', 'products', 'clients', 'projects', 'testimonials', 'reviews', 'blogPosts', 'settings'));
         } catch (\Exception $e) {
             Log::error('Error loading homepage: ' . $e->getMessage());
+            // Still attempt to load blog posts even during partial failure
+            $blogPostsFallback = collect([]);
+            $reviewsFallback = collect([]);
+            try {
+                $blogPostsFallback = BlogPost::published()->latest('published_at')->take(6)->get();
+                $reviewsFallback = Review::approved()->latest()->take(10)->get();
+            } catch (\Exception $innerE) {
+                Log::error('Error loading blog posts in fallback: ' . $innerE->getMessage());
+            }
+
             return view('home-redesign', [
                 'services' => collect([]),
                 'products' => collect([]),
                 'clients' => collect([]),
                 'projects' => collect([]),
                 'testimonials' => collect([]),
+                'reviews' => $reviewsFallback,
+                'blogPosts' => $blogPostsFallback,
                 'settings' => [
                     'company_name' => 'HiCliQs Ghana',
                     'tagline' => 'Empowering Ghana with Digital Innovation',

@@ -112,19 +112,6 @@
                     </div>
                 </div>
 
-                <!-- Neurology & Neurosurgery -->
-                <div class="col-md-6 col-lg-6" data-aos="fade-up" data-aos-delay="200">
-                    <div class="service-card" style="background: white; border-radius: 15px; overflow: hidden; height: 100%; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08); transition: all 0.3s ease;">
-                        <div class="service-image" style="width: 100%; height: 200px; overflow: hidden;">
-                            <img src="{{ asset('images/services/neurology-neurosurgery.jpg') }}"  alt="Neurology & Neurosurgery" style="width: 100%; height: 100%; object-fit: cover;">
-                        </div>
-                        <div style="padding: 25px;">
-                            <h3 class="mb-3" style="font-size: 1.4rem; font-weight: 700; color: #1a1a1a;">Neurology & Neurosurgery</h3>
-                            <p class="mb-4" style="color: #666; font-size: 0.95rem; line-height: 1.6;">Advanced care for neurological conditions and brain health.</p>
-                            <a href="{{ route('services.neurology-neurosurgery') }}" class="btn btn-sm" style="background: #84a33f; color: white; padding: 10px 25px; border-radius: 8px; font-weight: 600; text-decoration: none; display: inline-block;">Learn More <i class="fas fa-arrow-right ms-2"></i></a>
-                        </div>
-                    </div>
-                </div>
 
                 <!-- Paediatrics -->
                 <div class="col-md-6 col-lg-6" data-aos="fade-up" data-aos-delay="300">
@@ -182,14 +169,14 @@
                     </div>
                 </div>
 
-                <!-- Eye Care -->
+                <!-- Eye Clinic -->
                 <div class="col-md-6 col-lg-6" data-aos="fade-up" data-aos-delay="100">
                     <div class="service-card" style="background: white; border-radius: 15px; overflow: hidden; height: 100%; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08); transition: all 0.3s ease;">
                         <div class="service-image" style="width: 100%; height: 200px; overflow: hidden;">
-                            <img src="{{ asset('images/services/eyecare.png') }}"  alt="Eye Care" style="width: 100%; height: 100%; object-fit: cover;">
+                            <img src="{{ asset('images/services/eyecare.png') }}"  alt="Eye Clinic" style="width: 100%; height: 100%; object-fit: cover;">
                         </div>
                         <div style="padding: 25px;">
-                            <h3 class="mb-3" style="font-size: 1.4rem; font-weight: 700; color: #1a1a1a;">Eye Care</h3>
+                            <h3 class="mb-3" style="font-size: 1.4rem; font-weight: 700; color: #1a1a1a;">Eye Clinic</h3>
                             <p class="mb-4" style="color: #666; font-size: 0.95rem; line-height: 1.6;">Advanced ophthalmology for clearer vision and brighter future.</p>
                             <a href="{{ route('services.eye-care') }}" class="btn btn-sm" style="background: #a8207a; color: white; padding: 10px 25px; border-radius: 8px; font-weight: 600; text-decoration: none; display: inline-block;">Learn More <i class="fas fa-arrow-right ms-2"></i></a>
                         </div>
@@ -234,10 +221,6 @@
                                 <i class="fas fa-user-friends me-3" style="color: #666; font-size: 1.1rem;"></i>
                                 <span style="color: #666; font-weight: 500;">Geriatric Care</span>
                             </a>
-                            <a href="{{ route('services.neurology-neurosurgery') }}" class="service-link" style="display: flex; align-items: center; padding: 12px 15px; margin-bottom: 8px; border-radius: 10px; text-decoration: none; background: #f8f9fa; transition: all 0.3s ease;">
-                                <i class="fas fa-brain me-3" style="color: #666; font-size: 1.1rem;"></i>
-                                <span style="color: #666; font-weight: 500;">Neurology & Neurosurgery</span>
-                            </a>
                             <a href="{{ route('services.paediatrics') }}" class="service-link" style="display: flex; align-items: center; padding: 12px 15px; margin-bottom: 8px; border-radius: 10px; text-decoration: none; background: #f8f9fa; transition: all 0.3s ease;">
                                 <i class="fas fa-child me-3" style="color: #666; font-size: 1.1rem;"></i>
                                 <span style="color: #666; font-weight: 500;">Paediatrics</span>
@@ -256,7 +239,7 @@
                             </a>
                             <a href="{{ route('services.eye-care') }}" class="service-link" style="display: flex; align-items: center; padding: 12px 15px; margin-bottom: 8px; border-radius: 10px; text-decoration: none; background: #f8f9fa; transition: all 0.3s ease;">
                                 <i class="fas fa-eye me-3" style="color: #666; font-size: 1.1rem;"></i>
-                                <span style="color: #666; font-weight: 500;">Eye Care</span>
+                                <span style="color: #666; font-weight: 500;">Eye Clinic</span>
                             </a>
                             <a href="{{ route('services.plastic-surgery') }}" class="service-link" style="display: flex; align-items: center; padding: 12px 15px; margin-bottom: 8px; border-radius: 10px; text-decoration: none; background: #f8f9fa; transition: all 0.3s ease;">
                                 <i class="fas fa-user-md me-3" style="color: #666; font-size: 1.1rem;"></i>

@@ -33,7 +33,6 @@
     "Obstetrics and Gynaecology",
     "Pediatrics",
     "ENT",
-    "Neurology",
     "General Medicine",
     "Diagnostic Services"
   ],

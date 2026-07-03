@@ -263,8 +263,9 @@
 
                             <!-- Service Fee Display -->
                             <div class="fee-display" id="feeDisplay" style="display: none;">
-                                <h4 style="color: white;">Service Fee</h4>
+                                <h4 style="color: white;">Estimated Consultation Fee</h4>
                                 <div class="amount">GH₵ <span id="feeAmount">0.00</span></div>
+                                <p style="margin: 10px 0 0; font-size: 0.9rem; opacity: 0.9;">No payment is required to book. This is paid at the hospital as part of your consultation during your visit.</p>
                                 <input type="hidden" name="service_fee" id="service_fee" value="0">
                             </div>
 

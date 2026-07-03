@@ -50,6 +50,10 @@ class AdminController extends Controller
 
     public function dashboard()
     {
+        if (Auth::user()->isClinicalStaff()) {
+            return redirect()->route('admin.staff-dashboard');
+        }
+
         $stats = [
             'total_appointments' => ClinicAppointment::count(),
             'pending_appointments' => ClinicAppointment::where('status', 'pending')->count(),

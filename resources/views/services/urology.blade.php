@@ -191,10 +191,6 @@
                                 <i class="fas fa-user-friends me-3" style="color: #666; font-size: 1.1rem;"></i>
                                 <span style="color: #666; font-weight: 500;">Geriatric Care</span>
                             </a>
-                            <a href="{{ route('services.neurology-neurosurgery') }}" class="service-link" style="display: flex; align-items: center; padding: 12px 15px; margin-bottom: 8px; border-radius: 10px; text-decoration: none; background: #f8f9fa; transition: all 0.3s ease;">
-                                <i class="fas fa-brain me-3" style="color: #666; font-size: 1.1rem;"></i>
-                                <span style="color: #666; font-weight: 500;">Neurology & Neurosurgery</span>
-                            </a>
                             <a href="{{ route('services.paediatrics') }}" class="service-link" style="display: flex; align-items: center; padding: 12px 15px; margin-bottom: 8px; border-radius: 10px; text-decoration: none; background: #f8f9fa; transition: all 0.3s ease;">
                                 <i class="fas fa-child me-3" style="color: #666; font-size: 1.1rem;"></i>
                                 <span style="color: #666; font-weight: 500;">Paediatrics</span>
@@ -213,7 +209,7 @@
                             </a>
                             <a href="{{ route('services.eye-care') }}" class="service-link" style="display: flex; align-items: center; padding: 12px 15px; margin-bottom: 8px; border-radius: 10px; text-decoration: none; background: #f8f9fa; transition: all 0.3s ease;">
                                 <i class="fas fa-eye me-3" style="color: #666; font-size: 1.1rem;"></i>
-                                <span style="color: #666; font-weight: 500;">Eye Care</span>
+                                <span style="color: #666; font-weight: 500;">Eye Clinic</span>
                             </a>
                             <a href="{{ route('services.plastic-surgery') }}" class="service-link" style="display: flex; align-items: center; padding: 12px 15px; margin-bottom: 8px; border-radius: 10px; text-decoration: none; background: #f8f9fa; transition: all 0.3s ease;">
                                 <i class="fas fa-user-md me-3" style="color: #666; font-size: 1.1rem;"></i>

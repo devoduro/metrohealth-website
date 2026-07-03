@@ -64,6 +64,11 @@
                             <p>At Metro Health Hospital, our surgical team utilizes cutting-edge technology to provide comprehensive care. We are committed to excellence in every procedure, prioritizing modern techniques that minimize discomfort and promote rapid healing.</p>
                         </div>
 
+                        <!-- Surgery Team Photo -->
+                        <div class="mb-5" style="border-radius: 20px; overflow: hidden; box-shadow: 0 15px 40px rgba(0,0,0,0.12);">
+                            <img src="{{ asset('images/services/surgery3.png') }}" alt="Metro Health General Surgery Team" style="width: 100%; height: auto; display: block;">
+                        </div>
+
                         <!-- Surgery Services -->
                         <div class="gp-services mt-5">
                             <h3 class="mb-4" style="font-size: 2rem; font-weight: 700; color: #2d3e50;">Services include:</h3>
@@ -153,6 +158,11 @@
                             <h4 class="mb-3" style="font-size: 1.4rem; font-weight: 600; color: #a8207a;">Your Safety, Our Priority</h4>
                             <p style="font-size: 1.05rem; line-height: 1.7; color: #555; margin: 0;">We understand that surgery is a significant event. Our approach to general surgery centers on a patient-first model that prioritizes your safety and comfort at every stage. We utilize the latest surgical innovations not just for technical success, but to ensure you experience a faster, smoother return to your daily life.</p>
                         </div>
+
+                        <!-- Surgery Team Photo 2 -->
+                        <div class="mt-5" style="border-radius: 20px; overflow: hidden; box-shadow: 0 15px 40px rgba(0,0,0,0.12);">
+                            <img src="{{ asset('images/services/surgery4.png') }}" alt="Metro Health Surgery in Progress" style="width: 100%; height: auto; display: block;">
+                        </div>
                     </div>
                 </div>
 
@@ -178,10 +188,6 @@
                                 <i class="fas fa-user-friends me-3" style="color: #666; font-size: 1.1rem;"></i>
                                 <span style="color: #666; font-weight: 500;">Geriatric Care</span>
                             </a>
-                            <a href="{{ route('services.neurology-neurosurgery') }}" class="service-link" style="display: flex; align-items: center; padding: 12px 15px; margin-bottom: 8px; border-radius: 10px; text-decoration: none; background: #f8f9fa; transition: all 0.3s ease;">
-                                <i class="fas fa-brain me-3" style="color: #666; font-size: 1.1rem;"></i>
-                                <span style="color: #666; font-weight: 500;">Neurology & Neurosurgery</span>
-                            </a>
                             <a href="{{ route('services.paediatrics') }}" class="service-link" style="display: flex; align-items: center; padding: 12px 15px; margin-bottom: 8px; border-radius: 10px; text-decoration: none; background: #f8f9fa; transition: all 0.3s ease;">
                                 <i class="fas fa-child me-3" style="color: #666; font-size: 1.1rem;"></i>
                                 <span style="color: #666; font-weight: 500;">Paediatrics</span>
@@ -200,7 +206,7 @@
                             </a>
                             <a href="{{ route('services.eye-care') }}" class="service-link" style="display: flex; align-items: center; padding: 12px 15px; margin-bottom: 8px; border-radius: 10px; text-decoration: none; background: #f8f9fa; transition: all 0.3s ease;">
                                 <i class="fas fa-eye me-3" style="color: #666; font-size: 1.1rem;"></i>
-                                <span style="color: #666; font-weight: 500;">Eye Care</span>
+                                <span style="color: #666; font-weight: 500;">Eye Clinic</span>
                             </a>
                             <a href="{{ route('services.plastic-surgery') }}" class="service-link" style="display: flex; align-items: center; padding: 12px 15px; margin-bottom: 8px; border-radius: 10px; text-decoration: none; background: #f8f9fa; transition: all 0.3s ease;">
                                 <i class="fas fa-user-md me-3" style="color: #666; font-size: 1.1rem;"></i>

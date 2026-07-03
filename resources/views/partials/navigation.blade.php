@@ -29,12 +29,11 @@
                             <li><a class="dropdown-item" href="{{ route('services.general-surgery') }}">General Surgery</a></li>
                             <li><a class="dropdown-item" href="{{ route('services.obstetrics-gynaecology') }}">Obstetrics & Gynaecology</a></li>
                             <li><a class="dropdown-item" href="{{ route('services.geriatric-care') }}">Geriatric Care</a></li>
-                            <li><a class="dropdown-item" href="{{ route('services.neurology-neurosurgery') }}">Neurology & Neurosurgery</a></li>
                             <li><a class="dropdown-item" href="{{ route('services.paediatrics') }}">Paediatrics</a></li>
                             <li><a class="dropdown-item" href="{{ route('services.urology') }}">Urology</a></li>
                             <li><a class="dropdown-item" href="{{ route('services.orthopaedic') }}">Orthopaedic</a></li>
                             <li><a class="dropdown-item" href="{{ route('services.ent-care') }}">ENT Care</a></li>
-                            <li><a class="dropdown-item" href="{{ route('services.eye-care') }}">Eye Care</a></li>
+                            <li><a class="dropdown-item" href="{{ route('services.eye-care') }}">Eye Clinic</a></li>
                             <li><a class="dropdown-item" href="{{ route('services.plastic-surgery') }}">Plastic Surgery</a></li>
                           
                             <li><hr class="dropdown-divider"></li>

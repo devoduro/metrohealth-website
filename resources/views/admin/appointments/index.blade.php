@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Internal Appointments | Metro Health Admin</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="{{ asset('css/ashlocs-custom.css') }}">
+</head>
+<body style="background: #f8f9fa;">
+
+    @include('admin.partials.sidebar')
+
+    <div class="admin-content">
+        @section('page-title', 'Internal Appointments')
+        @include('admin.partials.topbar')
+
+        <div class="container-fluid p-4">
+            @if(session('warning'))
+            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                <i class="fas fa-exclamation-triangle me-2"></i>{{ session('warning') }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            </div>
+            @endif
+
+            <!-- Stats Cards -->
+            <div class="row g-3 mb-4">
+                <div class="col-md-3">
+                    <div class="card border-0 shadow-sm">
+                        <div class="card-body">
+                            <h6 class="text-muted mb-2">Total</h6>
+                            <h3 class="mb-0">{{ $stats['total'] }}</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card border-0 shadow-sm border-start border-warning border-3">
+                        <div class="card-body">
+                            <h6 class="text-muted mb-2">Scheduled</h6>
+                            <h3 class="mb-0 text-warning">{{ $stats['scheduled'] }}</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card border-0 shadow-sm border-start border-info border-3">
+                        <div class="card-body">
+                            <h6 class="text-muted mb-2">Completed</h6>
+                            <h3 class="mb-0 text-info">{{ $stats['completed'] }}</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card border-0 shadow-sm border-start border-secondary border-3">
+                        <div class="card-body">
+                            <h6 class="text-muted mb-2">Cancelled</h6>
+                            <h3 class="mb-0 text-secondary">{{ $stats['cancelled'] }}</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="admin-card">
+                <div class="admin-card-header">
+                    <h5><i class="fas fa-calendar-check me-2" style="color: #84a33f;"></i>Internal Appointments</h5>
+                    <a href="{{ route('admin.appointments.create') }}" class="btn btn-success">
+                        <i class="fas fa-plus me-2"></i>Book Appointment
+                    </a>
+                </div>
+                <div class="admin-card-body">
+                    <form method="GET" class="row g-3 mb-4">
+                        <div class="col-md-3">
+                            <select name="status" class="form-select" onchange="this.form.submit()">
+                                <option value="">All Status</option>
+                                <option value="scheduled" {{ request('status') == 'scheduled' ? 'selected' : '' }}>Scheduled</option>
+                                <option value="completed" {{ request('status') == 'completed' ? 'selected' : '' }}>Completed</option>
+                                <option value="cancelled" {{ request('status') == 'cancelled' ? 'selected' : '' }}>Cancelled</option>
+                            </select>
+                        </div>
+                        <div class="col-md-4">
+                            <select name="clinic_service_id" class="form-select" onchange="this.form.submit()">
+                                <option value="">All Services</option>
+                                @foreach($clinicServices as $clinicService)
+                                <option value="{{ $clinicService->id }}" {{ request('clinic_service_id') == $clinicService->id ? 'selected' : '' }}>{{ $clinicService->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="col-md-3">
+                            <input type="date" name="date" class="form-control" value="{{ request('date') }}" onchange="this.form.submit()">
+                        </div>
+                        <div class="col-md-2">
+                            <a href="{{ route('admin.appointments.index') }}" class="btn btn-outline-secondary w-100">Clear</a>
+                        </div>
+                    </form>
+
+                    @if($appointments->count() > 0)
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead class="table-light">
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Patient</th>
+                                    <th>Service</th>
+                                    <th>Doctor</th>
+                                    <th>Date & Time</th>
+                                    <th>SMS</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach($appointments as $appointment)
+                                <tr>
+                                    <td><strong class="text-muted">#{{ $appointment->id }}</strong></td>
+                                    <td>
+                                        <strong>{{ $appointment->patient->full_name ?? '—' }}</strong><br>
+                                        <small class="text-muted"><i class="fas fa-phone me-1"></i>{{ $appointment->patient->phone ?? '—' }}</small>
+                                    </td>
+                                    <td>
+                                        <span class="badge bg-light text-dark border">{{ $appointment->clinicService->name ?? '—' }}</span>
+                                    </td>
+                                    <td>
+                                        {{ $appointment->doctor ? 'Dr. ' . $appointment->doctor->name : '—' }}
+                                    </td>
+                                    <td>
+                                        <strong>{{ $appointment->appointment_date->format('M d, Y') }}</strong><br>
+                                        <small class="text-muted"><i class="far fa-clock me-1"></i>{{ \Carbon\Carbon::parse($appointment->appointment_time)->format('g:i A') }}</small>
+                                    </td>
+                                    <td>
+                                        <span class="badge bg-{{ $appointment->sms_status == 'sent' ? 'success' : ($appointment->sms_status == 'failed' ? 'danger' : 'secondary') }}">
+                                            {{ ucfirst($appointment->sms_status) }}
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span class="badge bg-{{ $appointment->status == 'scheduled' ? 'warning' : ($appointment->status == 'completed' ? 'info' : 'secondary') }}">
+                                            {{ ucfirst($appointment->status) }}
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <div class="btn-group" role="group">
+                                            <a href="{{ route('admin.appointments.edit', $appointment) }}" class="btn btn-sm btn-outline-primary" title="Edit">
+                                                <i class="fas fa-edit"></i>
+                                            </a>
+                                            <form action="{{ route('admin.appointments.destroy', $appointment) }}" method="POST" class="d-inline" onsubmit="return confirm('Delete this appointment?');">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn btn-sm btn-outline-danger" title="Delete">
+                                                    <i class="fas fa-trash"></i>
+                                                </button>
+                                            </form>
+                                        </div>
+                                    </td>
+                                </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="mt-4">
+                        {{ $appointments->links() }}
+                    </div>
+                    @else
+                    <div class="text-center py-5 text-muted">
+                        <i class="fas fa-calendar-times fa-4x mb-3" style="color: #84a33f; opacity: 0.3;"></i>
+                        <h5>No appointments found</h5>
+                        <a href="{{ route('admin.appointments.create') }}" class="btn btn-success mt-3">
+                            <i class="fas fa-plus me-2"></i>Book First Appointment
+                        </a>
+                    </div>
+                    @endif
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

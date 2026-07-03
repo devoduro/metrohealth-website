@@ -149,7 +149,7 @@
                             </div>
                             
                             <div class="summary-row">
-                                <span class="summary-label">Service Fee:</span>
+                                <span class="summary-label">Estimated Consultation Fee:</span>
                                 <span class="summary-value">GH₵ {{ number_format($appointment->service_fee, 2) }}</span>
                             </div>
                             
@@ -169,7 +169,7 @@
                         <div style="margin-top: 30px; padding: 20px; background: #fff3cd; border-radius: 15px;">
                             <p style="margin: 0; color: #856404;">
                                 <i class="fas fa-info-circle me-2"></i>
-                                <strong>Important:</strong> Please arrive 15 minutes before your scheduled time. Bring a valid ID and any relevant medical records.
+                                <strong>Important:</strong> Please arrive 15 minutes before your scheduled time. Bring a valid ID and any relevant medical records. No payment is required to book — the consultation fee is paid at the hospital during your visit.
                             </p>
                         </div>
                         @endif

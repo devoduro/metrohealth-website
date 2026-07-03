@@ -37,5 +37,6 @@ class Kernel extends HttpKernel
         'dashboard.auth' => \App\Http\Middleware\DashboardAuth::class,
         'admin.only' => \App\Http\Middleware\AdminOnly::class,
         'editor.or.admin' => \App\Http\Middleware\EditorOrAdmin::class,
+        'restrict.staff' => \App\Http\Middleware\RestrictStaffAccess::class,
     ];
 }
