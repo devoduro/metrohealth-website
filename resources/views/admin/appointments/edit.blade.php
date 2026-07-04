@@ -74,6 +74,7 @@
 
                             <div class="col-md-6">
                                 <label class="form-label">Doctor</label>
+                                <div id="doctorAutoText" class="small text-muted" style="display: none;"></div>
                                 <select name="doctor_id" id="doctorSelect" class="form-select"></select>
                                 @error('doctor_id')<span class="text-danger small d-block">{{ $message }}</span>@enderror
                                 <div id="doctorDayWarning" class="text-warning small mt-1" style="display: none;">
@@ -106,27 +107,47 @@
             'clinic_service_id' => $d->clinic_service_id,
             'days' => $d->days ?? [],
         ]);
+        $clinicServicesJson = $clinicServices->map(fn($s) => ['id' => $s->id, 'has_multiple_doctors' => $s->has_multiple_doctors]);
     @endphp
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <script>
         const doctors = @json($doctorsJson);
+        const clinicServices = @json($clinicServicesJson);
         const currentDoctorId = {{ old('doctor_id', $appointment->doctor_id) ?? 'null' }};
         const clinicServiceSelect = document.getElementById('clinicServiceSelect');
         const doctorSelect = document.getElementById('doctorSelect');
+        const doctorAutoText = document.getElementById('doctorAutoText');
         const appointmentDateInput = document.getElementById('appointmentDateInput');
         const doctorDayWarning = document.getElementById('doctorDayWarning');
 
         function renderDoctorOptions() {
             const serviceId = parseInt(clinicServiceSelect.value, 10);
+            const service = clinicServices.find(s => s.id === serviceId);
             const matches = doctors.filter(d => d.clinic_service_id === serviceId);
 
-            let options = '<option value="">No specific doctor</option>';
-            options += matches.map(d =>
-                `<option value="${d.id}" data-days='${JSON.stringify(d.days)}' ${d.id === currentDoctorId ? 'selected' : ''}>Dr. ${d.name}${d.days.length ? ' (' + d.days.join(', ') + ')' : ''}</option>`
-            ).join('');
+            if (service && service.has_multiple_doctors) {
+                let options = '<option value="">No specific doctor</option>';
+                options += matches.map(d =>
+                    `<option value="${d.id}" data-days='${JSON.stringify(d.days)}' ${d.id === currentDoctorId ? 'selected' : ''}>Dr. ${d.name}${d.days.length ? ' (' + d.days.join(', ') + ')' : ''}</option>`
+                ).join('');
 
-            doctorSelect.innerHTML = options;
+                doctorSelect.innerHTML = options;
+                doctorSelect.style.display = '';
+                doctorAutoText.style.display = 'none';
+            } else if (matches.length === 1) {
+                const d = matches[0];
+                doctorSelect.innerHTML = `<option value="${d.id}" data-days='${JSON.stringify(d.days)}' selected>Dr. ${d.name}</option>`;
+                doctorSelect.style.display = 'none';
+                doctorAutoText.textContent = `Dr. ${d.name}`;
+                doctorAutoText.style.display = 'block';
+            } else {
+                doctorSelect.innerHTML = '';
+                doctorSelect.style.display = 'none';
+                doctorAutoText.textContent = 'No doctor registered for this service';
+                doctorAutoText.style.display = 'block';
+            }
+
             checkDoctorDayMismatch();
         }
 

@@ -9,10 +9,11 @@ use Symfony\Component\HttpFoundation\Response;
 class RestrictStaffAccess
 {
     /**
-     * Routes a clinical staff (doctor/nurse) account is allowed to reach.
-     * Anything else in /admin/* redirects them back to their own dashboard.
+     * Routes a doctor account is allowed to reach. Doctors are scoped to their
+     * own service only — anything else in /admin/* redirects them back to
+     * their own dashboard. (Nurses are NOT locked down this way — see below.)
      */
-    private const CLINICAL_STAFF_ALLOWED_ROUTES = [
+    private const DOCTOR_ALLOWED_ROUTES = [
         'admin.dashboard',
         'admin.logout',
         'admin.staff-dashboard',
@@ -20,10 +21,10 @@ class RestrictStaffAccess
     ];
 
     /**
-     * Route name prefixes a receptionist may not access — purely administrative
-     * or configuration sections, not front-desk duties.
+     * Route name prefixes front-desk staff (receptionist/nurse) may not access —
+     * purely administrative or configuration sections, not day-to-day duties.
      */
-    private const RECEPTIONIST_BLOCKED_PREFIXES = [
+    private const RESTRICTED_SECTION_PREFIXES = [
         'admin.doctors.',
         'admin.clinic-services.',
         'admin.sms.',
@@ -54,16 +55,16 @@ class RestrictStaffAccess
             return redirect()->route('admin.dashboard')->with('error', 'Unauthorized. Admin access required.');
         }
 
-        if ($user->isClinicalStaff()) {
-            if (!in_array($routeName, self::CLINICAL_STAFF_ALLOWED_ROUTES, true)) {
+        if ($user->isDoctor()) {
+            if (!in_array($routeName, self::DOCTOR_ALLOWED_ROUTES, true)) {
                 return redirect()->route('admin.dashboard')->with('info', 'Please use your dashboard.');
             }
 
             return $next($request);
         }
 
-        if ($user->isReceptionist() && $routeName) {
-            foreach (self::RECEPTIONIST_BLOCKED_PREFIXES as $prefix) {
+        if ($user->isFrontDeskStaff() && $routeName) {
+            foreach (self::RESTRICTED_SECTION_PREFIXES as $prefix) {
                 if (str_starts_with($routeName, $prefix)) {
                     return redirect()->route('admin.dashboard')->with('error', 'Not authorized for this section.');
                 }

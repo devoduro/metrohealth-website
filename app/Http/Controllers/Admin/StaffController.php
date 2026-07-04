@@ -106,23 +106,18 @@ class StaffController extends Controller
             'password' => $staff ? 'nullable|string|min:8' : 'required|string|min:8',
             'role' => ['required', Rule::in(self::ASSIGNABLE_ROLES)],
             'doctor_id' => 'nullable|exists:doctors,id',
-            'clinic_service_id' => 'nullable|exists:clinic_services,id',
             'clinic_service_ids' => 'nullable|array',
             'clinic_service_ids.*' => 'exists:clinic_services,id',
         ]);
     }
 
     /**
-     * Doctors get a single service (clinic_service_id); nurses can have several
+     * Doctors and nurses can each be assigned one or more clinic services
      * (clinic_service_ids[]); admin/receptionist get none.
      */
     private function resolveServiceIds(array $validated): array
     {
-        if ($validated['role'] === 'doctor') {
-            return isset($validated['clinic_service_id']) ? [$validated['clinic_service_id']] : [];
-        }
-
-        if ($validated['role'] === 'nurse') {
+        if (in_array($validated['role'], ['doctor', 'nurse'])) {
             return $validated['clinic_service_ids'] ?? [];
         }
 

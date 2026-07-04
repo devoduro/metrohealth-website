@@ -5,7 +5,7 @@
     </div>
 
     <nav class="sidebar-nav">
-        @if(auth()->user()->isClinicalStaff())
+        @if(auth()->user()->isDoctor())
             <a href="{{ route('admin.staff-dashboard') }}" class="sidebar-link {{ request()->routeIs('admin.staff-dashboard') || request()->routeIs('admin.dashboard') ? 'active' : '' }}">
                 <i class="fas fa-home"></i>
                 <span>My Dashboard</span>
@@ -15,6 +15,13 @@
                 <i class="fas fa-home"></i>
                 <span>Dashboard</span>
             </a>
+
+            @if(auth()->user()->isNurse())
+            <a href="{{ route('admin.staff-dashboard') }}" class="sidebar-link {{ request()->routeIs('admin.staff-dashboard') ? 'active' : '' }}">
+                <i class="fas fa-user-nurse"></i>
+                <span>My Dashboard</span>
+            </a>
+            @endif
 
             <!-- Healthcare Services Section -->
             <div class="sidebar-section">
@@ -31,7 +38,7 @@
                 <span>Book Appointment</span>
             </a>
 
-            @unless(auth()->user()->isReceptionist())
+            @unless(auth()->user()->isFrontDeskStaff())
             <a href="{{ route('admin.doctors.index') }}" class="sidebar-link {{ request()->routeIs('admin.doctors.*') ? 'active' : '' }}">
                 <i class="fas fa-user-md"></i>
                 <span>Doctors</span>
@@ -43,7 +50,7 @@
             </a>
             @endunless
 
-            @unless(auth()->user()->isReceptionist())
+            @unless(auth()->user()->isFrontDeskStaff())
             <!-- Communication Section -->
             <div class="sidebar-section">
                 <p style="padding: 0.5rem 1.5rem; margin: 0.5rem 0; font-size: 0.7rem; color: #84a33f; text-transform: uppercase; font-weight: 600; letter-spacing: 0.5px;">Communication</p>

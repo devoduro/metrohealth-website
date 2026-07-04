@@ -5,7 +5,7 @@
     </div>
 
     <nav class="sidebar-nav">
-        <?php if(auth()->user()->isClinicalStaff()): ?>
+        <?php if(auth()->user()->isDoctor()): ?>
             <a href="<?php echo e(route('admin.staff-dashboard')); ?>" class="sidebar-link <?php echo e(request()->routeIs('admin.staff-dashboard') || request()->routeIs('admin.dashboard') ? 'active' : ''); ?>">
                 <i class="fas fa-home"></i>
                 <span>My Dashboard</span>
@@ -15,6 +15,13 @@
                 <i class="fas fa-home"></i>
                 <span>Dashboard</span>
             </a>
+
+            <?php if(auth()->user()->isNurse()): ?>
+            <a href="<?php echo e(route('admin.staff-dashboard')); ?>" class="sidebar-link <?php echo e(request()->routeIs('admin.staff-dashboard') ? 'active' : ''); ?>">
+                <i class="fas fa-user-nurse"></i>
+                <span>My Dashboard</span>
+            </a>
+            <?php endif; ?>
 
             <!-- Healthcare Services Section -->
             <div class="sidebar-section">
@@ -31,7 +38,7 @@
                 <span>Book Appointment</span>
             </a>
 
-            <?php if (! (auth()->user()->isReceptionist())): ?>
+            <?php if (! (auth()->user()->isFrontDeskStaff())): ?>
             <a href="<?php echo e(route('admin.doctors.index')); ?>" class="sidebar-link <?php echo e(request()->routeIs('admin.doctors.*') ? 'active' : ''); ?>">
                 <i class="fas fa-user-md"></i>
                 <span>Doctors</span>
@@ -43,7 +50,7 @@
             </a>
             <?php endif; ?>
 
-            <?php if (! (auth()->user()->isReceptionist())): ?>
+            <?php if (! (auth()->user()->isFrontDeskStaff())): ?>
             <!-- Communication Section -->
             <div class="sidebar-section">
                 <p style="padding: 0.5rem 1.5rem; margin: 0.5rem 0; font-size: 0.7rem; color: #84a33f; text-transform: uppercase; font-weight: 600; letter-spacing: 0.5px;">Communication</p>

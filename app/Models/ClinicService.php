@@ -13,10 +13,12 @@ class ClinicService extends Model
         'name',
         'order',
         'is_active',
+        'has_multiple_doctors',
     ];
 
     protected $casts = [
         'is_active' => 'boolean',
+        'has_multiple_doctors' => 'boolean',
     ];
 
     public function doctors()

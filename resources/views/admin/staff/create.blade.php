@@ -79,29 +79,31 @@
 
                             <div class="col-12" id="doctorFields" style="display: none;">
                                 <hr>
-                                <div class="row g-4">
-                                    <div class="col-md-6">
-                                        <label class="form-label">Clinic Service *</label>
-                                        <select name="clinic_service_id" class="form-select">
-                                            <option value="">Choose a service...</option>
-                                            @foreach($clinicServices as $clinicService)
-                                            <option value="{{ $clinicService->id }}" {{ old('clinic_service_id') == $clinicService->id ? 'selected' : '' }}>{{ $clinicService->name }}</option>
-                                            @endforeach
-                                        </select>
-                                        <small class="text-muted">Which service this doctor is scoped to for quick-add bookings</small>
-                                        @error('clinic_service_id')<span class="text-danger small d-block">{{ $message }}</span>@enderror
+                                <label class="form-label fw-bold">Assigned Clinic Service(s) *</label>
+                                <p class="text-muted small">A doctor can be assigned to one, two, or more services.</p>
+                                <div class="row">
+                                    @foreach($clinicServices as $clinicService)
+                                    <div class="col-md-4 mb-2">
+                                        <div class="form-check">
+                                            <input type="checkbox" name="clinic_service_ids[]" value="{{ $clinicService->id }}" class="form-check-input" id="doctorService{{ $clinicService->id }}"
+                                                {{ in_array($clinicService->id, old('clinic_service_ids', [])) ? 'checked' : '' }}>
+                                            <label class="form-check-label" for="doctorService{{ $clinicService->id }}">{{ $clinicService->name }}</label>
+                                        </div>
                                     </div>
-                                    <div class="col-md-6">
-                                        <label class="form-label">Link to Doctor Directory Entry</label>
-                                        <select name="doctor_id" class="form-select">
-                                            <option value="">No link (not shown publicly)</option>
-                                            @foreach($doctors as $doctor)
-                                            <option value="{{ $doctor->id }}" {{ old('doctor_id') == $doctor->id ? 'selected' : '' }}>Dr. {{ $doctor->name }} ({{ $doctor->clinicService->name ?? '—' }})</option>
-                                            @endforeach
-                                        </select>
-                                        <small class="text-muted">Optional — ties this login to an existing public doctor listing</small>
-                                        @error('doctor_id')<span class="text-danger small d-block">{{ $message }}</span>@enderror
-                                    </div>
+                                    @endforeach
+                                </div>
+                                @error('clinic_service_ids')<span class="text-danger small d-block">{{ $message }}</span>@enderror
+
+                                <div class="mt-3">
+                                    <label class="form-label">Link to Doctor Directory Entry</label>
+                                    <select name="doctor_id" class="form-select">
+                                        <option value="">No link (not shown publicly)</option>
+                                        @foreach($doctors as $doctor)
+                                        <option value="{{ $doctor->id }}" {{ old('doctor_id') == $doctor->id ? 'selected' : '' }}>Dr. {{ $doctor->name }} ({{ $doctor->clinicService->name ?? '—' }})</option>
+                                        @endforeach
+                                    </select>
+                                    <small class="text-muted">Optional — ties this login to an existing public doctor listing</small>
+                                    @error('doctor_id')<span class="text-danger small d-block">{{ $message }}</span>@enderror
                                 </div>
                             </div>
 
@@ -142,9 +144,16 @@
         const doctorFields = document.getElementById('doctorFields');
         const nurseFields = document.getElementById('nurseFields');
 
+        function setFieldsEnabled(container, enabled) {
+            container.style.display = enabled ? 'block' : 'none';
+            container.querySelectorAll('input, select').forEach(function(el) {
+                el.disabled = !enabled;
+            });
+        }
+
         function toggleRoleFields() {
-            doctorFields.style.display = roleSelect.value === 'doctor' ? 'block' : 'none';
-            nurseFields.style.display = roleSelect.value === 'nurse' ? 'block' : 'none';
+            setFieldsEnabled(doctorFields, roleSelect.value === 'doctor');
+            setFieldsEnabled(nurseFields, roleSelect.value === 'nurse');
         }
 
         roleSelect.addEventListener('change', toggleRoleFields);

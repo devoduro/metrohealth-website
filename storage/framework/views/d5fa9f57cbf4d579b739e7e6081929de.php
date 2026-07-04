@@ -34,8 +34,8 @@
             </div>
 
             <!-- Stats Cards -->
-            <div class="row g-4 mb-4">
-                <div class="col-md-3">
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-4 g-4 mb-4">
+                <div class="col">
                     <div class="admin-stat-card">
                         <div class="stat-icon" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
                             <i class="fas fa-calendar-check"></i>
@@ -47,7 +47,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-3">
+                <div class="col">
                     <div class="admin-stat-card">
                         <div class="stat-icon" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
                             <i class="fas fa-users"></i>
@@ -59,19 +59,19 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-3">
+                <div class="col">
                     <div class="admin-stat-card">
-                        <div class="stat-icon" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">
-                            <i class="fas fa-stethoscope"></i>
+                        <div class="stat-icon" style="background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);">
+                            <i class="fas fa-address-book"></i>
                         </div>
                         <div class="stat-info">
-                            <h3><?php echo e($stats['total_services']); ?></h3>
-                            <p>Medical Services</p>
-                            <small class="text-muted"><i class="fas fa-check-circle me-1"></i>Active services</small>
+                            <h3><?php echo e($stats['total_registered_patients']); ?></h3>
+                            <p>Registered Patients</p>
+                            <small class="text-success"><i class="fas fa-user-plus me-1"></i><?php echo e($stats['new_registered_patients_month']); ?> this month</small>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-3">
+                <div class="col">
                     <div class="admin-stat-card">
                         <div class="stat-icon" style="background: linear-gradient(135deg, #84a33f 0%, #6b8a32 100%);">
                             <i class="fas fa-check-double"></i>
@@ -91,7 +91,7 @@
                     <div class="admin-card">
                         <div class="admin-card-header">
                             <h5><i class="fas fa-calendar-alt me-2"></i>Recent Appointments</h5>
-                            <a href="<?php echo e(route('admin.bookings')); ?>" class="btn btn-sm btn-outline-primary">View All</a>
+                            <a href="<?php echo e(route('admin.appointments.index')); ?>" class="btn btn-sm btn-outline-primary">View All</a>
                         </div>
                         <div class="admin-card-body">
                             <?php if($recent_appointments->count() > 0): ?>
@@ -112,32 +112,32 @@
                                             <td>
                                                 <div class="d-flex align-items-center">
                                                     <div class="avatar-circle bg-primary text-white me-2" style="width: 35px; height: 35px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 600;">
-                                                        <?php echo e(strtoupper(substr($appointment->full_name, 0, 1))); ?>
+                                                        <?php echo e(strtoupper(substr($appointment->patient->full_name ?? '?', 0, 1))); ?>
 
                                                     </div>
                                                     <div>
-                                                        <strong><?php echo e($appointment->full_name); ?></strong><br>
-                                                        <small class="text-muted"><?php echo e($appointment->phone); ?></small>
+                                                        <strong><?php echo e($appointment->patient->full_name ?? '—'); ?></strong><br>
+                                                        <small class="text-muted"><?php echo e($appointment->patient->phone ?? '—'); ?></small>
                                                     </div>
                                                 </div>
                                             </td>
                                             <td>
                                                 <i class="fas fa-stethoscope text-success me-1"></i>
-                                                <?php echo e($appointment->service_name); ?>
+                                                <?php echo e($appointment->clinicService->name ?? '—'); ?>
 
                                             </td>
                                             <td>
-                                                <strong><?php echo e($appointment->appointment_day); ?></strong><br>
-                                                <small class="text-muted"><i class="far fa-clock me-1"></i><?php echo e($appointment->appointment_time); ?></small>
+                                                <strong><?php echo e($appointment->appointment_date->format('M d, Y')); ?></strong><br>
+                                                <small class="text-muted"><i class="far fa-clock me-1"></i><?php echo e(\Carbon\Carbon::parse($appointment->appointment_time)->format('g:i A')); ?></small>
                                             </td>
                                             <td>
-                                                <span class="badge bg-<?php echo e($appointment->status == 'pending' ? 'warning' : ($appointment->status == 'confirmed' ? 'success' : ($appointment->status == 'completed' ? 'info' : 'secondary'))); ?>">
-                                                    <?php echo e(ucfirst($appointment->status ?? 'pending')); ?>
+                                                <span class="badge bg-<?php echo e($appointment->status == 'scheduled' ? 'warning' : ($appointment->status == 'completed' ? 'info' : 'secondary')); ?>">
+                                                    <?php echo e(ucfirst($appointment->status)); ?>
 
                                                 </span>
                                             </td>
                                             <td>
-                                                <a href="<?php echo e(route('admin.bookings')); ?>" class="btn btn-sm btn-outline-primary">
+                                                <a href="<?php echo e(route('admin.appointments.edit', $appointment)); ?>" class="btn btn-sm btn-outline-primary">
                                                     <i class="fas fa-eye"></i>
                                                 </a>
                                             </td>
@@ -150,7 +150,7 @@
                             <div class="text-center py-5 text-muted">
                                 <i class="fas fa-calendar-times fa-4x mb-3" style="opacity: 0.3;"></i>
                                 <h6>No appointments yet</h6>
-                                <p class="small">Appointments will appear here once patients book</p>
+                                <p class="small">Appointments will appear here once booked</p>
                             </div>
                             <?php endif; ?>
                         </div>
@@ -197,18 +197,20 @@
                         </div>
                         <div class="admin-card-body">
                             <div class="d-grid gap-2">
-                                <a href="<?php echo e(route('admin.bookings')); ?>" class="btn btn-outline-primary btn-sm">
+                                <a href="<?php echo e(route('admin.appointments.index')); ?>" class="btn btn-outline-primary btn-sm">
                                     <i class="fas fa-calendar-plus me-2"></i>View Appointments
                                 </a>
                                 <a href="<?php echo e(route('admin.patients.index')); ?>" class="btn btn-outline-success btn-sm">
                                     <i class="fas fa-users me-2"></i>Manage Patients
                                 </a>
-                                <a href="<?php echo e(route('admin.emails.index')); ?>" class="btn btn-outline-info btn-sm">
-                                    <i class="fas fa-envelope me-2"></i>Send Email Campaign
+                                <?php if (! (auth()->user()->isFrontDeskStaff())): ?>
+                                <a href="<?php echo e(route('admin.sms.index')); ?>" class="btn btn-outline-info btn-sm">
+                                    <i class="fas fa-sms me-2"></i>Bulk SMS
                                 </a>
-                                <a href="<?php echo e(route('admin.services.index')); ?>" class="btn btn-outline-warning btn-sm">
-                                    <i class="fas fa-stethoscope me-2"></i>Manage Services
+                                <a href="<?php echo e(route('admin.clinic-services.index')); ?>" class="btn btn-outline-warning btn-sm">
+                                    <i class="fas fa-list-alt me-2"></i>Clinic Services
                                 </a>
+                                <?php endif; ?>
                             </div>
                         </div>
                     </div>

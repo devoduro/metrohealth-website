@@ -10,52 +10,73 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="{{ asset('css/ashlocs-custom.css') }}">
+    <link rel="stylesheet" href="<?php echo e(asset('css/ashlocs-custom.css')); ?>">
 </head>
 <body style="background: #f8f9fa;">
 
-    @include('admin.partials.sidebar')
+    <?php echo $__env->make('admin.partials.sidebar', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 
     <div class="admin-content">
-        @section('page-title', 'Book Appointment')
-        @include('admin.partials.topbar')
+        <?php $__env->startSection('page-title', 'Book Appointment'); ?>
+        <?php echo $__env->make('admin.partials.topbar', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 
         <div class="container-fluid p-4">
             <div class="admin-card">
                 <div class="admin-card-header">
                     <h5><i class="fas fa-calendar-plus me-2"></i>Book Internal Appointment</h5>
-                    <a href="{{ route('admin.appointments.index') }}" class="btn btn-secondary">
+                    <a href="<?php echo e(route('admin.appointments.index')); ?>" class="btn btn-secondary">
                         <i class="fas fa-arrow-left me-2"></i>Back to Appointments
                     </a>
                 </div>
                 <div class="admin-card-body">
-                    <form action="{{ route('admin.appointments.store') }}" method="POST" id="appointmentForm">
-                        @csrf
+                    <form action="<?php echo e(route('admin.appointments.store')); ?>" method="POST" id="appointmentForm">
+                        <?php echo csrf_field(); ?>
                         <div class="row g-4">
                            
 
                             <div class="col-md-6 position-relative">
                                 <label class="form-label">Full Name *</label>
-                                <input type="text" name="full_name" id="fullNameInput" class="form-control" value="{{ old('full_name') }}" autocomplete="off" required>
+                                <input type="text" name="full_name" id="fullNameInput" class="form-control" value="<?php echo e(old('full_name')); ?>" autocomplete="off" required>
                                 <div id="nameSuggestions" class="list-group position-absolute w-100" style="z-index: 10; display: none;"></div>
                                 <small class="text-muted" id="nameSearchHint">Start typing to find an existing patient, or just enter a new name</small>
-                                @error('full_name')<span class="text-danger small">{{ $message }}</span>@enderror
+                                <?php $__errorArgs = ['full_name'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?><span class="text-danger small"><?php echo e($message); ?></span><?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                             </div>
 
                              <div class="col-md-6 position-relative">
                                 <label class="form-label">Phone Number *</label>
-                                <input type="text" name="phone" id="phoneInput" class="form-control" value="{{ old('phone') }}" placeholder="0241234567" autocomplete="off" required>
+                                <input type="text" name="phone" id="phoneInput" class="form-control" value="<?php echo e(old('phone')); ?>" placeholder="0241234567" autocomplete="off" required>
                                 <div id="phoneSuggestions" class="list-group position-absolute w-100" style="z-index: 10; display: none;"></div>
                                 <small class="text-muted" id="phoneSearchHint">Start typing to find an existing patient</small>
-                                @error('phone')<span class="text-danger small d-block">{{ $message }}</span>@enderror
+                                <?php $__errorArgs = ['phone'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?><span class="text-danger small d-block"><?php echo e($message); ?></span><?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                             </div>
 
                             <div class="col-md-6 position-relative">
                                 <label class="form-label">Address</label>
-                                <input type="text" name="address" id="addressInput" class="form-control" value="{{ old('address') }}" placeholder="e.g. 12 Ridge Road, Kumasi" autocomplete="off">
+                                <input type="text" name="address" id="addressInput" class="form-control" value="<?php echo e(old('address')); ?>" placeholder="e.g. 12 Ridge Road, Kumasi" autocomplete="off">
                                 <div id="addressSuggestions" class="list-group position-absolute w-100" style="z-index: 10; display: none;"></div>
                                 <small class="text-muted">You can also search by address here</small>
-                                @error('address')<span class="text-danger small d-block">{{ $message }}</span>@enderror
+                                <?php $__errorArgs = ['address'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?><span class="text-danger small d-block"><?php echo e($message); ?></span><?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                             </div>
 
                             <div class="col-12">
@@ -68,12 +89,19 @@
                                 </div>
                                 <p class="text-muted small">Select one or more services. Each service gets its own date and time &mdash; use the button above if they all share the same slot.</p>
                                 <div id="servicesList"></div>
-                                @error('services')<span class="text-danger small d-block">{{ $message }}</span>@enderror
+                                <?php $__errorArgs = ['services'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?><span class="text-danger small d-block"><?php echo e($message); ?></span><?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                             </div>
 
                             <div class="col-12">
                                 <label class="form-label">Notes</label>
-                                <textarea name="notes" class="form-control" rows="3">{{ old('notes') }}</textarea>
+                                <textarea name="notes" class="form-control" rows="3"><?php echo e(old('notes')); ?></textarea>
                             </div>
 
                             <div class="col-12">
@@ -87,7 +115,7 @@
                                 <button type="submit" class="btn btn-primary btn-lg">
                                     <i class="fas fa-save me-2"></i>Book Appointment
                                 </button>
-                                <a href="{{ route('admin.appointments.index') }}" class="btn btn-secondary btn-lg">Cancel</a>
+                                <a href="<?php echo e(route('admin.appointments.index')); ?>" class="btn btn-secondary btn-lg">Cancel</a>
                             </div>
                         </div>
                     </form>
@@ -96,7 +124,7 @@
         </div>
     </div>
 
-    @php
+    <?php
         $clinicServicesJson = $clinicServices->map(fn($s) => ['id' => $s->id, 'name' => $s->name, 'has_multiple_doctors' => $s->has_multiple_doctors]);
         $doctorsJson = $doctors->map(fn($d) => [
             'id' => $d->id,
@@ -104,13 +132,13 @@
             'clinic_service_id' => $d->clinic_service_id,
             'days' => $d->days ?? [],
         ]);
-    @endphp
+    ?>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-        const clinicServices = @json($clinicServicesJson);
-        const doctors = @json($doctorsJson);
-        const todayStr = '{{ date('Y-m-d') }}';
+        const clinicServices = <?php echo json_encode($clinicServicesJson, 15, 512) ?>;
+        const doctors = <?php echo json_encode($doctorsJson, 15, 512) ?>;
+        const todayStr = '<?php echo e(date('Y-m-d')); ?>';
         const servicesList = document.getElementById('servicesList');
         const sameDateTimeBtn = document.getElementById('sameDateTimeBtn');
 
@@ -307,7 +335,7 @@
                 }
 
                 debounceTimer = setTimeout(() => {
-                    fetch('{{ route("admin.appointments.patient-search") }}?q=' + encodeURIComponent(value))
+                    fetch('<?php echo e(route("admin.appointments.patient-search")); ?>?q=' + encodeURIComponent(value))
                         .then(response => response.json())
                         .then(patients => {
                             if (!patients.length) {
@@ -354,3 +382,4 @@
     </script>
 </body>
 </html>
+<?php /**PATH C:\xampp\htdocs\metrohealth-web\resources\views/admin/appointments/create.blade.php ENDPATH**/ ?>

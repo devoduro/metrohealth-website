@@ -7,8 +7,10 @@ use App\Models\Booking;
 use App\Models\Order;
 use App\Models\Service;
 use App\Models\Product;
+use App\Models\Appointment;
 use App\Models\ClinicAppointment;
 use App\Models\ContactSubmission;
+use App\Models\Patient;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -50,7 +52,7 @@ class AdminController extends Controller
 
     public function dashboard()
     {
-        if (Auth::user()->isClinicalStaff()) {
+        if (Auth::user()->isDoctor()) {
             return redirect()->route('admin.staff-dashboard');
         }
 
@@ -61,11 +63,13 @@ class AdminController extends Controller
             'completed_appointments' => ClinicAppointment::where('status', 'completed')->count(),
             'total_patients' => ClinicAppointment::distinct('email')->count('email'),
             'new_patients_month' => ClinicAppointment::whereMonth('created_at', now()->month)->distinct('email')->count('email'),
-            'total_services' => count(ClinicAppointment::getServiceSchedules()),
+            'total_registered_patients' => Patient::count(),
+            'new_registered_patients_month' => Patient::whereMonth('created_at', now()->month)->count(),
             'total_messages' => ContactSubmission::count(),
         ];
 
-        $recent_appointments = ClinicAppointment::latest()
+        $recent_appointments = Appointment::with(['patient', 'clinicService'])
+            ->latest()
             ->take(10)
             ->get();
 

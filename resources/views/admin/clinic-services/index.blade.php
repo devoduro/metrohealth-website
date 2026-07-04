@@ -35,8 +35,9 @@
                             <thead class="table-light">
                                 <tr>
                                     <th width="5%">ID</th>
-                                    <th width="35%">Name</th>
-                                    <th width="15%">Doctors</th>
+                                    <th width="25%">Name</th>
+                                    <th width="10%">Doctors</th>
+                                    <th width="15%">Multi-Doctor</th>
                                     <th width="10%">Order</th>
                                     <th width="15%">Status</th>
                                     <th width="20%">Actions</th>
@@ -48,6 +49,11 @@
                                     <td><strong class="text-muted">#{{ $clinicService->id }}</strong></td>
                                     <td><strong>{{ $clinicService->name }}</strong></td>
                                     <td><span class="badge bg-info">{{ $clinicService->doctors_count }}</span></td>
+                                    <td>
+                                        <span class="badge bg-{{ $clinicService->has_multiple_doctors ? 'success' : 'secondary' }}">
+                                            {{ $clinicService->has_multiple_doctors ? 'Yes — shows doctor picker' : 'No — single doctor' }}
+                                        </span>
+                                    </td>
                                     <td><span class="badge bg-secondary">{{ $clinicService->order }}</span></td>
                                     <td>
                                         <span class="badge bg-{{ $clinicService->is_active ? 'success' : 'secondary' }}">

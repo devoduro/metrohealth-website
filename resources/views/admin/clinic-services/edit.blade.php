@@ -54,6 +54,40 @@
                                 </div>
                             </div>
 
+                            <div class="col-md-6">
+                                <div class="form-check">
+                                    <input type="checkbox" name="has_multiple_doctors" id="hasMultipleDoctors" class="form-check-input" {{ old('has_multiple_doctors', $clinicService->has_multiple_doctors) ? 'checked' : '' }}>
+                                    <label class="form-check-label" for="hasMultipleDoctors">
+                                        Has multiple doctors
+                                    </label>
+                                    <small class="text-muted d-block">When ticked, staff booking this service will be asked to pick a doctor. Leave unticked for single-doctor services.</small>
+                                </div>
+                            </div>
+
+                            <div class="col-12" id="doctorPickerSection" style="display: none;">
+                                <hr>
+                                <label class="form-label fw-bold">Doctors for this service</label>
+                                <p class="text-muted small">Tick the doctors who work in this service. Ticking a doctor who currently belongs to another service moves them here. Unticking does <strong>not</strong> remove a doctor — edit that doctor directly to move them elsewhere.</p>
+                                <div class="row">
+                                    @foreach($allDoctors as $doctor)
+                                    @php $isOnThisService = $doctor->clinic_service_id === $clinicService->id; @endphp
+                                    <div class="col-md-4 mb-2">
+                                        <div class="form-check">
+                                            <input type="checkbox" name="doctor_ids[]" value="{{ $doctor->id }}" class="form-check-input" id="doctorPick{{ $doctor->id }}"
+                                                {{ in_array($doctor->id, old('doctor_ids', $isOnThisService ? [$doctor->id] : [])) ? 'checked' : '' }}>
+                                            <label class="form-check-label" for="doctorPick{{ $doctor->id }}">
+                                                Dr. {{ $doctor->name }}
+                                                @unless($isOnThisService)
+                                                <small class="text-muted">(currently: {{ $doctor->clinicService->name ?? '—' }})</small>
+                                                @endunless
+                                            </label>
+                                        </div>
+                                    </div>
+                                    @endforeach
+                                </div>
+                                @error('doctor_ids')<span class="text-danger small d-block">{{ $message }}</span>@enderror
+                            </div>
+
                             <div class="col-12">
                                 <button type="submit" class="btn btn-primary btn-lg">
                                     <i class="fas fa-save me-2"></i>Update Clinic Service
@@ -68,5 +102,16 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        const hasMultipleDoctors = document.getElementById('hasMultipleDoctors');
+        const doctorPickerSection = document.getElementById('doctorPickerSection');
+
+        function toggleDoctorPicker() {
+            doctorPickerSection.style.display = hasMultipleDoctors.checked ? 'block' : 'none';
+        }
+
+        hasMultipleDoctors.addEventListener('change', toggleDoctorPicker);
+        toggleDoctorPicker();
+    </script>
 </body>
 </html>

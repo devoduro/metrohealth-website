@@ -111,6 +111,18 @@ class User extends Model implements AuthenticatableContract
     }
 
     /**
+     * Front-desk-style access: full Patients/Appointments across all services,
+     * but not the purely administrative sections (Doctors, Clinic Services,
+     * Bulk SMS, Email Campaigns, Reviews, Blog, Contact Messages, Staff Accounts).
+     * Nurses need to see appointments/patients beyond their own assigned service,
+     * so they're treated the same as receptionists here.
+     */
+    public function isFrontDeskStaff()
+    {
+        return in_array($this->role, ['nurse', 'receptionist']);
+    }
+
+    /**
      * Check if user is clinical staff (doctor or nurse) — scoped to their own service(s)
      */
     public function isClinicalStaff()
