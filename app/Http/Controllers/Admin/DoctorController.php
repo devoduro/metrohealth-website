@@ -37,6 +37,8 @@ class DoctorController extends Controller
 
         Doctor::create($validated);
 
+        $this->enableMultipleDoctorsIfNeeded($validated['clinic_service_id']);
+
         return redirect()->route('admin.doctors.index')->with('success', 'Doctor registered successfully!');
     }
 
@@ -61,6 +63,8 @@ class DoctorController extends Controller
 
         $doctor->update($validated);
 
+        $this->enableMultipleDoctorsIfNeeded($validated['clinic_service_id']);
+
         return redirect()->route('admin.doctors.index')->with('success', 'Doctor updated successfully!');
     }
 
@@ -69,5 +73,22 @@ class DoctorController extends Controller
         $doctor->delete();
 
         return redirect()->route('admin.doctors.index')->with('success', 'Doctor removed successfully!');
+    }
+
+    /**
+     * A service with 2+ doctors needs has_multiple_doctors=true, otherwise the
+     * booking pages' doctor picker silently hides every doctor for that service.
+     * Only ever auto-enables — never disables — so an admin's explicit choice
+     * to keep the picker on (e.g. temporarily down to one doctor) is preserved.
+     */
+    private function enableMultipleDoctorsIfNeeded(int $clinicServiceId): void
+    {
+        $doctorCount = Doctor::where('clinic_service_id', $clinicServiceId)->count();
+
+        if ($doctorCount > 1) {
+            ClinicService::where('id', $clinicServiceId)
+                ->where('has_multiple_doctors', false)
+                ->update(['has_multiple_doctors' => true]);
+        }
     }
 }

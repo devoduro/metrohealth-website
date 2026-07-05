@@ -509,7 +509,7 @@
                             </a>
                             <a href="{{ route('services.eye-care') }}" class="service-link-item">
                                 <i class="fas fa-eye"></i>
-                                <span>Eye Clinic</span>
+                                <span>Eye Care</span>
                             </a>
                             <a href="{{ route('services.plastic-surgery') }}" class="service-link-item">
                                 <i class="fas fa-user-md"></i>

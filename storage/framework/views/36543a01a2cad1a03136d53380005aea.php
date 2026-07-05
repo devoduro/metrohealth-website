@@ -6,11 +6,26 @@
                     <?php echo $__env->yieldContent('page-title', 'Dashboard'); ?>
                 </h4>
             </div>
-            <div class="d-flex align-items-center gap-3">
-                <span class="text-muted">Welcome, <strong><?php echo e(Auth::user()->name ?? 'Admin'); ?></strong></span>
-                <div class="admin-user-avatar">
-                    <i class="fas fa-user-circle"></i>
-                </div>
+            <div class="dropdown">
+                <a href="#" class="d-flex align-items-center gap-3 text-decoration-none dropdown-toggle" id="userMenuDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <span class="text-muted">Welcome, <strong><?php echo e(Auth::user()->name ?? 'Admin'); ?></strong></span>
+                    <div class="admin-user-avatar">
+                        <i class="fas fa-user-circle"></i>
+                    </div>
+                </a>
+                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userMenuDropdown">
+                    <li><a class="dropdown-item" href="<?php echo e(route('admin.profile.edit')); ?>"><i class="fas fa-user-edit me-2"></i>My Profile</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li>
+                        <a class="dropdown-item" href="<?php echo e(route('admin.logout')); ?>"
+                           onclick="event.preventDefault(); document.getElementById('topbar-logout-form').submit();">
+                            <i class="fas fa-sign-out-alt me-2"></i>Logout
+                        </a>
+                    </li>
+                </ul>
+                <form id="topbar-logout-form" action="<?php echo e(route('admin.logout')); ?>" method="POST" style="display: none;">
+                    <?php echo csrf_field(); ?>
+                </form>
             </div>
         </div>
     </div>

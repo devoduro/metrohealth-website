@@ -3,39 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <?php echo $__env->make('partials.seo', [
-        'title' => 'Eye Clinic - Metro Health Hospital',
-        'description' => 'Advanced ophthalmology services at Metro Health Hospital. Comprehensive eye care from routine screenings to complex surgical interventions in Kumasi.',
-        'keywords' => 'eye care, ophthalmology, vision care, cataract surgery, glaucoma treatment, metro health kumasi'
-    ], \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
-    
+
+    @include('partials.seo', [
+        'title' => 'Dietetics - Metro Health Hospital',
+        'description' => 'Personalized nutrition counselling and medical diet therapy from qualified dietitians at Metro Health Hospital in Kumasi.',
+        'keywords' => 'dietetics, nutrition, diet therapy, dietitian, weight management, metro health kumasi'
+    ])
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <link rel="stylesheet" href="<?php echo e(asset('css/ashlocs-custom.css')); ?>">
+    <link rel="stylesheet" href="{{ asset('css/ashlocs-custom.css') }}">
 </head>
 <body>
     <!-- Top Header Bar -->
-    <?php echo $__env->make('partials.top_header', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
-    
+    @include('partials.top_header')
+
     <!-- Main Navbar -->
-    <?php echo $__env->make('partials.navigation', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+    @include('partials.navigation')
 
     <!-- Page Hero -->
-    <section class="page-hero" style="background: linear-gradient(135deg, rgba(9, 58, 91, 0.9) 0%, rgba(0, 82, 136, 0.85) 100%), url('<?php echo e(asset('images/services/page-bg-slider-02.png')); ?>') center/cover; padding: 120px 0 80px; margin-top: 44px; position: relative;">
+    <section class="page-hero" style="background: linear-gradient(135deg, rgba(9, 58, 91, 0.9) 0%, rgba(0, 82, 136, 0.85) 100%), url('{{ asset('images/services/page-bg-slider-02.png') }}') center/cover; padding: 120px 0 80px; margin-top: 44px; position: relative;">
         <div class="container" style="position: relative; z-index: 2;">
             <div class="row align-items-center justify-content-center text-center">
                 <div class="col-lg-8" data-aos="fade-up">
                     <div class="service-icon-large mx-auto mb-4" style="width: 120px; height: 120px; background: rgba(255, 255, 255, 0.95); border-radius: 20px; display: flex; align-items: center; justify-content: center; font-size: 3.5rem; color: #2980b9; box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);">
-                        <i class="fas fa-eye"></i>
+                        <i class="fas fa-apple-alt"></i>
                     </div>
-                    <h1 class="display-3 fw-bold mb-4" style="color: white; text-shadow: 0 2px 4px rgba(0,0,0,0.1);">Eye Clinic</h1>
+                    <h1 class="display-3 fw-bold mb-4" style="color: white; text-shadow: 0 2px 4px rgba(0,0,0,0.1);">Dietetics</h1>
                     <p class="lead" style="font-size: 1.3rem; color: rgba(255, 255, 255, 0.95); text-shadow: 0 1px 2px rgba(0,0,0,0.1);">
-                        Clearer Vision. Brighter Future.
+                        Nutrition Guidance for a Healthier You.
                     </p>
                 </div>
             </div>
@@ -50,42 +50,40 @@
                     <div class="service-detail-content">
                         <!-- Service Image -->
                         <div class="service-image mb-5" style="border-radius: 25px; box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);">
-                            <img src="<?php echo e(asset('images/services/eye1.jpg')); ?>"
-                                 alt="Eye Clinic at Metro Health"
+                            <img src="{{ asset('images/services/se.png') }}"
+                                 alt="Dietetics at Metro Health"
                                  style="width: 100%; height: auto; display: block; border-radius: 25px;">
                         </div>
 
-                        <h2 class="mb-4" style="font-size: 2.5rem; font-weight: 800;">Advanced Ophthalmology at Abrepo Junction</h2>
+                        <h2 class="mb-4" style="font-size: 2.5rem; font-weight: 800;">Nutrition Care Tailored to You</h2>
                         <div class="content-text" style="font-size: 1.1rem; line-height: 1.8; color: #666;">
-                            <p>Since 2011, Metro Health Hospital has been a trusted name for clinical excellence in the Kumasi Metropolis. Our Eye Clinic provides a full spectrum of ophthalmology services, from routine vision screenings to complex surgical interventions. Utilizing cutting-edge equipment and evidence-based treatments, our expert team is committed to the highest standards of ocular health and vision preservation.</p>
+                            <p>Since 2011, Metro Health Hospital has been a trusted name for clinical excellence in the Kumasi Metropolis. Our Dietetics service pairs patients with qualified dietitians who translate medical advice into practical, everyday eating plans &mdash; whether you're managing diabetes, recovering from surgery, watching your weight, or simply looking to build healthier habits.</p>
                         </div>
 
-                        <!-- Vision Focus -->
+                        <!-- Dietetics Focus -->
                         <div class="mt-4 mb-4" style="background: #f9f9f9; border-radius: 12px; padding: 30px; border-left: 4px solid #a8207a;">
-                            <p style="font-size: 1.1rem; line-height: 1.8; color: #666; margin-bottom: 20px;">Protect your most vital sense with premier eye care at Metro Health Hospital. Our specialized Ophthalmology team focuses on:</p>
+                            <p style="font-size: 1.1rem; line-height: 1.8; color: #666; margin-bottom: 20px;">Good nutrition is part of good medicine. Our Dietetics team focuses on:</p>
                             <ul style="margin: 0; padding-left: 20px;">
-                                <li style="margin-bottom: 10px; color: #555;"><strong>Diagnostic Precision:</strong> High-tech imaging for early detection of eye conditions.</li>
-                                <li style="margin-bottom: 10px; color: #555;"><strong>Clinical Expertise:</strong> Experienced specialists managing everything from cataracts to glaucoma.</li>
-                                <li style="margin-bottom: 10px; color: #555;"><strong>Vision Preservation:</strong> Comprehensive care designed to keep your world in focus.</li>
+                                <li style="margin-bottom: 10px; color: #555;"><strong>Personalized Diet Plans:</strong> Nutrition advice built around your condition, lifestyle, and goals.</li>
+                                <li style="margin-bottom: 10px; color: #555;"><strong>Medical Diet Therapy:</strong> Targeted dietary management for diabetes, hypertension, kidney disease, and more.</li>
+                                <li style="margin-bottom: 10px; color: #555;"><strong>Ongoing Support:</strong> Ongoing follow-up to keep you on track and adjust your plan as needed.</li>
                             </ul>
                         </div>
 
-                        <!-- Eye Clinic Services -->
+                        <!-- Dietetics Services -->
                         <div class="gp-services mt-5">
-                            <h3 class="mb-4" style="font-size: 2rem; font-weight: 700; color: #2d3e50;">Our Eye Clinic Services Include:</h3>
-                            
-                            <h4 class="mb-3 mt-4" style="font-size: 1.5rem; font-weight: 600; color: #1a1a1a;">Advanced Diagnostics & Technology</h4>
-                            
+                            <h3 class="mb-4" style="font-size: 2rem; font-weight: 700; color: #2d3e50;">Our Dietetics Services Include:</h3>
+
                             <div class="row g-4">
                                 <div class="col-md-6">
                                     <div class="service-type-card" style="background: white; border-radius: 12px; padding: 28px; height: 100%; border-left: 3px solid #a8207a; box-shadow: 0 2px 8px rgba(0,0,0,0.06);">
                                         <div class="d-flex align-items-start">
                                             <div style="width: 48px; height: 48px; background: #84a33f; border-radius: 10px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-right: 18px;">
-                                                <i class="fas fa-microscope" style="color: white; font-size: 1.2rem;"></i>
+                                                <i class="fas fa-clipboard-check" style="color: white; font-size: 1.2rem;"></i>
                                             </div>
                                             <div>
-                                                <h5 class="mb-2" style="font-weight: 600; color: #1a1a1a; font-size: 1.05rem;">OCT Imaging (Optical Coherence Tomography)</h5>
-                                                <p class="mb-0" style="color: #666; font-size: 0.9rem; line-height: 1.5;">State-of-the-art retinal imaging for the earliest possible detection of glaucoma, macular degeneration, and diabetic eye disease.</p>
+                                                <h5 class="mb-2" style="font-weight: 600; color: #1a1a1a; font-size: 1.05rem;">Nutritional Assessment</h5>
+                                                <p class="mb-0" style="color: #666; font-size: 0.9rem; line-height: 1.5;">A full review of your diet, health history, and goals to build the right plan.</p>
                                             </div>
                                         </div>
                                     </div>
@@ -95,11 +93,11 @@
                                     <div class="service-type-card" style="background: white; border-radius: 12px; padding: 28px; height: 100%; border-left: 3px solid #84a33f; box-shadow: 0 2px 8px rgba(0,0,0,0.06);">
                                         <div class="d-flex align-items-start">
                                             <div style="width: 48px; height: 48px; background: #84a33f; border-radius: 10px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-right: 18px;">
-                                                <i class="fas fa-eye" style="color: white; font-size: 1.2rem;"></i>
+                                                <i class="fas fa-weight" style="color: white; font-size: 1.2rem;"></i>
                                             </div>
                                             <div>
-                                                <h5 class="mb-2" style="font-weight: 600; color: #1a1a1a; font-size: 1.05rem;">Comprehensive Eye Examinations</h5>
-                                                <p class="mb-0" style="color: #666; font-size: 0.9rem; line-height: 1.5;">Thorough health assessments that go beyond simple vision testing to ensure the long-term vitality of your eyes.</p>
+                                                <h5 class="mb-2" style="font-weight: 600; color: #1a1a1a; font-size: 1.05rem;">Weight Management</h5>
+                                                <p class="mb-0" style="color: #666; font-size: 0.9rem; line-height: 1.5;">Safe, sustainable guidance for weight loss or weight gain goals.</p>
                                             </div>
                                         </div>
                                     </div>
@@ -109,87 +107,43 @@
                                     <div class="service-type-card" style="background: white; border-radius: 12px; padding: 28px; height: 100%; border-left: 3px solid #84a33f; box-shadow: 0 2px 8px rgba(0,0,0,0.06);">
                                         <div class="d-flex align-items-start">
                                             <div style="width: 48px; height: 48px; background: #84a33f; border-radius: 10px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-right: 18px;">
-                                                <i class="fas fa-car" style="color: white; font-size: 1.2rem;"></i>
+                                                <i class="fas fa-heartbeat" style="color: white; font-size: 1.2rem;"></i>
                                             </div>
                                             <div>
-                                                <h5 class="mb-2" style="font-weight: 600; color: #1a1a1a; font-size: 1.05rem;">DVLA Eye Testing</h5>
-                                                <p class="mb-0" style="color: #666; font-size: 0.9rem; line-height: 1.5;">Official, accredited eye examinations required for driving license applications and renewals.</p>
+                                                <h5 class="mb-2" style="font-weight: 600; color: #1a1a1a; font-size: 1.05rem;">Chronic Disease Diet Therapy</h5>
+                                                <p class="mb-0" style="color: #666; font-size: 0.9rem; line-height: 1.5;">Meal planning for diabetes, hypertension, kidney, and heart conditions.</p>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
 
+                                <div class="col-md-6">
+                                    <div class="service-type-card" style="background: white; border-radius: 12px; padding: 28px; height: 100%; border-left: 3px solid #a8207a; box-shadow: 0 2px 8px rgba(0,0,0,0.06);">
+                                        <div class="d-flex align-items-start">
+                                            <div style="width: 48px; height: 48px; background: #84a33f; border-radius: 10px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-right: 18px;">
+                                                <i class="fas fa-baby-carriage" style="color: white; font-size: 1.2rem;"></i>
+                                            </div>
+                                            <div>
+                                                <h5 class="mb-2" style="font-weight: 600; color: #1a1a1a; font-size: 1.05rem;">Maternal & Child Nutrition</h5>
+                                                <p class="mb-0" style="color: #666; font-size: 0.9rem; line-height: 1.5;">Nutrition guidance for pregnancy, breastfeeding, and growing children.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
 
-                         <div class="service-image mt-5 mb-5" style="border-radius: 25px; box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);">
-                            <img src="<?php echo e(asset('images/services/eye3.jpg')); ?>" 
-                                 alt="General Practice Services at Metro Health" 
-                                 style="width: 100%; height: 100%; display: block; border-radius: 25px;">
-                        </div>
                         <!-- Our Approach Section -->
                         <div class="expertise-section mt-5" style="background: #f9f9f9; border-radius: 12px; padding: 35px; border-left: 4px solid #a8207a;">
-                            <h3 class="mb-3" style="font-size: 1.85rem; font-weight: 600; color: #1a1a1a;">Trusted Eye Clinic Since 2011</h3>
-                            <p style="font-size: 1.05rem; line-height: 1.7; color: #555; margin: 0;">At Metro Health Hospital, we understand that your vision is precious. Our ophthalmology team combines years of clinical experience with the latest diagnostic technology to provide comprehensive eye care services. From routine examinations to advanced imaging and treatment, we are dedicated to preserving and protecting your sight for years to come.</p>
+                            <h3 class="mb-3" style="font-size: 1.85rem; font-weight: 600; color: #1a1a1a;">Trusted Dietetics Care Since 2011</h3>
+                            <p style="font-size: 1.05rem; line-height: 1.7; color: #555; margin: 0;">At Metro Health Hospital, we believe food is one of the most powerful tools in medicine. Our qualified dietitians work hand-in-hand with your doctors to build nutrition plans that are practical, sustainable, and genuinely improve your health.</p>
                         </div>
                     </div>
                 </div>
 
                 <!-- Sidebar -->
                 <div class="col-lg-4" data-aos="fade-left">
-                    <!-- All Services Menu -->
-                    <div class="services-menu mb-4" style="background: white; border-radius: 20px; padding: 30px; box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);">
-                        <h4 class="mb-4" style="font-weight: 700; color: #2d3e50;">All Services</h4>
-                        <div class="services-list">
-                            <a href="<?php echo e(route('services.general-practice')); ?>" class="service-link" style="display: flex; align-items: center; padding: 12px 15px; margin-bottom: 8px; border-radius: 10px; text-decoration: none; background: #f8f9fa; transition: all 0.3s ease;">
-                                <i class="fas fa-stethoscope me-3" style="color: #666; font-size: 1.1rem;"></i>
-                                <span style="color: #666; font-weight: 500;">General Practice</span>
-                            </a>
-                            <a href="<?php echo e(route('services.general-surgery')); ?>" class="service-link" style="display: flex; align-items: center; padding: 12px 15px; margin-bottom: 8px; border-radius: 10px; text-decoration: none; background: #f8f9fa; transition: all 0.3s ease;">
-                                <i class="fas fa-user-md me-3" style="color: #666; font-size: 1.1rem;"></i>
-                                <span style="color: #666; font-weight: 500;">General Surgery</span>
-                            </a>
-                            <a href="<?php echo e(route('services.obstetrics-gynaecology')); ?>" class="service-link" style="display: flex; align-items: center; padding: 12px 15px; margin-bottom: 8px; border-radius: 10px; text-decoration: none; background: #f8f9fa; transition: all 0.3s ease;">
-                                <i class="fas fa-baby me-3" style="color: #666; font-size: 1.1rem;"></i>
-                                <span style="color: #666; font-weight: 500;">Obstetrics & Gynaecology</span>
-                            </a>
-                            <a href="<?php echo e(route('services.geriatric-care')); ?>" class="service-link" style="display: flex; align-items: center; padding: 12px 15px; margin-bottom: 8px; border-radius: 10px; text-decoration: none; background: #f8f9fa; transition: all 0.3s ease;">
-                                <i class="fas fa-user-friends me-3" style="color: #666; font-size: 1.1rem;"></i>
-                                <span style="color: #666; font-weight: 500;">Geriatric Care</span>
-                            </a>
-                            <a href="<?php echo e(route('services.paediatrics')); ?>" class="service-link" style="display: flex; align-items: center; padding: 12px 15px; margin-bottom: 8px; border-radius: 10px; text-decoration: none; background: #f8f9fa; transition: all 0.3s ease;">
-                                <i class="fas fa-child me-3" style="color: #666; font-size: 1.1rem;"></i>
-                                <span style="color: #666; font-weight: 500;">Paediatrics</span>
-                            </a>
-                            <a href="<?php echo e(route('services.urology')); ?>" class="service-link" style="display: flex; align-items: center; padding: 12px 15px; margin-bottom: 8px; border-radius: 10px; text-decoration: none; background: #f8f9fa; transition: all 0.3s ease;">
-                                <i class="fas fa-kidneys me-3" style="color: #666; font-size: 1.1rem;"></i>
-                                <span style="color: #666; font-weight: 500;">Urology</span>
-                            </a>
-                            <a href="<?php echo e(route('services.orthopaedic')); ?>" class="service-link" style="display: flex; align-items: center; padding: 12px 15px; margin-bottom: 8px; border-radius: 10px; text-decoration: none; background: #f8f9fa; transition: all 0.3s ease;">
-                                <i class="fas fa-bone me-3" style="color: #666; font-size: 1.1rem;"></i>
-                                <span style="color: #666; font-weight: 500;">Orthopaedic</span>
-                            </a>
-                            <a href="<?php echo e(route('services.ent-care')); ?>" class="service-link" style="display: flex; align-items: center; padding: 12px 15px; margin-bottom: 8px; border-radius: 10px; text-decoration: none; background: #f8f9fa; transition: all 0.3s ease;">
-                                <i class="fas fa-head-side-mask me-3" style="color: #666; font-size: 1.1rem;"></i>
-                                <span style="color: #666; font-weight: 500;">ENT Care</span>
-                            </a>
-                            <a href="<?php echo e(route('services.eye-care')); ?>" class="service-link active" style="display: flex; align-items: center; padding: 12px 15px; margin-bottom: 8px; border-radius: 10px; text-decoration: none; background: #f3e5f5; border-left: 3px solid #a8207a; transition: all 0.3s ease;">
-                                <i class="fas fa-eye me-3" style="color: #a8207a; font-size: 1.1rem;"></i>
-                                <span style="color: #2d3e50; font-weight: 600;">Eye Clinic</span>
-                            </a>
-                            <?php
-                                $sidebarServices = \App\Models\Service::active()->ordered()->get();
-                            ?>
-                            <?php $__currentLoopData = $sidebarServices; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $service): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                <?php if($service->slug): ?>
-                                <a href="<?php echo e(route('services.show', $service->slug)); ?>" class="service-link" style="display: flex; align-items: center; padding: 12px 15px; margin-bottom: 8px; border-radius: 10px; text-decoration: none; background: #f8f9fa; transition: all 0.3s ease;">
-                                    <i class="<?php echo e($service->icon ?? 'fas fa-heartbeat'); ?> me-3" style="color: #666; font-size: 1.1rem;"></i>
-                                    <span style="color: #666; font-weight: 500;"><?php echo e($service->title); ?></span>
-                                </a>
-                                <?php endif; ?>
-                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                        </div>
-                    </div>
+                    @include('partials.services-sidebar', ['active' => 'dietetics'])
 
                     <!-- Contact Card -->
                     <div class="contact-card mb-4" style="background: #a8207a; border-radius: 12px; padding: 32px; color: white; box-shadow: 0 4px 12px rgba(168, 32, 122, 0.2);">
@@ -218,7 +172,7 @@
                                 </div>
                             </div>
                         </div>
-                        <a href="<?php echo e(route('contact')); ?>" class="btn btn-light w-100" style="padding: 13px; font-weight: 600; border-radius: 8px; transition: all 0.3s ease;">Contact Us</a>
+                        <a href="{{ route('contact') }}" class="btn btn-light w-100" style="padding: 13px; font-weight: 600; border-radius: 8px; transition: all 0.3s ease;">Contact Us</a>
                     </div>
 
                     <!-- Specialist Clinics Card -->
@@ -273,7 +227,7 @@
         </div>
     </section>
 
-    <?php echo $__env->make('partials.footer', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+    @include('partials.footer')
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
@@ -382,4 +336,3 @@
     </style>
 </body>
 </html>
-<?php /**PATH C:\xampp\htdocs\metrohealth-web\resources\views/services/eye-care.blade.php ENDPATH**/ ?>

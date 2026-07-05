@@ -72,10 +72,6 @@
                 </div>
                 
                 <div class="detail-row">
-                    <span class="detail-label">Estimated Consultation Fee:</span> GH₵ {{ number_format($appointment->service_fee, 2) }}
-                </div>
-                
-                <div class="detail-row">
                     <span class="detail-label">Booking Reference:</span> #{{ str_pad($appointment->id, 6, '0', STR_PAD_LEFT) }}
                 </div>
             </div>

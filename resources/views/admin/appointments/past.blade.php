@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Internal Appointments | Metro Health Admin</title>
+    <title>Past Appointments | Metro Health Admin</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -17,68 +17,22 @@
     @include('admin.partials.sidebar')
 
     <div class="admin-content">
-        @section('page-title', 'Internal Appointments')
+        @section('page-title', 'Past Appointments')
         @include('admin.partials.topbar')
 
         <div class="container-fluid p-4">
-            @if(session('warning'))
-            <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                <i class="fas fa-exclamation-triangle me-2"></i>{{ session('warning') }}
-                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-            </div>
-            @endif
-
-            <!-- Stats Cards -->
-            <div class="row g-3 mb-4">
-                <div class="col-md-3">
-                    <div class="card border-0 shadow-sm">
-                        <div class="card-body">
-                            <h6 class="text-muted mb-2">Total</h6>
-                            <h3 class="mb-0">{{ $stats['total'] }}</h3>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="card border-0 shadow-sm border-start border-warning border-3">
-                        <div class="card-body">
-                            <h6 class="text-muted mb-2">Scheduled</h6>
-                            <h3 class="mb-0 text-warning">{{ $stats['scheduled'] }}</h3>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="card border-0 shadow-sm border-start border-info border-3">
-                        <div class="card-body">
-                            <h6 class="text-muted mb-2">Completed</h6>
-                            <h3 class="mb-0 text-info">{{ $stats['completed'] }}</h3>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="card border-0 shadow-sm border-start border-secondary border-3">
-                        <div class="card-body">
-                            <h6 class="text-muted mb-2">Cancelled</h6>
-                            <h3 class="mb-0 text-secondary">{{ $stats['cancelled'] }}</h3>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
             <div class="admin-card">
                 <div class="admin-card-header">
-                    <h5><i class="fas fa-calendar-check me-2" style="color: #84a33f;"></i>Internal Appointments</h5>
-                    <div class="d-flex gap-2">
-                        <a href="{{ route('admin.appointments.bulk-create') }}" class="btn btn-outline-success">
-                            <i class="fas fa-users me-2"></i>Bulk Add Patients
-                        </a>
-                        <a href="{{ route('admin.appointments.create') }}" class="btn btn-success">
-                            <i class="fas fa-plus me-2"></i>Book Appointment
-                        </a>
-                    </div>
+                    <h5><i class="fas fa-history me-2" style="color: #84a33f;"></i>Past Appointments</h5>
+                    @unless(auth()->user()->isDoctor())
+                    <a href="{{ route('admin.appointments.index') }}" class="btn btn-secondary">
+                        <i class="fas fa-arrow-left me-2"></i>Back to Appointments
+                    </a>
+                    @endunless
                 </div>
                 <div class="admin-card-body">
                     <form method="GET" class="row g-3 mb-4">
-                        <div class="col-md-3">
+                        <div class="col-md-4">
                             <select name="status" class="form-select" onchange="this.form.submit()">
                                 <option value="">All Status</option>
                                 <option value="scheduled" {{ request('status') == 'scheduled' ? 'selected' : '' }}>Scheduled</option>
@@ -86,7 +40,8 @@
                                 <option value="cancelled" {{ request('status') == 'cancelled' ? 'selected' : '' }}>Cancelled</option>
                             </select>
                         </div>
-                        <div class="col-md-4">
+                        @unless(auth()->user()->isDoctor())
+                        <div class="col-md-5">
                             <select name="clinic_service_id" class="form-select" onchange="this.form.submit()">
                                 <option value="">All Services</option>
                                 @foreach($clinicServices as $clinicService)
@@ -94,11 +49,9 @@
                                 @endforeach
                             </select>
                         </div>
+                        @endunless
                         <div class="col-md-3">
-                            <input type="date" name="date" class="form-control" value="{{ request('date') }}" onchange="this.form.submit()">
-                        </div>
-                        <div class="col-md-2">
-                            <a href="{{ route('admin.appointments.index') }}" class="btn btn-outline-secondary w-100">Clear</a>
+                            <a href="{{ route('admin.appointments.past') }}" class="btn btn-outline-secondary w-100">Clear</a>
                         </div>
                     </form>
 
@@ -114,6 +67,7 @@
                                     <th>Date & Time</th>
                                     <th>SMS</th>
                                     <th>Status</th>
+                                    <th>Notes</th>
                                     <th>Actions</th>
                                 </tr>
                             </thead>
@@ -146,10 +100,14 @@
                                         </span>
                                     </td>
                                     <td>
+                                        <small>{{ $appointment->notes ?: '—' }}</small>
+                                    </td>
+                                    <td>
                                         <div class="btn-group" role="group">
                                             <a href="{{ route('admin.appointments.edit', $appointment) }}" class="btn btn-sm btn-outline-primary" title="Edit">
                                                 <i class="fas fa-edit"></i>
                                             </a>
+                                            @unless(auth()->user()->isDoctor())
                                             <form action="{{ route('admin.appointments.destroy', $appointment) }}" method="POST" class="d-inline" onsubmit="return confirm('Delete this appointment?');">
                                                 @csrf
                                                 @method('DELETE')
@@ -157,6 +115,7 @@
                                                     <i class="fas fa-trash"></i>
                                                 </button>
                                             </form>
+                                            @endunless
                                         </div>
                                     </td>
                                 </tr>
@@ -169,11 +128,9 @@
                     </div>
                     @else
                     <div class="text-center py-5 text-muted">
-                        <i class="fas fa-calendar-times fa-4x mb-3" style="color: #84a33f; opacity: 0.3;"></i>
-                        <h5>No appointments found</h5>
-                        <a href="{{ route('admin.appointments.create') }}" class="btn btn-success mt-3">
-                            <i class="fas fa-plus me-2"></i>Book First Appointment
-                        </a>
+                        <i class="fas fa-history fa-4x mb-3" style="color: #84a33f; opacity: 0.3;"></i>
+                        <h5>No past appointments</h5>
+                        <p>Appointments will appear here once their scheduled date has passed.</p>
                     </div>
                     @endif
                 </div>

@@ -33,9 +33,16 @@
                             <li><a class="dropdown-item" href="{{ route('services.urology') }}">Urology</a></li>
                             <li><a class="dropdown-item" href="{{ route('services.orthopaedic') }}">Orthopaedic</a></li>
                             <li><a class="dropdown-item" href="{{ route('services.ent-care') }}">ENT Care</a></li>
-                            <li><a class="dropdown-item" href="{{ route('services.eye-care') }}">Eye Clinic</a></li>
+                            <li><a class="dropdown-item" href="{{ route('services.eye-care') }}">Eye Care</a></li>
                             <li><a class="dropdown-item" href="{{ route('services.plastic-surgery') }}">Plastic Surgery</a></li>
-                          
+                            <li><a class="dropdown-item" href="{{ route('services.pharmacy') }}">Pharmacy</a></li>
+                            <li><a class="dropdown-item" href="{{ route('services.laboratory') }}">General Lab</a></li>
+                            <li><a class="dropdown-item" href="{{ route('services.physician-clinic') }}">Physician's Clinic</a></li>
+                            <li><a class="dropdown-item" href="{{ route('services.dietetics') }}">Dietetics</a></li>
+                            <li><a class="dropdown-item" href="{{ route('services.endoscopy') }}">Endoscopy</a></li>
+                            <li><a class="dropdown-item" href="{{ route('services.radiology') }}">Radiology & Medical Imaging</a></li>
+                            <li><a class="dropdown-item" href="{{ route('services.ambulance-service') }}">Ambulance Service</a></li>
+
                             <li><hr class="dropdown-divider"></li>
                             <li><a class="dropdown-item" href="{{ route('services.index') }}">View All Services</a></li>
                         </ul>

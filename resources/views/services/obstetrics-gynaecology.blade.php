@@ -258,52 +258,7 @@
 
                 <!-- Sidebar -->
                 <div class="col-lg-4" data-aos="fade-left">
-                    <!-- All Services Menu -->
-                    <div class="services-menu mb-4" style="background: white; border-radius: 20px; padding: 30px; box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);">
-                        <h4 class="mb-4" style="font-weight: 700; color: #2d3e50;">All Services</h4>
-                        <div class="services-list">
-                            <a href="{{ route('services.general-practice') }}" class="service-link" style="display: flex; align-items: center; padding: 12px 15px; margin-bottom: 8px; border-radius: 10px; text-decoration: none; background: #f8f9fa; transition: all 0.3s ease;">
-                                <i class="fas fa-stethoscope me-3" style="color: #666; font-size: 1.1rem;"></i>
-                                <span style="color: #666; font-weight: 500;">General Practice</span>
-                            </a>
-                            <a href="{{ route('services.general-surgery') }}" class="service-link" style="display: flex; align-items: center; padding: 12px 15px; margin-bottom: 8px; border-radius: 10px; text-decoration: none; background: #f8f9fa; transition: all 0.3s ease;">
-                                <i class="fas fa-user-md me-3" style="color: #666; font-size: 1.1rem;"></i>
-                                <span style="color: #666; font-weight: 500;">General Surgery</span>
-                            </a>
-                            <a href="{{ route('services.obstetrics-gynaecology') }}" class="service-link active" style="display: flex; align-items: center; padding: 12px 15px; margin-bottom: 8px; border-radius: 10px; text-decoration: none; background: #f3e5f5; border-left: 3px solid #a8207a; transition: all 0.3s ease;">
-                                <i class="fas fa-baby me-3" style="color: #a8207a; font-size: 1.1rem;"></i>
-                                <span style="color: #2d3e50; font-weight: 600;">Obstetrics & Gynaecology</span>
-                            </a>
-                            <a href="{{ route('services.geriatric-care') }}" class="service-link" style="display: flex; align-items: center; padding: 12px 15px; margin-bottom: 8px; border-radius: 10px; text-decoration: none; background: #f8f9fa; transition: all 0.3s ease;">
-                                <i class="fas fa-user-friends me-3" style="color: #666; font-size: 1.1rem;"></i>
-                                <span style="color: #666; font-weight: 500;">Geriatric Care</span>
-                            </a>
-                            <a href="{{ route('services.paediatrics') }}" class="service-link" style="display: flex; align-items: center; padding: 12px 15px; margin-bottom: 8px; border-radius: 10px; text-decoration: none; background: #f8f9fa; transition: all 0.3s ease;">
-                                <i class="fas fa-child me-3" style="color: #666; font-size: 1.1rem;"></i>
-                                <span style="color: #666; font-weight: 500;">Paediatrics</span>
-                            </a>
-                            <a href="{{ route('services.urology') }}" class="service-link" style="display: flex; align-items: center; padding: 12px 15px; margin-bottom: 8px; border-radius: 10px; text-decoration: none; background: #f8f9fa; transition: all 0.3s ease;">
-                                <i class="fas fa-kidneys me-3" style="color: #666; font-size: 1.1rem;"></i>
-                                <span style="color: #666; font-weight: 500;">Urology</span>
-                            </a>
-                            <a href="{{ route('services.orthopaedic') }}" class="service-link" style="display: flex; align-items: center; padding: 12px 15px; margin-bottom: 8px; border-radius: 10px; text-decoration: none; background: #f8f9fa; transition: all 0.3s ease;">
-                                <i class="fas fa-bone me-3" style="color: #666; font-size: 1.1rem;"></i>
-                                <span style="color: #666; font-weight: 500;">Orthopaedic</span>
-                            </a>
-                            <a href="{{ route('services.ent-care') }}" class="service-link" style="display: flex; align-items: center; padding: 12px 15px; margin-bottom: 8px; border-radius: 10px; text-decoration: none; background: #f8f9fa; transition: all 0.3s ease;">
-                                <i class="fas fa-head-side-mask me-3" style="color: #666; font-size: 1.1rem;"></i>
-                                <span style="color: #666; font-weight: 500;">ENT Care</span>
-                            </a>
-                            <a href="{{ route('services.eye-care') }}" class="service-link" style="display: flex; align-items: center; padding: 12px 15px; margin-bottom: 8px; border-radius: 10px; text-decoration: none; background: #f8f9fa; transition: all 0.3s ease;">
-                                <i class="fas fa-eye me-3" style="color: #666; font-size: 1.1rem;"></i>
-                                <span style="color: #666; font-weight: 500;">Eye Clinic</span>
-                            </a>
-                            <a href="{{ route('services.plastic-surgery') }}" class="service-link" style="display: flex; align-items: center; padding: 12px 15px; margin-bottom: 8px; border-radius: 10px; text-decoration: none; background: #f8f9fa; transition: all 0.3s ease;">
-                                <i class="fas fa-user-md me-3" style="color: #666; font-size: 1.1rem;"></i>
-                                <span style="color: #666; font-weight: 500;">Plastic Surgery</span>
-                            </a>
-                        </div>
-                    </div>
+                    @include('partials.services-sidebar', ['active' => 'obstetrics-gynaecology'])
 
                     <!-- Contact Card -->
                     <div class="contact-card mb-4" style="background: #a8207a; border-radius: 12px; padding: 32px; color: white; box-shadow: 0 4px 12px rgba(168, 32, 122, 0.2);">

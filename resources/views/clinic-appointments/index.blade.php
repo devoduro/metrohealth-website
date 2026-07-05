@@ -53,38 +53,23 @@
             box-shadow: 0 0 0 0.2rem rgba(59, 130, 246, 0.15);
         }
 
-        .service-info-box {
-            background: #e8f4f8;
-            border-left: 4px solid #3b82f6;
-            padding: 20px;
-            border-radius: 10px;
-            margin-top: 15px;
-            display: none;
+        .service-checkbox-row {
+            border: 2px solid #e9ecef;
+            border-radius: 12px;
+            padding: 18px 20px;
+            margin-bottom: 12px;
+            transition: all 0.2s ease;
         }
 
-        .service-info-box.active {
-            display: block;
+        .service-checkbox-row:has(.service-toggle:checked) {
+            border-color: #3b82f6;
+            background: #f0f7ff;
         }
 
-        .fee-display {
-            background: linear-gradient(135deg, #84a33f, #6b8230);
-            color: white;
-            padding: 20px;
-            border-radius: 15px;
-            text-align: center;
-            margin-top: 20px;
-        }
-
-        .fee-display h4 {
-            margin: 0;
-            font-size: 1.2rem;
-            font-weight: 600;
-        }
-
-        .fee-display .amount {
-            font-size: 2.5rem;
-            font-weight: 800;
-            margin-top: 10px;
+        .service-checkbox-row .form-check-input {
+            width: 1.2em;
+            height: 1.2em;
+            margin-top: 0.2em;
         }
 
         .btn-submit {
@@ -224,49 +209,41 @@
                             <!-- Service Selection -->
                             <div class="row mb-4">
                                 <div class="col-12">
-                                    <label for="service_name" class="form-label required-field">Select Specialist Service</label>
-                                    <select class="form-select" id="service_name" name="service_name" required>
-                                        <option value="">-- Choose a Service --</option>
+                                    <label class="form-label required-field">Select Clinic Service(s)</label>
+                                    <p style="color: #666; font-size: 0.9rem; margin-bottom: 15px;">Choose one or more services below &mdash; each gets its own day and time slot.</p>
+
+                                    <div id="servicesChecklist">
                                         @foreach($services as $serviceName => $schedule)
-                                        <option value="{{ $serviceName }}" data-days="{{ json_encode($schedule['days']) }}" data-fee="{{ $schedule['fee'] }}" data-time-range="{{ $schedule['time_range'] }}">
-                                            {{ $serviceName }}
-                                        </option>
-                                        @endforeach
-                                    </select>
-                                    <div class="service-info-box" id="serviceInfoBox">
-                                        <div class="d-flex align-items-start gap-3">
-                                            <i class="fas fa-info-circle" style="color: #3b82f6; font-size: 1.5rem; margin-top: 3px;"></i>
-                                            <div>
-                                                <strong style="color: #1e3a8a;">Clinic Hours:</strong>
-                                                <p id="serviceTimeRange" style="margin: 5px 0 0 0; color: #666;"></p>
+                                        <div class="service-checkbox-row" data-service="{{ $serviceName }}">
+                                            <div class="form-check">
+                                                <input class="form-check-input service-toggle" type="checkbox" id="svc_{{ $loop->index }}">
+                                                <label class="form-check-label" for="svc_{{ $loop->index }}" style="font-weight: 600; color: #1a1a1a;">{{ $serviceName }}</label>
+                                                <div class="small" style="color: #666;">{{ $schedule['time_range'] }}</div>
+                                            </div>
+                                            <div class="row g-2 mt-2 service-daytime" style="display: none;">
+                                                <div class="col-md-6">
+                                                    <label class="form-label small mb-1">Day</label>
+                                                    <select class="form-select form-select-sm service-day">
+                                                        <option value="">-- Select a Day --</option>
+                                                    </select>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <label class="form-label small mb-1">Time</label>
+                                                    <select class="form-select form-select-sm service-time" disabled>
+                                                        <option value="">-- Select Day First --</option>
+                                                    </select>
+                                                </div>
                                             </div>
                                         </div>
+                                        @endforeach
                                     </div>
+                                    <span class="text-danger small d-block mt-2" id="servicesError"></span>
                                 </div>
                             </div>
 
-                            <!-- Day and Time Selection -->
-                            <div class="row mb-4">
-                                <div class="col-md-6">
-                                    <label for="appointment_day" class="form-label required-field">Select Day</label>
-                                    <select class="form-select" id="appointment_day" name="appointment_day" required disabled>
-                                        <option value="">-- Select Service First --</option>
-                                    </select>
-                                </div>
-                                <div class="col-md-6">
-                                    <label for="appointment_time" class="form-label required-field">Select Time Slot</label>
-                                    <select class="form-select" id="appointment_time" name="appointment_time" required disabled>
-                                        <option value="">-- Select Day First --</option>
-                                    </select>
-                                </div>
-                            </div>
-
-                            <!-- Service Fee Display -->
-                            <div class="fee-display" id="feeDisplay" style="display: none;">
-                                <h4 style="color: white;">Estimated Consultation Fee</h4>
-                                <div class="amount">GH₵ <span id="feeAmount">0.00</span></div>
-                                <p style="margin: 10px 0 0; font-size: 0.9rem; opacity: 0.9;">No payment is required to book. This is paid at the hospital as part of your consultation during your visit.</p>
-                                <input type="hidden" name="service_fee" id="service_fee" value="0">
+                            <div class="alert" style="background: #e8f4f8; border-left: 4px solid #3b82f6; border-radius: 10px;">
+                                <i class="fas fa-info-circle me-2"></i>
+                                No payment is required to book. Consultation fees are paid at the hospital during your visit.
                             </div>
 
                             <hr style="margin: 40px 0; border-color: #e9ecef;">
@@ -332,104 +309,102 @@
 
         // Service schedules data
         const serviceSchedules = @json($services);
+        const servicesError = document.getElementById('servicesError');
 
-        // DOM elements
-        const serviceSelect = document.getElementById('service_name');
-        const daySelect = document.getElementById('appointment_day');
-        const timeSelect = document.getElementById('appointment_time');
-        const serviceInfoBox = document.getElementById('serviceInfoBox');
-        const serviceTimeRange = document.getElementById('serviceTimeRange');
-        const feeDisplay = document.getElementById('feeDisplay');
-        const feeAmount = document.getElementById('feeAmount');
-        const serviceFeeInput = document.getElementById('service_fee');
-
-        // Handle service selection
-        serviceSelect.addEventListener('change', function() {
-            const serviceName = this.value;
-            
-            if (!serviceName) {
-                resetForm();
-                return;
-            }
-
+        function wireServiceRow(row) {
+            const serviceName = row.dataset.service;
             const schedule = serviceSchedules[serviceName];
-            
-            // Show service info
-            serviceInfoBox.classList.add('active');
-            serviceTimeRange.textContent = schedule.time_range;
+            const checkbox = row.querySelector('.service-toggle');
+            const daytime = row.querySelector('.service-daytime');
+            const daySelect = row.querySelector('.service-day');
+            const timeSelect = row.querySelector('.service-time');
 
-            // Populate days
-            daySelect.innerHTML = '<option value="">-- Select a Day --</option>';
-            schedule.days.forEach(day => {
-                const option = document.createElement('option');
-                option.value = day;
-                option.textContent = day;
-                daySelect.appendChild(option);
+            checkbox.addEventListener('change', function() {
+                daytime.style.display = this.checked ? 'flex' : 'none';
+
+                if (this.checked) {
+                    daySelect.innerHTML = '<option value="">-- Select a Day --</option>';
+                    schedule.days.forEach(day => {
+                        const option = document.createElement('option');
+                        option.value = day;
+                        option.textContent = day;
+                        daySelect.appendChild(option);
+                    });
+                } else {
+                    daySelect.innerHTML = '<option value="">-- Select a Day --</option>';
+                    timeSelect.innerHTML = '<option value="">-- Select Day First --</option>';
+                    timeSelect.disabled = true;
+                }
             });
-            daySelect.disabled = false;
 
-            // Show fee
-            feeAmount.textContent = parseFloat(schedule.fee).toFixed(2);
-            serviceFeeInput.value = schedule.fee;
-            feeDisplay.style.display = 'block';
+            daySelect.addEventListener('change', function() {
+                const selectedDay = this.value;
 
-            // Reset time selection
-            timeSelect.innerHTML = '<option value="">-- Select Day First --</option>';
-            timeSelect.disabled = true;
-        });
+                if (!selectedDay) {
+                    timeSelect.innerHTML = '<option value="">-- Select Day First --</option>';
+                    timeSelect.disabled = true;
+                    return;
+                }
 
-        // Handle day selection
-        daySelect.addEventListener('change', function() {
-            const serviceName = serviceSelect.value;
-            const selectedDay = this.value;
-            
-            if (!selectedDay) {
-                timeSelect.innerHTML = '<option value="">-- Select Day First --</option>';
-                timeSelect.disabled = true;
-                return;
-            }
+                // Geriatric Care has different slots per day; everything else uses one fixed list.
+                const slots = (serviceName === 'Geriatric Care')
+                    ? (schedule.slots[selectedDay] || [])
+                    : (schedule.slots || []);
 
-            const schedule = serviceSchedules[serviceName];
-            let slots = [];
-
-            // Handle Geriatric care with different slots per day
-            if (serviceName === 'Geriatric / Elderly Care') {
-                slots = schedule.slots[selectedDay] || [];
-            } else {
-                slots = schedule.slots || [];
-            }
-
-            // Populate time slots
-            timeSelect.innerHTML = '<option value="">-- Select a Time --</option>';
-            slots.forEach(slot => {
-                const option = document.createElement('option');
-                option.value = slot;
-                option.textContent = slot;
-                timeSelect.appendChild(option);
+                timeSelect.innerHTML = '<option value="">-- Select a Time --</option>';
+                slots.forEach(slot => {
+                    const option = document.createElement('option');
+                    option.value = slot;
+                    option.textContent = slot;
+                    timeSelect.appendChild(option);
+                });
+                timeSelect.disabled = false;
             });
-            timeSelect.disabled = false;
-        });
-
-        function resetForm() {
-            serviceInfoBox.classList.remove('active');
-            daySelect.innerHTML = '<option value="">-- Select Service First --</option>';
-            daySelect.disabled = true;
-            timeSelect.innerHTML = '<option value="">-- Select Day First --</option>';
-            timeSelect.disabled = true;
-            feeDisplay.style.display = 'none';
         }
 
-        // Form validation
-        document.getElementById('appointmentForm').addEventListener('submit', function(e) {
-            const serviceName = serviceSelect.value;
-            const day = daySelect.value;
-            const time = timeSelect.value;
+        document.querySelectorAll('.service-checkbox-row').forEach(wireServiceRow);
 
-            if (!serviceName || !day || !time) {
+        // Form validation + build services[i][...] fields from every checked row
+        document.getElementById('appointmentForm').addEventListener('submit', function(e) {
+            servicesError.textContent = '';
+
+            const checkedRows = Array.from(document.querySelectorAll('.service-checkbox-row'))
+                .filter(row => row.querySelector('.service-toggle').checked);
+
+            if (checkedRows.length === 0) {
                 e.preventDefault();
-                alert('Please select a service, day, and time slot before submitting.');
+                servicesError.textContent = 'Please select at least one clinic service.';
+                servicesError.scrollIntoView({ behavior: 'smooth', block: 'center' });
                 return false;
             }
+
+            for (const row of checkedRows) {
+                const day = row.querySelector('.service-day').value;
+                const time = row.querySelector('.service-time').value;
+                if (!day || !time) {
+                    e.preventDefault();
+                    servicesError.textContent = `Please select a day and time for ${row.dataset.service}.`;
+                    row.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    return false;
+                }
+            }
+
+            const form = e.target;
+            checkedRows.forEach(function(row, i) {
+                const fields = {
+                    service_name: row.dataset.service,
+                    appointment_day: row.querySelector('.service-day').value,
+                    appointment_time: row.querySelector('.service-time').value,
+                };
+
+                Object.keys(fields).forEach(function(field) {
+                    const input = document.createElement('input');
+                    input.type = 'hidden';
+                    input.name = `services[${i}][${field}]`;
+                    input.value = fields[field];
+                    form.appendChild(input);
+                });
+            });
         });
     </script>
 </body>

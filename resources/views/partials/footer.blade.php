@@ -56,8 +56,15 @@
                     <a href="{{ route('services.urology') }}" style="color: rgba(255, 255, 255, 0.7); text-decoration: none; font-size: 0.9rem; transition: all 0.3s ease; display: block;">Urology</a>
                     <a href="{{ route('services.orthopaedic') }}" style="color: rgba(255, 255, 255, 0.7); text-decoration: none; font-size: 0.9rem; transition: all 0.3s ease; display: block;">Orthopaedic</a>
                     <a href="{{ route('services.ent-care') }}" style="color: rgba(255, 255, 255, 0.7); text-decoration: none; font-size: 0.9rem; transition: all 0.3s ease; display: block;">ENT Care</a>
-                    <a href="{{ route('services.eye-care') }}" style="color: rgba(255, 255, 255, 0.7); text-decoration: none; font-size: 0.9rem; transition: all 0.3s ease; display: block;">Eye Clinic</a>
+                    <a href="{{ route('services.eye-care') }}" style="color: rgba(255, 255, 255, 0.7); text-decoration: none; font-size: 0.9rem; transition: all 0.3s ease; display: block;">Eye Care</a>
                     <a href="{{ route('services.plastic-surgery') }}" style="color: rgba(255, 255, 255, 0.7); text-decoration: none; font-size: 0.9rem; transition: all 0.3s ease; display: block;">Plastic Surgery</a>
+                    <a href="{{ route('services.pharmacy') }}" style="color: rgba(255, 255, 255, 0.7); text-decoration: none; font-size: 0.9rem; transition: all 0.3s ease; display: block;">Pharmacy</a>
+                    <a href="{{ route('services.laboratory') }}" style="color: rgba(255, 255, 255, 0.7); text-decoration: none; font-size: 0.9rem; transition: all 0.3s ease; display: block;">General Lab</a>
+                    <a href="{{ route('services.physician-clinic') }}" style="color: rgba(255, 255, 255, 0.7); text-decoration: none; font-size: 0.9rem; transition: all 0.3s ease; display: block;">Physician's Clinic</a>
+                    <a href="{{ route('services.dietetics') }}" style="color: rgba(255, 255, 255, 0.7); text-decoration: none; font-size: 0.9rem; transition: all 0.3s ease; display: block;">Dietetics</a>
+                    <a href="{{ route('services.endoscopy') }}" style="color: rgba(255, 255, 255, 0.7); text-decoration: none; font-size: 0.9rem; transition: all 0.3s ease; display: block;">Endoscopy</a>
+                    <a href="{{ route('services.radiology') }}" style="color: rgba(255, 255, 255, 0.7); text-decoration: none; font-size: 0.9rem; transition: all 0.3s ease; display: block;">Radiology & Medical Imaging</a>
+                    <a href="{{ route('services.ambulance-service') }}" style="color: rgba(255, 255, 255, 0.7); text-decoration: none; font-size: 0.9rem; transition: all 0.3s ease; display: block;">Ambulance Service</a>
                 </div>
             </div>
 

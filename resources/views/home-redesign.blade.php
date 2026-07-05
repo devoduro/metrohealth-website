@@ -29,7 +29,23 @@
     <!-- Hero Slider Section -->
     <section class="hero-slider">
         <!-- Slide 1 -->
-        <div class="hero-slide active" style="background-image: url('images/sliders/slider1-11.Jpg');">
+        <div class="hero-slide active" style="background-image: url('images/sliders/slider1.png');">
+            <div class="hero-slide-content">
+                <div class="container">
+                    <p class="hero-subtitle" style="color: rgba(255,255,255,0.95); font-size: 0.9rem; font-weight: 600; letter-spacing: 2px; margin-bottom: 1rem;">STATE-OF-THE-ART FACILITY</p>
+                    <h1>Welcome to <span class="highlight" style="color: #a8d68f;">Metro Health Hospital</span></h1>
+                    <p>A modern, purpose-built facility at Abrepo Junction designed to deliver comprehensive care with passion.</p>
+                    <div class="hero-slide-buttons">
+                        <a href="/about" class="btn btn-primary-custom btn-lg">
+                            Learn More
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 2 -->
+        <div class="hero-slide" style="background-image: url('images/sliders/slider1-11.Jpg');">
             <div class="hero-slide-content">
                 <div class="container">
                     <p class="hero-subtitle" style="color: rgba(255,255,255,0.95); font-size: 0.9rem; font-weight: 600; letter-spacing: 2px; margin-bottom: 1rem;">EXCELLENCE IN HEALTHCARE</p>
@@ -44,12 +60,13 @@
             </div>
         </div>
 
-        <!-- Slide 2 -->
+        <!-- Slide 3 -->
         <div class="hero-slide" style="background-image: url('images/sliders/slider1-1.png');">
             <div class="hero-slide-content">
                 <div class="container">
-                    <p class="hero-subtitle" style="color: #a8d68f; font-size: 0.9rem; font-weight: 600; letter-spacing: 2px; margin-bottom: 1rem; background: rgba(168, 214, 143, 0.2); padding: 8px 20px; border-radius: 25px; display: inline-block; border: 1px solid #a8d68f;">SPECIALIZED MEDICAL CARE</p>
-                    <h1>Expert Care Across <span class="highlight" style="color: #d946a6;">All Specialties</span></h1>
+                     <p class="hero-subtitle" style="color: rgba(255,255,255,0.95); font-size: 0.9rem; font-weight: 600; letter-spacing: 2px; margin-bottom: 1rem;">SPECIALIZED MEDICAL CARE</p>
+                  
+                         <h1>Expert Care Across <span class="highlight" style="color: #d946a6;">All Specialties</span></h1>
                     <p>From geriatrics to general surgery, our team of highly skilled professionals provides comprehensive care tailored to your needs.</p>
                     <div class="hero-slide-buttons">
                         <a href="{{ route('services.index') }}" class="btn btn-primary-custom btn-lg">
@@ -60,7 +77,7 @@
             </div>
         </div>
 
-        <!-- Slide 3 -->
+        <!-- Slide 4 -->
         <div class="hero-slide" style="background-image: url('images/sliders/slider1-2.png');">
             <div class="hero-slide-content">
                 <div class="container">
@@ -76,11 +93,12 @@
             </div>
         </div>
 
-        <!-- Slide 4 -->
+        <!-- Slide 5 -->
         <div class="hero-slide" style="background-image: url('images/sliders/3.jpg');">
             <div class="hero-slide-content">
                 <div class="container">
-                    <p class="hero-subtitle" style="color: #a8d68f; font-size: 0.9rem; font-weight: 600; letter-spacing: 2px; margin-bottom: 1rem; background: rgba(168, 214, 143, 0.2); padding: 8px 20px; border-radius: 25px; display: inline-block; border: 1px solid #a8d68f;">AFFORDABLE HEALTHCARE</p>
+                        <p class="hero-subtitle" style="color: rgba(255,255,255,0.95); font-size: 0.9rem; font-weight: 600; letter-spacing: 2px; margin-bottom: 1rem;">AFFORDABLE HEALTHCARE</p>
+                  
                     <h1>Get Your Physicals Done <span class="highlight" style="color: #a8d68f;">At a Fraction of the Cost</span></h1>
                     <p>Under the care of board certified physicians, get comprehensive physical examinations without breaking the bank.</p>
                     <div class="hero-slide-buttons">
@@ -106,6 +124,7 @@
             <span class="slider-dot" onclick="currentSlide(1)"></span>
             <span class="slider-dot" onclick="currentSlide(2)"></span>
             <span class="slider-dot" onclick="currentSlide(3)"></span>
+            <span class="slider-dot" onclick="currentSlide(4)"></span>
         </div>
     </section>
 
@@ -796,34 +815,34 @@
                 <div class="col-lg-8" data-aos="fade-left">
                     <div class="partners-grid">
                         <div class="partner-card">
-                            <img src="{{ asset('images/brands/apex-logo2.png') }}" alt="APEX Insurance" class="partner-logo">
+                            <img src="{{ asset('images/brands/premier-logo1.png') }}" alt="Premier Insurance" class="partner-logo">
                         </div>
                         <div class="partner-card">
-                            <img src="{{ asset('images/brands/acacia-logo.png') }}" alt="Acacia Insurance" class="partner-logo">
+                            <img src="{{ asset('images/brands/nmi-logo-green.webp') }}" alt="NMI Insurance" class="partner-logo">
                         </div>
                         <div class="partner-card">
                             <img src="{{ asset('images/brands/ace-medical-insurance.png') }}" alt="ACE Medical Insurance" class="partner-logo">
                         </div>
                         <div class="partner-card">
-                            <img src="{{ asset('images/brands/ghic.png') }}" alt="GHIC" class="partner-logo">
-                        </div>
-                        <div class="partner-card">
-                            <img src="{{ asset('images/brands/cosmopolitan-logo.png') }}" alt="Cosmopolitan Insurance" class="partner-logo">
-                        </div>
-                        <div class="partner-card">
                             <img src="{{ asset('images/brands/metropolitan.png') }}" alt="Metropolitan Insurance" class="partner-logo">
                         </div>
                         <div class="partner-card">
-                            <img src="{{ asset('images/brands/premier-logo1.png') }}" alt="Premier Insurance" class="partner-logo">
+                            <img src="{{ asset('images/brands/acacia-logo.png') }}" alt="Acacia Insurance" class="partner-logo">
                         </div>
                         <div class="partner-card">
                             <img src="{{ asset('images/brands/equity.png') }}" alt="Equity Health Insurance" class="partner-logo">
                         </div>
                         <div class="partner-card">
+                            <img src="{{ asset('images/brands/cosmopolitan-logo.png') }}" alt="Cosmopolitan Insurance" class="partner-logo">
+                        </div>
+                        <div class="partner-card">
+                            <img src="{{ asset('images/brands/ghic.png') }}" alt="GHIC" class="partner-logo">
+                        </div>
+                        <div class="partner-card">
                             <img src="{{ asset('images/brands/bim-logo.png') }}" alt="BIMA Insurance" class="partner-logo">
                         </div>
                         <div class="partner-card">
-                            <img src="{{ asset('images/brands/nmi-logo-green.webp') }}" alt="NMI Insurance" class="partner-logo">
+                            <img src="{{ asset('images/brands/apex-logo2.png') }}" alt="APEX Insurance" class="partner-logo">
                         </div>
                     </div>
                 </div>

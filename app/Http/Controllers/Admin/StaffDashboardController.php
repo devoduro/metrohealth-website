@@ -87,7 +87,7 @@ class StaffDashboardController extends Controller
         $serviceName = $appointment->clinicService->name ?? 'your appointment';
         $when = \Carbon\Carbon::parse($validated['appointment_date'])->format('D, M j')
             . ' at ' . \Carbon\Carbon::parse($validated['appointment_time'])->format('g:i A');
-        $message = "Hi {$patient->full_name}, your appointment at Metro Health Hospital for {$serviceName} is confirmed for {$when}. Call 0241850091 for changes.";
+        $message = "Hi {$patient->full_name}, your appointment at Metro Health Hospital, {$serviceName} is confirmed for {$when}. Call 0241850091 for changes.";
 
         $result = $sms->send($patient->phone, $message, $patient->id, 'confirmation');
         $appointment->update(['sms_status' => $result['success'] ? 'sent' : 'failed']);

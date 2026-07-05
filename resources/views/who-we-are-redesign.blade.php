@@ -265,7 +265,7 @@
                 <div class="col-lg-3 col-md-4 col-sm-6" data-aos="zoom-in" data-aos-delay="550">
                     <div class="specialty-badge">
                         <i class="fas fa-eye"></i>
-                        <span>Eye Clinic</span>
+                        <span>Eye Care</span>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-4 col-sm-6" data-aos="zoom-in" data-aos-delay="600">

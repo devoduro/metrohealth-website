@@ -34,31 +34,25 @@ class ClinicAppointment extends Model
     public static function getServiceSchedules()
     {
         return [
+            'General Practice' => [
+                'days' => ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+                'time_range' => '8:00 AM - 5:00 PM',
+                'slots' => ['8:00 AM', '9:00 AM', '10:00 AM', '11:00 AM', '12:00 PM', '1:00 PM', '2:00 PM', '3:00 PM', '4:00 PM'],
+                'fee' => 100.00,
+            ],
+            'General Surgery' => [
+                'days' => ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+                'time_range' => '8:00 AM - 4:00 PM',
+                'slots' => ['8:00 AM', '9:00 AM', '10:00 AM', '11:00 AM', '1:00 PM', '2:00 PM', '3:00 PM'],
+                'fee' => 200.00,
+            ],
             'Obstetrics & Gynaecology' => [
                 'days' => ['Wednesday', 'Friday', 'Saturday'],
                 'time_range' => '8:00 AM - 2:00 PM',
                 'slots' => ['8:00 AM', '9:00 AM', '10:00 AM', '11:00 AM', '12:00 PM', '1:00 PM'],
                 'fee' => 150.00,
             ],
-            'Pediatric Clinic' => [
-                'days' => ['Saturday'],
-                'time_range' => '8:00 AM - 2:00 PM',
-                'slots' => ['8:00 AM', '9:00 AM', '10:00 AM', '11:00 AM', '12:00 PM', '1:00 PM'],
-                'fee' => 120.00,
-            ],
-            'Ear, Nose & Throat (ENT)' => [
-                'days' => ['Wednesday'],
-                'time_range' => '4:00 PM - 6:00 PM',
-                'slots' => ['4:00 PM', '5:00 PM', '6:00 PM'],
-                'fee' => 100.00,
-            ],
-            'Urology' => [
-                'days' => ['By Appointment'],
-                'time_range' => 'Contact: +233 24 571 7681',
-                'slots' => ['Morning', 'Afternoon', 'Evening'],
-                'fee' => 200.00,
-            ],
-            'Geriatric / Elderly Care' => [
+            'Geriatric Care' => [
                 'days' => ['Tuesday', 'Thursday'],
                 'time_range' => 'Tuesday: 2:00 PM - 5:00 PM, Thursday: 8:00 AM - 4:00 PM',
                 'slots' => [
@@ -67,11 +61,83 @@ class ClinicAppointment extends Model
                 ],
                 'fee' => 180.00,
             ],
-            'Orthopedics' => [
+            'Paediatrics' => [
+                'days' => ['Saturday'],
+                'time_range' => '8:00 AM - 2:00 PM',
+                'slots' => ['8:00 AM', '9:00 AM', '10:00 AM', '11:00 AM', '12:00 PM', '1:00 PM'],
+                'fee' => 120.00,
+            ],
+            'Urology' => [
+                'days' => ['By Appointment'],
+                'time_range' => 'Contact: +233 24 571 7681',
+                'slots' => ['Morning', 'Afternoon', 'Evening'],
+                'fee' => 200.00,
+            ],
+            'Orthopaedic' => [
                 'days' => ['Tuesday'],
                 'time_range' => '2:00 PM - 8:00 PM',
                 'slots' => ['2:00 PM', '3:00 PM', '4:00 PM', '5:00 PM', '6:00 PM', '7:00 PM'],
                 'fee' => 250.00,
+            ],
+            'ENT Care' => [
+                'days' => ['Wednesday'],
+                'time_range' => '4:00 PM - 6:00 PM',
+                'slots' => ['4:00 PM', '5:00 PM', '6:00 PM'],
+                'fee' => 100.00,
+            ],
+            'Eye Care' => [
+                'days' => ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+                'time_range' => '9:00 AM - 4:00 PM',
+                'slots' => ['9:00 AM', '10:00 AM', '11:00 AM', '1:00 PM', '2:00 PM', '3:00 PM'],
+                'fee' => 150.00,
+            ],
+            'Plastic Surgery' => [
+                'days' => ['By Appointment'],
+                'time_range' => 'Contact: +233 24 185 0091',
+                'slots' => ['Morning', 'Afternoon', 'Evening'],
+                'fee' => 300.00,
+            ],
+            'Pharmacy' => [
+                'days' => ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+                'time_range' => '8:00 AM - 8:00 PM',
+                'slots' => ['Morning', 'Afternoon', 'Evening'],
+                'fee' => 0.00,
+            ],
+            'General Lab' => [
+                'days' => ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+                'time_range' => '7:00 AM - 5:00 PM',
+                'slots' => ['Morning', 'Afternoon', 'Evening'],
+                'fee' => 80.00,
+            ],
+            'Physician\'s Clinic' => [
+                'days' => ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+                'time_range' => '9:00 AM - 4:00 PM',
+                'slots' => ['9:00 AM', '10:00 AM', '11:00 AM', '1:00 PM', '2:00 PM', '3:00 PM'],
+                'fee' => 200.00,
+            ],
+            'Dietetics' => [
+                'days' => ['By Appointment'],
+                'time_range' => 'Contact: +233 24 185 0091',
+                'slots' => ['Morning', 'Afternoon', 'Evening'],
+                'fee' => 120.00,
+            ],
+            'Endoscopy' => [
+                'days' => ['By Appointment'],
+                'time_range' => 'Contact: +233 24 185 0091',
+                'slots' => ['Morning', 'Afternoon'],
+                'fee' => 350.00,
+            ],
+            'Radiology & Medical Imaging' => [
+                'days' => ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+                'time_range' => '8:00 AM - 6:00 PM',
+                'slots' => ['Morning', 'Afternoon', 'Evening'],
+                'fee' => 250.00,
+            ],
+            'Ambulance Service' => [
+                'days' => ['Any Day'],
+                'time_range' => '24 Hours — Call: +233 24 185 0091',
+                'slots' => ['Anytime'],
+                'fee' => 0.00,
             ],
         ];
     }
@@ -88,14 +154,14 @@ class ClinicAppointment extends Model
         }
 
         $schedule = $schedules[$serviceName];
-        
-        // Handle Geriatric care with different slots per day
-        if ($serviceName === 'Geriatric / Elderly Care' && $day) {
+
+        // Handle Geriatric Care, whose slots differ per day.
+        if ($serviceName === 'Geriatric Care' && $day) {
             return $schedule['slots'][$day] ?? [];
         }
-        
-        return is_array($schedule['slots']) && !isset($schedule['slots']['Tuesday']) 
-            ? $schedule['slots'] 
+
+        return is_array($schedule['slots']) && !isset($schedule['slots']['Tuesday'])
+            ? $schedule['slots']
             : [];
     }
 }

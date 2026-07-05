@@ -323,34 +323,34 @@
             
             <div class="partners-grid">
                 <div class="partner-card" data-aos="zoom-in" data-aos-delay="100">
-                    <img src="{{ asset('images/brands/apex-logo2.png') }}" alt="APEX Insurance" class="partner-logo">
+                    <img src="{{ asset('images/brands/premier-logo1.png') }}" alt="Premier Insurance" class="partner-logo">
                 </div>
                 <div class="partner-card" data-aos="zoom-in" data-aos-delay="150">
-                    <img src="{{ asset('images/brands/acacia-logo.png') }}" alt="Acacia Insurance" class="partner-logo">
+                    <img src="{{ asset('images/brands/nmi-logo-green.webp') }}" alt="NMI Insurance" class="partner-logo">
                 </div>
                 <div class="partner-card" data-aos="zoom-in" data-aos-delay="200">
                     <img src="{{ asset('images/brands/ace-medical-insurance.png') }}" alt="ACE Medical Insurance" class="partner-logo">
                 </div>
                 <div class="partner-card" data-aos="zoom-in" data-aos-delay="250">
-                    <img src="{{ asset('images/brands/ghic.png') }}" alt="GHIC" class="partner-logo">
-                </div>
-                <div class="partner-card" data-aos="zoom-in" data-aos-delay="300">
-                    <img src="{{ asset('images/brands/cosmopolitan-logo.png') }}" alt="Cosmopolitan Insurance" class="partner-logo">
-                </div>
-                <div class="partner-card" data-aos="zoom-in" data-aos-delay="350">
                     <img src="{{ asset('images/brands/metropolitan.png') }}" alt="Metropolitan Insurance" class="partner-logo">
                 </div>
+                <div class="partner-card" data-aos="zoom-in" data-aos-delay="300">
+                    <img src="{{ asset('images/brands/acacia-logo.png') }}" alt="Acacia Insurance" class="partner-logo">
+                </div>
+                <div class="partner-card" data-aos="zoom-in" data-aos-delay="350">
+                    <img src="{{ asset('images/brands/equity.png') }}" alt="Equity Health Insurance" class="partner-logo">
+                </div>
                 <div class="partner-card" data-aos="zoom-in" data-aos-delay="400">
-                    <img src="{{ asset('images/brands/premier-logo1.png') }}" alt="Premier Insurance" class="partner-logo">
+                    <img src="{{ asset('images/brands/cosmopolitan-logo.png') }}" alt="Cosmopolitan Insurance" class="partner-logo">
                 </div>
                 <div class="partner-card" data-aos="zoom-in" data-aos-delay="450">
-                    <img src="{{ asset('images/brands/equity.png') }}" alt="Equity Health Insurance" class="partner-logo">
+                    <img src="{{ asset('images/brands/ghic.png') }}" alt="GHIC" class="partner-logo">
                 </div>
                 <div class="partner-card" data-aos="zoom-in" data-aos-delay="500">
                     <img src="{{ asset('images/brands/bim-logo.png') }}" alt="BIMA Insurance" class="partner-logo">
                 </div>
                 <div class="partner-card" data-aos="zoom-in" data-aos-delay="550">
-                    <img src="{{ asset('images/brands/nmi-logo-green.webp') }}" alt="NMI Insurance" class="partner-logo">
+                    <img src="{{ asset('images/brands/apex-logo2.png') }}" alt="APEX Insurance" class="partner-logo">
                 </div>
             </div>
         </div>

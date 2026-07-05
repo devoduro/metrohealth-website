@@ -32,7 +32,7 @@ class Kernel extends HttpKernel
     ];
 
     protected $middlewareAliases = [
-        'auth' => \Illuminate\Auth\Middleware\Authenticate::class,
+        'auth' => \App\Http\Middleware\Authenticate::class,
         'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
         'dashboard.auth' => \App\Http\Middleware\DashboardAuth::class,
         'admin.only' => \App\Http\Middleware\AdminOnly::class,

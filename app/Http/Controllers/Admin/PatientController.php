@@ -142,6 +142,27 @@ class PatientController extends Controller
     }
 
     /**
+     * Show a registered patient's full internal appointment history.
+     */
+    public function showRegistered(Patient $patient)
+    {
+        $appointments = $patient->appointments()
+            ->with(['clinicService', 'doctor'])
+            ->orderByDesc('appointment_date')
+            ->orderByDesc('appointment_time')
+            ->get();
+
+        $stats = [
+            'total' => $appointments->count(),
+            'scheduled' => $appointments->where('status', 'scheduled')->count(),
+            'completed' => $appointments->where('status', 'completed')->count(),
+            'cancelled' => $appointments->where('status', 'cancelled')->count(),
+        ];
+
+        return view('admin.patients.show-registered', compact('patient', 'appointments', 'stats'));
+    }
+
+    /**
      * Display patient details
      */
     public function show($email)

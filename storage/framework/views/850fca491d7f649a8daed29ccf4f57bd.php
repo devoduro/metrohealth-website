@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Internal Appointments | Metro Health Admin</title>
+    <title>Past Appointments | Metro Health Admin</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -17,69 +17,22 @@
     <?php echo $__env->make('admin.partials.sidebar', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 
     <div class="admin-content">
-        <?php $__env->startSection('page-title', 'Internal Appointments'); ?>
+        <?php $__env->startSection('page-title', 'Past Appointments'); ?>
         <?php echo $__env->make('admin.partials.topbar', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 
         <div class="container-fluid p-4">
-            <?php if(session('warning')): ?>
-            <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                <i class="fas fa-exclamation-triangle me-2"></i><?php echo e(session('warning')); ?>
-
-                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-            </div>
-            <?php endif; ?>
-
-            <!-- Stats Cards -->
-            <div class="row g-3 mb-4">
-                <div class="col-md-3">
-                    <div class="card border-0 shadow-sm">
-                        <div class="card-body">
-                            <h6 class="text-muted mb-2">Total</h6>
-                            <h3 class="mb-0"><?php echo e($stats['total']); ?></h3>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="card border-0 shadow-sm border-start border-warning border-3">
-                        <div class="card-body">
-                            <h6 class="text-muted mb-2">Scheduled</h6>
-                            <h3 class="mb-0 text-warning"><?php echo e($stats['scheduled']); ?></h3>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="card border-0 shadow-sm border-start border-info border-3">
-                        <div class="card-body">
-                            <h6 class="text-muted mb-2">Completed</h6>
-                            <h3 class="mb-0 text-info"><?php echo e($stats['completed']); ?></h3>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="card border-0 shadow-sm border-start border-secondary border-3">
-                        <div class="card-body">
-                            <h6 class="text-muted mb-2">Cancelled</h6>
-                            <h3 class="mb-0 text-secondary"><?php echo e($stats['cancelled']); ?></h3>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
             <div class="admin-card">
                 <div class="admin-card-header">
-                    <h5><i class="fas fa-calendar-check me-2" style="color: #84a33f;"></i>Internal Appointments</h5>
-                    <div class="d-flex gap-2">
-                        <a href="<?php echo e(route('admin.appointments.bulk-create')); ?>" class="btn btn-outline-success">
-                            <i class="fas fa-users me-2"></i>Bulk Add Patients
-                        </a>
-                        <a href="<?php echo e(route('admin.appointments.create')); ?>" class="btn btn-success">
-                            <i class="fas fa-plus me-2"></i>Book Appointment
-                        </a>
-                    </div>
+                    <h5><i class="fas fa-history me-2" style="color: #84a33f;"></i>Past Appointments</h5>
+                    <?php if (! (auth()->user()->isDoctor())): ?>
+                    <a href="<?php echo e(route('admin.appointments.index')); ?>" class="btn btn-secondary">
+                        <i class="fas fa-arrow-left me-2"></i>Back to Appointments
+                    </a>
+                    <?php endif; ?>
                 </div>
                 <div class="admin-card-body">
                     <form method="GET" class="row g-3 mb-4">
-                        <div class="col-md-3">
+                        <div class="col-md-4">
                             <select name="status" class="form-select" onchange="this.form.submit()">
                                 <option value="">All Status</option>
                                 <option value="scheduled" <?php echo e(request('status') == 'scheduled' ? 'selected' : ''); ?>>Scheduled</option>
@@ -87,7 +40,8 @@
                                 <option value="cancelled" <?php echo e(request('status') == 'cancelled' ? 'selected' : ''); ?>>Cancelled</option>
                             </select>
                         </div>
-                        <div class="col-md-4">
+                        <?php if (! (auth()->user()->isDoctor())): ?>
+                        <div class="col-md-5">
                             <select name="clinic_service_id" class="form-select" onchange="this.form.submit()">
                                 <option value="">All Services</option>
                                 <?php $__currentLoopData = $clinicServices; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $clinicService): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
@@ -95,11 +49,9 @@
                                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                             </select>
                         </div>
+                        <?php endif; ?>
                         <div class="col-md-3">
-                            <input type="date" name="date" class="form-control" value="<?php echo e(request('date')); ?>" onchange="this.form.submit()">
-                        </div>
-                        <div class="col-md-2">
-                            <a href="<?php echo e(route('admin.appointments.index')); ?>" class="btn btn-outline-secondary w-100">Clear</a>
+                            <a href="<?php echo e(route('admin.appointments.past')); ?>" class="btn btn-outline-secondary w-100">Clear</a>
                         </div>
                     </form>
 
@@ -115,6 +67,7 @@
                                     <th>Date & Time</th>
                                     <th>SMS</th>
                                     <th>Status</th>
+                                    <th>Notes</th>
                                     <th>Actions</th>
                                 </tr>
                             </thead>
@@ -150,10 +103,14 @@
                                         </span>
                                     </td>
                                     <td>
+                                        <small><?php echo e($appointment->notes ?: '—'); ?></small>
+                                    </td>
+                                    <td>
                                         <div class="btn-group" role="group">
                                             <a href="<?php echo e(route('admin.appointments.edit', $appointment)); ?>" class="btn btn-sm btn-outline-primary" title="Edit">
                                                 <i class="fas fa-edit"></i>
                                             </a>
+                                            <?php if (! (auth()->user()->isDoctor())): ?>
                                             <form action="<?php echo e(route('admin.appointments.destroy', $appointment)); ?>" method="POST" class="d-inline" onsubmit="return confirm('Delete this appointment?');">
                                                 <?php echo csrf_field(); ?>
                                                 <?php echo method_field('DELETE'); ?>
@@ -161,6 +118,7 @@
                                                     <i class="fas fa-trash"></i>
                                                 </button>
                                             </form>
+                                            <?php endif; ?>
                                         </div>
                                     </td>
                                 </tr>
@@ -174,11 +132,9 @@
                     </div>
                     <?php else: ?>
                     <div class="text-center py-5 text-muted">
-                        <i class="fas fa-calendar-times fa-4x mb-3" style="color: #84a33f; opacity: 0.3;"></i>
-                        <h5>No appointments found</h5>
-                        <a href="<?php echo e(route('admin.appointments.create')); ?>" class="btn btn-success mt-3">
-                            <i class="fas fa-plus me-2"></i>Book First Appointment
-                        </a>
+                        <i class="fas fa-history fa-4x mb-3" style="color: #84a33f; opacity: 0.3;"></i>
+                        <h5>No past appointments</h5>
+                        <p>Appointments will appear here once their scheduled date has passed.</p>
                     </div>
                     <?php endif; ?>
                 </div>
@@ -189,4 +145,4 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
-<?php /**PATH C:\xampp\htdocs\metrohealth-web\resources\views/admin/appointments/index.blade.php ENDPATH**/ ?>
+<?php /**PATH C:\xampp\htdocs\metrohealth-web\resources\views/admin/appointments/past.blade.php ENDPATH**/ ?>

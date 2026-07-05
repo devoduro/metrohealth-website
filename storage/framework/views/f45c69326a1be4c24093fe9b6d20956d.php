@@ -10,30 +10,31 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="{{ asset('css/ashlocs-custom.css') }}">
+    <link rel="stylesheet" href="<?php echo e(asset('css/ashlocs-custom.css')); ?>">
 </head>
 <body style="background: #f8f9fa;">
 
-    @include('admin.partials.sidebar')
+    <?php echo $__env->make('admin.partials.sidebar', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 
     <div class="admin-content">
-        @section('page-title', 'My Dashboard')
-        @include('admin.partials.topbar')
+        <?php $__env->startSection('page-title', 'My Dashboard'); ?>
+        <?php echo $__env->make('admin.partials.topbar', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 
         <div class="container-fluid p-4">
-            @if(session('warning'))
+            <?php if(session('warning')): ?>
             <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                <i class="fas fa-exclamation-triangle me-2"></i>{{ session('warning') }}
+                <i class="fas fa-exclamation-triangle me-2"></i><?php echo e(session('warning')); ?>
+
                 <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
             </div>
-            @endif
+            <?php endif; ?>
 
             <div class="alert border-0 shadow-sm mb-4" style="background: linear-gradient(135deg, #84a33f 0%, #6b8a32 100%);">
-                <h4 class="text-white mb-1"><i class="fas fa-user-md me-2"></i>Welcome, {{ $user->name }}</h4>
-                <p class="text-white-50 mb-0">{{ ucfirst($user->role) }} &mdash; {{ $services->pluck('name')->implode(', ') ?: 'No service assigned' }}</p>
+                <h4 class="text-white mb-1"><i class="fas fa-user-md me-2"></i>Welcome, <?php echo e($user->name); ?></h4>
+                <p class="text-white-50 mb-0"><?php echo e(ucfirst($user->role)); ?> &mdash; <?php echo e($services->pluck('name')->implode(', ') ?: 'No service assigned'); ?></p>
             </div>
 
-            @if($services->isEmpty())
+            <?php if($services->isEmpty()): ?>
             <div class="admin-card">
                 <div class="admin-card-body text-center py-5 text-muted">
                     <i class="fas fa-exclamation-circle fa-3x mb-3" style="opacity: 0.3;"></i>
@@ -41,22 +42,22 @@
                     <p>Contact an administrator to assign you to a service.</p>
                 </div>
             </div>
-            @else
+            <?php else: ?>
 
-            @if($services->count() > 1)
+            <?php if($services->count() > 1): ?>
             <div class="admin-card mb-4">
                 <div class="admin-card-body">
                     <label class="form-label fw-bold">Working in:</label>
                     <form method="GET" class="d-flex gap-2">
                         <select name="service_id" class="form-select" style="max-width: 400px;" onchange="this.form.submit()">
-                            @foreach($services as $service)
-                            <option value="{{ $service->id }}" {{ $selectedServiceId == $service->id ? 'selected' : '' }}>{{ $service->name }}</option>
-                            @endforeach
+                            <?php $__currentLoopData = $services; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $service): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                            <option value="<?php echo e($service->id); ?>" <?php echo e($selectedServiceId == $service->id ? 'selected' : ''); ?>><?php echo e($service->name); ?></option>
+                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                         </select>
                     </form>
                 </div>
             </div>
-            @endif
+            <?php endif; ?>
 
             <div class="row g-4">
                 <div class="col-lg-6">
@@ -65,40 +66,68 @@
                             <h5><i class="fas fa-user-plus me-2" style="color: #84a33f;"></i>Add Patient & Appointment</h5>
                         </div>
                         <div class="admin-card-body">
-                            <form action="{{ route('admin.staff-dashboard.quick-add') }}" method="POST" id="quickAddForm">
-                                @csrf
-                                <input type="hidden" name="clinic_service_id" value="{{ $selectedServiceId }}">
+                            <form action="<?php echo e(route('admin.staff-dashboard.quick-add')); ?>" method="POST" id="quickAddForm">
+                                <?php echo csrf_field(); ?>
+                                <input type="hidden" name="clinic_service_id" value="<?php echo e($selectedServiceId); ?>">
 
                                 <div class="row g-3">
                                     <div class="col-md-6 position-relative">
                                         <label class="form-label">Full Name *</label>
-                                        <input type="text" name="full_name" id="fullNameInput" class="form-control" value="{{ old('full_name') }}" autocomplete="off" required>
+                                        <input type="text" name="full_name" id="fullNameInput" class="form-control" value="<?php echo e(old('full_name')); ?>" autocomplete="off" required>
                                         <div id="nameSuggestions" class="list-group position-absolute w-100" style="z-index: 10; display: none;"></div>
-                                        @error('full_name')<span class="text-danger small">{{ $message }}</span>@enderror
+                                        <?php $__errorArgs = ['full_name'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?><span class="text-danger small"><?php echo e($message); ?></span><?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                                     </div>
 
                                     <div class="col-md-6 position-relative">
                                         <label class="form-label">Phone Number *</label>
-                                        <input type="text" name="phone" id="phoneInput" class="form-control" value="{{ old('phone') }}" placeholder="0241234567" autocomplete="off" required>
+                                        <input type="text" name="phone" id="phoneInput" class="form-control" value="<?php echo e(old('phone')); ?>" placeholder="0241234567" autocomplete="off" required>
                                         <div id="phoneSuggestions" class="list-group position-absolute w-100" style="z-index: 10; display: none;"></div>
-                                        @error('phone')<span class="text-danger small d-block">{{ $message }}</span>@enderror
+                                        <?php $__errorArgs = ['phone'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?><span class="text-danger small d-block"><?php echo e($message); ?></span><?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                                     </div>
 
                                     <div class="col-12">
                                         <label class="form-label">Address</label>
-                                        <input type="text" name="address" id="addressInput" class="form-control" value="{{ old('address') }}">
-                                        @error('address')<span class="text-danger small d-block">{{ $message }}</span>@enderror
+                                        <input type="text" name="address" id="addressInput" class="form-control" value="<?php echo e(old('address')); ?>">
+                                        <?php $__errorArgs = ['address'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?><span class="text-danger small d-block"><?php echo e($message); ?></span><?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                                     </div>
 
                                     <div class="col-md-6">
                                         <label class="form-label">Date *</label>
-                                        <input type="date" name="appointment_date" class="form-control" min="{{ date('Y-m-d') }}" value="{{ old('appointment_date') }}" required>
-                                        @error('appointment_date')<span class="text-danger small">{{ $message }}</span>@enderror
+                                        <input type="date" name="appointment_date" class="form-control" min="<?php echo e(date('Y-m-d')); ?>" value="<?php echo e(old('appointment_date')); ?>" required>
+                                        <?php $__errorArgs = ['appointment_date'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?><span class="text-danger small"><?php echo e($message); ?></span><?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                                     </div>
 
                                     <div class="col-md-6">
                                         <label class="form-label">Time *</label>
-                                        @php
+                                        <?php
                                             $oldTime = old('appointment_time');
                                             $quickAddHour24 = $oldTime ? (int) explode(':', $oldTime)[0] : 9;
                                             $quickAddMinute = $oldTime ? str_pad(round(explode(':', $oldTime)[1] / 5) * 5 % 60, 2, '0', STR_PAD_LEFT) : '00';
@@ -106,31 +135,38 @@
                                             $quickAddHour12 = $quickAddHour24 % 12;
                                             $quickAddHour12 = $quickAddHour12 === 0 ? 12 : $quickAddHour12;
                                             $quickAddHour12 = sprintf('%02d', $quickAddHour12);
-                                        @endphp
+                                        ?>
                                         <div class="d-flex gap-2 align-items-center">
                                             <select id="appointmentHourSelect" class="form-select">
-                                                @for ($h = 1; $h <= 12; $h++)
-                                                <option value="{{ sprintf('%02d', $h) }}" {{ sprintf('%02d', $h) == $quickAddHour12 ? 'selected' : '' }}>{{ $h }}</option>
-                                                @endfor
+                                                <?php for($h = 1; $h <= 12; $h++): ?>
+                                                <option value="<?php echo e(sprintf('%02d', $h)); ?>" <?php echo e(sprintf('%02d', $h) == $quickAddHour12 ? 'selected' : ''); ?>><?php echo e($h); ?></option>
+                                                <?php endfor; ?>
                                             </select>
                                             <span>:</span>
                                             <select id="appointmentMinuteSelect" class="form-select">
-                                                @foreach ([0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55] as $m)
-                                                <option value="{{ sprintf('%02d', $m) }}" {{ sprintf('%02d', $m) == $quickAddMinute ? 'selected' : '' }}>{{ sprintf('%02d', $m) }}</option>
-                                                @endforeach
+                                                <?php $__currentLoopData = [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55]; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $m): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                <option value="<?php echo e(sprintf('%02d', $m)); ?>" <?php echo e(sprintf('%02d', $m) == $quickAddMinute ? 'selected' : ''); ?>><?php echo e(sprintf('%02d', $m)); ?></option>
+                                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                             </select>
                                             <select id="appointmentPeriodSelect" class="form-select">
-                                                <option value="AM" {{ $quickAddPeriod == 'AM' ? 'selected' : '' }}>AM</option>
-                                                <option value="PM" {{ $quickAddPeriod == 'PM' ? 'selected' : '' }}>PM</option>
+                                                <option value="AM" <?php echo e($quickAddPeriod == 'AM' ? 'selected' : ''); ?>>AM</option>
+                                                <option value="PM" <?php echo e($quickAddPeriod == 'PM' ? 'selected' : ''); ?>>PM</option>
                                             </select>
                                         </div>
-                                        <input type="hidden" name="appointment_time" id="appointmentTimeHidden" value="{{ sprintf('%02d', $quickAddHour24) }}:{{ $quickAddMinute }}" required>
-                                        @error('appointment_time')<span class="text-danger small">{{ $message }}</span>@enderror
+                                        <input type="hidden" name="appointment_time" id="appointmentTimeHidden" value="<?php echo e(sprintf('%02d', $quickAddHour24)); ?>:<?php echo e($quickAddMinute); ?>" required>
+                                        <?php $__errorArgs = ['appointment_time'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?><span class="text-danger small"><?php echo e($message); ?></span><?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                                     </div>
 
                                     <div class="col-12">
                                         <label class="form-label">Notes</label>
-                                        <textarea name="notes" class="form-control" rows="2">{{ old('notes') }}</textarea>
+                                        <textarea name="notes" class="form-control" rows="2"><?php echo e(old('notes')); ?></textarea>
                                     </div>
 
                                     <div class="col-12">
@@ -150,7 +186,7 @@
                             <h5><i class="fas fa-calendar-check me-2" style="color: #84a33f;"></i>Upcoming Appointments</h5>
                         </div>
                         <div class="admin-card-body">
-                            @if($upcomingAppointments->count() > 0)
+                            <?php if($upcomingAppointments->count() > 0): ?>
                             <div class="table-responsive">
                                 <table class="table table-hover table-sm">
                                     <thead class="table-light">
@@ -163,45 +199,46 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach($upcomingAppointments as $appointment)
+                                        <?php $__currentLoopData = $upcomingAppointments; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $appointment): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                         <tr>
                                             <td>
-                                                <strong>{{ $appointment->patient->full_name ?? '—' }}</strong><br>
-                                                <small class="text-muted">{{ $appointment->patient->phone ?? '—' }}</small>
+                                                <strong><?php echo e($appointment->patient->full_name ?? '—'); ?></strong><br>
+                                                <small class="text-muted"><?php echo e($appointment->patient->phone ?? '—'); ?></small>
                                             </td>
                                             <td>
-                                                {{ $appointment->appointment_date->format('M d, Y') }}<br>
-                                                <small class="text-muted">{{ \Carbon\Carbon::parse($appointment->appointment_time)->format('g:i A') }}</small>
+                                                <?php echo e($appointment->appointment_date->format('M d, Y')); ?><br>
+                                                <small class="text-muted"><?php echo e(\Carbon\Carbon::parse($appointment->appointment_time)->format('g:i A')); ?></small>
                                             </td>
                                             <td>
-                                                <span class="badge bg-{{ $appointment->status == 'scheduled' ? 'warning' : ($appointment->status == 'completed' ? 'info' : 'secondary') }}">
-                                                    {{ ucfirst($appointment->status) }}
+                                                <span class="badge bg-<?php echo e($appointment->status == 'scheduled' ? 'warning' : ($appointment->status == 'completed' ? 'info' : 'secondary')); ?>">
+                                                    <?php echo e(ucfirst($appointment->status)); ?>
+
                                                 </span>
                                             </td>
                                             <td>
-                                                <small>{{ $appointment->notes ?: '—' }}</small>
+                                                <small><?php echo e($appointment->notes ?: '—'); ?></small>
                                             </td>
                                             <td>
-                                                <a href="{{ route('admin.appointments.edit', $appointment) }}" class="btn btn-sm btn-outline-primary" title="Edit">
+                                                <a href="<?php echo e(route('admin.appointments.edit', $appointment)); ?>" class="btn btn-sm btn-outline-primary" title="Edit">
                                                     <i class="fas fa-edit"></i>
                                                 </a>
                                             </td>
                                         </tr>
-                                        @endforeach
+                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                     </tbody>
                                 </table>
                             </div>
-                            @else
+                            <?php else: ?>
                             <div class="text-center py-4 text-muted">
                                 <i class="fas fa-calendar-times fa-3x mb-3" style="opacity: 0.3;"></i>
                                 <p class="mb-0">No upcoming appointments for this service.</p>
                             </div>
-                            @endif
+                            <?php endif; ?>
                         </div>
                     </div>
                 </div>
             </div>
-            @endif
+            <?php endif; ?>
         </div>
     </div>
 
@@ -233,7 +270,7 @@
                 }
 
                 debounceTimer = setTimeout(() => {
-                    fetch('{{ route("admin.appointments.patient-search") }}?q=' + encodeURIComponent(value))
+                    fetch('<?php echo e(route("admin.appointments.patient-search")); ?>?q=' + encodeURIComponent(value))
                         .then(response => response.json())
                         .then(patients => {
                             if (!patients.length) {
@@ -297,3 +334,4 @@
     </script>
 </body>
 </html>
+<?php /**PATH C:\xampp\htdocs\metrohealth-web\resources\views/admin/staff-dashboard.blade.php ENDPATH**/ ?>

@@ -10,6 +10,11 @@
                 <i class="fas fa-home"></i>
                 <span>My Dashboard</span>
             </a>
+
+            <a href="{{ route('admin.appointments.past') }}" class="sidebar-link {{ request()->routeIs('admin.appointments.past') ? 'active' : '' }}">
+                <i class="fas fa-history"></i>
+                <span>Past Appointments</span>
+            </a>
         @else
             <a href="{{ route('admin.dashboard') }}" class="sidebar-link {{ request()->routeIs('admin.dashboard') ? 'active' : '' }}">
                 <i class="fas fa-home"></i>
@@ -33,9 +38,14 @@
                 <span>Patients</span>
             </a>
 
-            <a href="{{ route('admin.appointments.index') }}" class="sidebar-link {{ request()->routeIs('admin.appointments.*') ? 'active' : '' }}">
+            <a href="{{ route('admin.appointments.index') }}" class="sidebar-link {{ request()->routeIs('admin.appointments.*') && !request()->routeIs('admin.appointments.past') ? 'active' : '' }}">
                 <i class="fas fa-calendar-plus"></i>
                 <span>Book Appointment</span>
+            </a>
+
+            <a href="{{ route('admin.appointments.past') }}" class="sidebar-link {{ request()->routeIs('admin.appointments.past') ? 'active' : '' }}">
+                <i class="fas fa-history"></i>
+                <span>Past Appointments</span>
             </a>
 
             @unless(auth()->user()->isFrontDeskStaff())

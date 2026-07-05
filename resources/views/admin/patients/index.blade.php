@@ -114,11 +114,12 @@
                                     <th>Address</th>
                                     <th>Appointments</th>
                                     <th>Registered</th>
+                                    <th>Actions</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach($registeredPatients as $registeredPatient)
-                                <tr>
+                                <tr class="cursor-pointer" onclick="window.location='{{ route('admin.patients.show-registered', $registeredPatient) }}'">
                                     <td>
                                         <div class="d-flex align-items-center">
                                             <div class="avatar-circle bg-primary text-white me-2">
@@ -131,6 +132,11 @@
                                     <td>{{ $registeredPatient->address ?: '—' }}</td>
                                     <td><span class="badge bg-info">{{ $registeredPatient->appointments_count }}</span></td>
                                     <td><small class="text-muted">{{ $registeredPatient->created_at->format('M d, Y') }}</small></td>
+                                    <td>
+                                        <a href="{{ route('admin.patients.show-registered', $registeredPatient) }}" class="btn btn-sm btn-outline-primary" onclick="event.stopPropagation()">
+                                            <i class="fas fa-eye"></i> View History
+                                        </a>
+                                    </td>
                                 </tr>
                                 @endforeach
                             </tbody>
@@ -259,5 +265,9 @@
     align-items: center;
     justify-content: center;
     font-weight: 600;
+}
+
+.cursor-pointer {
+    cursor: pointer;
 }
 </style>

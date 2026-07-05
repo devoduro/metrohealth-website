@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     @include('partials.seo', [
-        'title' => 'Eye Clinic - Metro Health Hospital',
+        'title' => 'Eye Care - Metro Health Hospital',
         'description' => 'Advanced ophthalmology services at Metro Health Hospital. Comprehensive eye care from routine screenings to complex surgical interventions in Kumasi.',
         'keywords' => 'eye care, ophthalmology, vision care, cataract surgery, glaucoma treatment, metro health kumasi'
     ])
@@ -33,7 +33,7 @@
                     <div class="service-icon-large mx-auto mb-4" style="width: 120px; height: 120px; background: rgba(255, 255, 255, 0.95); border-radius: 20px; display: flex; align-items: center; justify-content: center; font-size: 3.5rem; color: #2980b9; box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);">
                         <i class="fas fa-eye"></i>
                     </div>
-                    <h1 class="display-3 fw-bold mb-4" style="color: white; text-shadow: 0 2px 4px rgba(0,0,0,0.1);">Eye Clinic</h1>
+                    <h1 class="display-3 fw-bold mb-4" style="color: white; text-shadow: 0 2px 4px rgba(0,0,0,0.1);">Eye Care</h1>
                     <p class="lead" style="font-size: 1.3rem; color: rgba(255, 255, 255, 0.95); text-shadow: 0 1px 2px rgba(0,0,0,0.1);">
                         Clearer Vision. Brighter Future.
                     </p>
@@ -51,13 +51,13 @@
                         <!-- Service Image -->
                         <div class="service-image mb-5" style="border-radius: 25px; box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);">
                             <img src="{{ asset('images/services/eye1.jpg') }}"
-                                 alt="Eye Clinic at Metro Health"
+                                 alt="Eye Care at Metro Health"
                                  style="width: 100%; height: auto; display: block; border-radius: 25px;">
                         </div>
 
                         <h2 class="mb-4" style="font-size: 2.5rem; font-weight: 800;">Advanced Ophthalmology at Abrepo Junction</h2>
                         <div class="content-text" style="font-size: 1.1rem; line-height: 1.8; color: #666;">
-                            <p>Since 2011, Metro Health Hospital has been a trusted name for clinical excellence in the Kumasi Metropolis. Our Eye Clinic provides a full spectrum of ophthalmology services, from routine vision screenings to complex surgical interventions. Utilizing cutting-edge equipment and evidence-based treatments, our expert team is committed to the highest standards of ocular health and vision preservation.</p>
+                            <p>Since 2011, Metro Health Hospital has been a trusted name for clinical excellence in the Kumasi Metropolis. Our Eye Care team provides a full spectrum of ophthalmology services, from routine vision screenings to complex surgical interventions. Utilizing cutting-edge equipment and evidence-based treatments, our expert team is committed to the highest standards of ocular health and vision preservation.</p>
                         </div>
 
                         <!-- Vision Focus -->
@@ -70,9 +70,9 @@
                             </ul>
                         </div>
 
-                        <!-- Eye Clinic Services -->
+                        <!-- Eye Care Services -->
                         <div class="gp-services mt-5">
-                            <h3 class="mb-4" style="font-size: 2rem; font-weight: 700; color: #2d3e50;">Our Eye Clinic Services Include:</h3>
+                            <h3 class="mb-4" style="font-size: 2rem; font-weight: 700; color: #2d3e50;">Our Eye Care Services Include:</h3>
                             
                             <h4 class="mb-3 mt-4" style="font-size: 1.5rem; font-weight: 600; color: #1a1a1a;">Advanced Diagnostics & Technology</h4>
                             
@@ -129,7 +129,7 @@
                         </div>
                         <!-- Our Approach Section -->
                         <div class="expertise-section mt-5" style="background: #f9f9f9; border-radius: 12px; padding: 35px; border-left: 4px solid #a8207a;">
-                            <h3 class="mb-3" style="font-size: 1.85rem; font-weight: 600; color: #1a1a1a;">Trusted Eye Clinic Since 2011</h3>
+                            <h3 class="mb-3" style="font-size: 1.85rem; font-weight: 600; color: #1a1a1a;">Trusted Eye Care Since 2011</h3>
                             <p style="font-size: 1.05rem; line-height: 1.7; color: #555; margin: 0;">At Metro Health Hospital, we understand that your vision is precious. Our ophthalmology team combines years of clinical experience with the latest diagnostic technology to provide comprehensive eye care services. From routine examinations to advanced imaging and treatment, we are dedicated to preserving and protecting your sight for years to come.</p>
                         </div>
                     </div>
@@ -137,59 +137,7 @@
 
                 <!-- Sidebar -->
                 <div class="col-lg-4" data-aos="fade-left">
-                    <!-- All Services Menu -->
-                    <div class="services-menu mb-4" style="background: white; border-radius: 20px; padding: 30px; box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);">
-                        <h4 class="mb-4" style="font-weight: 700; color: #2d3e50;">All Services</h4>
-                        <div class="services-list">
-                            <a href="{{ route('services.general-practice') }}" class="service-link" style="display: flex; align-items: center; padding: 12px 15px; margin-bottom: 8px; border-radius: 10px; text-decoration: none; background: #f8f9fa; transition: all 0.3s ease;">
-                                <i class="fas fa-stethoscope me-3" style="color: #666; font-size: 1.1rem;"></i>
-                                <span style="color: #666; font-weight: 500;">General Practice</span>
-                            </a>
-                            <a href="{{ route('services.general-surgery') }}" class="service-link" style="display: flex; align-items: center; padding: 12px 15px; margin-bottom: 8px; border-radius: 10px; text-decoration: none; background: #f8f9fa; transition: all 0.3s ease;">
-                                <i class="fas fa-user-md me-3" style="color: #666; font-size: 1.1rem;"></i>
-                                <span style="color: #666; font-weight: 500;">General Surgery</span>
-                            </a>
-                            <a href="{{ route('services.obstetrics-gynaecology') }}" class="service-link" style="display: flex; align-items: center; padding: 12px 15px; margin-bottom: 8px; border-radius: 10px; text-decoration: none; background: #f8f9fa; transition: all 0.3s ease;">
-                                <i class="fas fa-baby me-3" style="color: #666; font-size: 1.1rem;"></i>
-                                <span style="color: #666; font-weight: 500;">Obstetrics & Gynaecology</span>
-                            </a>
-                            <a href="{{ route('services.geriatric-care') }}" class="service-link" style="display: flex; align-items: center; padding: 12px 15px; margin-bottom: 8px; border-radius: 10px; text-decoration: none; background: #f8f9fa; transition: all 0.3s ease;">
-                                <i class="fas fa-user-friends me-3" style="color: #666; font-size: 1.1rem;"></i>
-                                <span style="color: #666; font-weight: 500;">Geriatric Care</span>
-                            </a>
-                            <a href="{{ route('services.paediatrics') }}" class="service-link" style="display: flex; align-items: center; padding: 12px 15px; margin-bottom: 8px; border-radius: 10px; text-decoration: none; background: #f8f9fa; transition: all 0.3s ease;">
-                                <i class="fas fa-child me-3" style="color: #666; font-size: 1.1rem;"></i>
-                                <span style="color: #666; font-weight: 500;">Paediatrics</span>
-                            </a>
-                            <a href="{{ route('services.urology') }}" class="service-link" style="display: flex; align-items: center; padding: 12px 15px; margin-bottom: 8px; border-radius: 10px; text-decoration: none; background: #f8f9fa; transition: all 0.3s ease;">
-                                <i class="fas fa-kidneys me-3" style="color: #666; font-size: 1.1rem;"></i>
-                                <span style="color: #666; font-weight: 500;">Urology</span>
-                            </a>
-                            <a href="{{ route('services.orthopaedic') }}" class="service-link" style="display: flex; align-items: center; padding: 12px 15px; margin-bottom: 8px; border-radius: 10px; text-decoration: none; background: #f8f9fa; transition: all 0.3s ease;">
-                                <i class="fas fa-bone me-3" style="color: #666; font-size: 1.1rem;"></i>
-                                <span style="color: #666; font-weight: 500;">Orthopaedic</span>
-                            </a>
-                            <a href="{{ route('services.ent-care') }}" class="service-link" style="display: flex; align-items: center; padding: 12px 15px; margin-bottom: 8px; border-radius: 10px; text-decoration: none; background: #f8f9fa; transition: all 0.3s ease;">
-                                <i class="fas fa-head-side-mask me-3" style="color: #666; font-size: 1.1rem;"></i>
-                                <span style="color: #666; font-weight: 500;">ENT Care</span>
-                            </a>
-                            <a href="{{ route('services.eye-care') }}" class="service-link active" style="display: flex; align-items: center; padding: 12px 15px; margin-bottom: 8px; border-radius: 10px; text-decoration: none; background: #f3e5f5; border-left: 3px solid #a8207a; transition: all 0.3s ease;">
-                                <i class="fas fa-eye me-3" style="color: #a8207a; font-size: 1.1rem;"></i>
-                                <span style="color: #2d3e50; font-weight: 600;">Eye Clinic</span>
-                            </a>
-                            @php
-                                $sidebarServices = \App\Models\Service::active()->ordered()->get();
-                            @endphp
-                            @foreach($sidebarServices as $service)
-                                @if($service->slug)
-                                <a href="{{ route('services.show', $service->slug) }}" class="service-link" style="display: flex; align-items: center; padding: 12px 15px; margin-bottom: 8px; border-radius: 10px; text-decoration: none; background: #f8f9fa; transition: all 0.3s ease;">
-                                    <i class="{{ $service->icon ?? 'fas fa-heartbeat' }} me-3" style="color: #666; font-size: 1.1rem;"></i>
-                                    <span style="color: #666; font-weight: 500;">{{ $service->title }}</span>
-                                </a>
-                                @endif
-                            @endforeach
-                        </div>
-                    </div>
+                    @include('partials.services-sidebar', ['active' => 'eye-care'])
 
                     <!-- Contact Card -->
                     <div class="contact-card mb-4" style="background: #a8207a; border-radius: 12px; padding: 32px; color: white; box-shadow: 0 4px 12px rgba(168, 32, 122, 0.2);">

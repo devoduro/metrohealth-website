@@ -170,96 +170,7 @@
                             </div>
                         </div>
 
-                        <!-- Cosmetic Surgery -->
-                        <div class="gp-services mt-5">
-                            <h3 class="mb-4" style="font-size: 2rem; font-weight: 700; color: #2d3e50;">Cosmetic Surgery:</h3>
-                            <div class="row g-4">
-                                <div class="col-md-6">
-                                    <div class="service-type-card" style="background: white; border-radius: 12px; padding: 28px; height: 100%; border-left: 3px solid #84a33f; box-shadow: 0 2px 8px rgba(0,0,0,0.06);">
-                                        <div class="d-flex align-items-start">
-                                            <div style="width: 48px; height: 48px; background: #84a33f; border-radius: 10px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-right: 18px;">
-                                                <i class="fas fa-smile" style="color: white; font-size: 1.2rem;"></i>
-                                            </div>
-                                            <div>
-                                                <h5 class="mb-2" style="font-weight: 600; color: #1a1a1a; font-size: 1.05rem;">Facial Rejuvenation</h5>
-                                                <p class="mb-0" style="color: #666; font-size: 0.9rem; line-height: 1.5;">Facelift, brow lift, and other facial enhancement procedures.</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-md-6">
-                                    <div class="service-type-card" style="background: white; border-radius: 12px; padding: 28px; height: 100%; border-left: 3px solid #a8207a; box-shadow: 0 2px 8px rgba(0,0,0,0.06);">
-                                        <div class="d-flex align-items-start">
-                                            <div style="width: 48px; height: 48px; background: #84a33f; border-radius: 10px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-right: 18px;">
-                                                <i class="fas fa-head-side-mask" style="color: white; font-size: 1.2rem;"></i>
-                                            </div>
-                                            <div>
-                                                <h5 class="mb-2" style="font-weight: 600; color: #1a1a1a; font-size: 1.05rem;">Rhinoplasty</h5>
-                                                <p class="mb-0" style="color: #666; font-size: 0.9rem; line-height: 1.5;">Nose reshaping for improved aesthetics and function.</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-md-6">
-                                    <div class="service-type-card" style="background: white; border-radius: 12px; padding: 28px; height: 100%; border-left: 3px solid #a8207a; box-shadow: 0 2px 8px rgba(0,0,0,0.06);">
-                                        <div class="d-flex align-items-start">
-                                            <div style="width: 48px; height: 48px; background: #84a33f; border-radius: 10px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-right: 18px;">
-                                                <i class="fas fa-eye" style="color: white; font-size: 1.2rem;"></i>
-                                            </div>
-                                            <div>
-                                                <h5 class="mb-2" style="font-weight: 600; color: #1a1a1a; font-size: 1.05rem;">Eyelid Surgery (Blepharoplasty)</h5>
-                                                <p class="mb-0" style="color: #666; font-size: 0.9rem; line-height: 1.5;">Rejuvenating the appearance of tired or aging eyes.</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-md-6">
-                                    <div class="service-type-card" style="background: white; border-radius: 12px; padding: 28px; height: 100%; border-left: 3px solid #84a33f; box-shadow: 0 2px 8px rgba(0,0,0,0.06);">
-                                        <div class="d-flex align-items-start">
-                                            <div style="width: 48px; height: 48px; background: #84a33f; border-radius: 10px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-right: 18px;">
-                                                <i class="fas fa-male" style="color: white; font-size: 1.2rem;"></i>
-                                            </div>
-                                            <div>
-                                                <h5 class="mb-2" style="font-weight: 600; color: #1a1a1a; font-size: 1.05rem;">Body Contouring</h5>
-                                                <p class="mb-0" style="color: #666; font-size: 0.9rem; line-height: 1.5;">Liposuction, tummy tuck, and body sculpting procedures.</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-md-6">
-                                    <div class="service-type-card" style="background: white; border-radius: 12px; padding: 28px; height: 100%; border-left: 3px solid #84a33f; box-shadow: 0 2px 8px rgba(0,0,0,0.06);">
-                                        <div class="d-flex align-items-start">
-                                            <div style="width: 48px; height: 48px; background: #84a33f; border-radius: 10px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-right: 18px;">
-                                                <i class="fas fa-venus" style="color: white; font-size: 1.2rem;"></i>
-                                            </div>
-                                            <div>
-                                                <h5 class="mb-2" style="font-weight: 600; color: #1a1a1a; font-size: 1.05rem;">Breast Augmentation and Reduction</h5>
-                                                <p class="mb-0" style="color: #666; font-size: 0.9rem; line-height: 1.5;">Enhancing or reducing breast size for desired appearance.</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-md-6">
-                                    <div class="service-type-card" style="background: white; border-radius: 12px; padding: 28px; height: 100%; border-left: 3px solid #a8207a; box-shadow: 0 2px 8px rgba(0,0,0,0.06);">
-                                        <div class="d-flex align-items-start">
-                                            <div style="width: 48px; height: 48px; background: #84a33f; border-radius: 10px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-right: 18px;">
-                                                <i class="fas fa-syringe" style="color: white; font-size: 1.2rem;"></i>
-                                            </div>
-                                            <div>
-                                                <h5 class="mb-2" style="font-weight: 600; color: #1a1a1a; font-size: 1.05rem;">Non-surgical Treatments</h5>
-                                                <p class="mb-0" style="color: #666; font-size: 0.9rem; line-height: 1.5;">Botox, fillers, and other minimally invasive aesthetic treatments.</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
+                   
   <div class="service-image mt-5 mb-5" style="border-radius: 25px; box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);">
                             <img src="{{ asset('images/services/plastic_surgery2.png') }}" 
                                  alt="General Practice Services at Metro Health" 
@@ -275,52 +186,7 @@
 
                 <!-- Sidebar -->
                 <div class="col-lg-4" data-aos="fade-left">
-                    <!-- All Services Menu -->
-                    <div class="services-menu mb-4" style="background: white; border-radius: 20px; padding: 30px; box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);">
-                        <h4 class="mb-4" style="font-weight: 700; color: #2d3e50;">All Services</h4>
-                        <div class="services-list">
-                            <a href="{{ route('services.general-practice') }}" class="service-link" style="display: flex; align-items: center; padding: 12px 15px; margin-bottom: 8px; border-radius: 10px; text-decoration: none; background: #f8f9fa; transition: all 0.3s ease;">
-                                <i class="fas fa-stethoscope me-3" style="color: #666; font-size: 1.1rem;"></i>
-                                <span style="color: #666; font-weight: 500;">General Practice</span>
-                            </a>
-                            <a href="{{ route('services.general-surgery') }}" class="service-link" style="display: flex; align-items: center; padding: 12px 15px; margin-bottom: 8px; border-radius: 10px; text-decoration: none; background: #f8f9fa; transition: all 0.3s ease;">
-                                <i class="fas fa-user-md me-3" style="color: #666; font-size: 1.1rem;"></i>
-                                <span style="color: #666; font-weight: 500;">General Surgery</span>
-                            </a>
-                            <a href="{{ route('services.obstetrics-gynaecology') }}" class="service-link" style="display: flex; align-items: center; padding: 12px 15px; margin-bottom: 8px; border-radius: 10px; text-decoration: none; background: #f8f9fa; transition: all 0.3s ease;">
-                                <i class="fas fa-baby me-3" style="color: #666; font-size: 1.1rem;"></i>
-                                <span style="color: #666; font-weight: 500;">Obstetrics & Gynaecology</span>
-                            </a>
-                            <a href="{{ route('services.geriatric-care') }}" class="service-link" style="display: flex; align-items: center; padding: 12px 15px; margin-bottom: 8px; border-radius: 10px; text-decoration: none; background: #f8f9fa; transition: all 0.3s ease;">
-                                <i class="fas fa-user-friends me-3" style="color: #666; font-size: 1.1rem;"></i>
-                                <span style="color: #666; font-weight: 500;">Geriatric Care</span>
-                            </a>
-                            <a href="{{ route('services.paediatrics') }}" class="service-link" style="display: flex; align-items: center; padding: 12px 15px; margin-bottom: 8px; border-radius: 10px; text-decoration: none; background: #f8f9fa; transition: all 0.3s ease;">
-                                <i class="fas fa-child me-3" style="color: #666; font-size: 1.1rem;"></i>
-                                <span style="color: #666; font-weight: 500;">Paediatrics</span>
-                            </a>
-                            <a href="{{ route('services.urology') }}" class="service-link" style="display: flex; align-items: center; padding: 12px 15px; margin-bottom: 8px; border-radius: 10px; text-decoration: none; background: #f8f9fa; transition: all 0.3s ease;">
-                                <i class="fas fa-kidneys me-3" style="color: #666; font-size: 1.1rem;"></i>
-                                <span style="color: #666; font-weight: 500;">Urology</span>
-                            </a>
-                            <a href="{{ route('services.orthopaedic') }}" class="service-link" style="display: flex; align-items: center; padding: 12px 15px; margin-bottom: 8px; border-radius: 10px; text-decoration: none; background: #f8f9fa; transition: all 0.3s ease;">
-                                <i class="fas fa-bone me-3" style="color: #666; font-size: 1.1rem;"></i>
-                                <span style="color: #666; font-weight: 500;">Orthopaedic</span>
-                            </a>
-                            <a href="{{ route('services.ent-care') }}" class="service-link" style="display: flex; align-items: center; padding: 12px 15px; margin-bottom: 8px; border-radius: 10px; text-decoration: none; background: #f8f9fa; transition: all 0.3s ease;">
-                                <i class="fas fa-head-side-mask me-3" style="color: #666; font-size: 1.1rem;"></i>
-                                <span style="color: #666; font-weight: 500;">ENT Care</span>
-                            </a>
-                            <a href="{{ route('services.eye-care') }}" class="service-link" style="display: flex; align-items: center; padding: 12px 15px; margin-bottom: 8px; border-radius: 10px; text-decoration: none; background: #f8f9fa; transition: all 0.3s ease;">
-                                <i class="fas fa-eye me-3" style="color: #666; font-size: 1.1rem;"></i>
-                                <span style="color: #666; font-weight: 500;">Eye Clinic</span>
-                            </a>
-                            <a href="{{ route('services.plastic-surgery') }}" class="service-link active" style="display: flex; align-items: center; padding: 12px 15px; margin-bottom: 8px; border-radius: 10px; text-decoration: none; background: #f3e5f5; border-left: 3px solid #a8207a; transition: all 0.3s ease;">
-                                <i class="fas fa-user-md me-3" style="color: #a8207a; font-size: 1.1rem;"></i>
-                                <span style="color: #2d3e50; font-weight: 600;">Plastic Surgery</span>
-                            </a>
-                        </div>
-                    </div>
+                    @include('partials.services-sidebar', ['active' => 'plastic-surgery'])
 
                     <!-- Contact Card -->
                     <div class="contact-card mb-4" style="background: #a8207a; border-radius: 12px; padding: 32px; color: white; box-shadow: 0 4px 12px rgba(168, 32, 122, 0.2);">

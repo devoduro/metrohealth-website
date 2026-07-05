@@ -169,14 +169,14 @@
                     </div>
                 </div>
 
-                <!-- Eye Clinic -->
+                <!-- Eye Care -->
                 <div class="col-md-6 col-lg-6" data-aos="fade-up" data-aos-delay="100">
                     <div class="service-card" style="background: white; border-radius: 15px; overflow: hidden; height: 100%; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08); transition: all 0.3s ease;">
                         <div class="service-image" style="width: 100%; height: 200px; overflow: hidden;">
-                            <img src="{{ asset('images/services/eyecare.png') }}"  alt="Eye Clinic" style="width: 100%; height: 100%; object-fit: cover;">
+                            <img src="{{ asset('images/services/eyecare.png') }}"  alt="Eye Care" style="width: 100%; height: 100%; object-fit: cover;">
                         </div>
                         <div style="padding: 25px;">
-                            <h3 class="mb-3" style="font-size: 1.4rem; font-weight: 700; color: #1a1a1a;">Eye Clinic</h3>
+                            <h3 class="mb-3" style="font-size: 1.4rem; font-weight: 700; color: #1a1a1a;">Eye Care</h3>
                             <p class="mb-4" style="color: #666; font-size: 0.95rem; line-height: 1.6;">Advanced ophthalmology for clearer vision and brighter future.</p>
                             <a href="{{ route('services.eye-care') }}" class="btn btn-sm" style="background: #a8207a; color: white; padding: 10px 25px; border-radius: 8px; font-weight: 600; text-decoration: none; display: inline-block;">Learn More <i class="fas fa-arrow-right ms-2"></i></a>
                         </div>
@@ -196,57 +196,110 @@
                         </div>
                     </div>
                 </div>
+
+                <!-- Pharmacy -->
+                <div class="col-md-6 col-lg-6" data-aos="fade-up" data-aos-delay="300">
+                    <div class="service-card" style="background: white; border-radius: 15px; overflow: hidden; height: 100%; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08); transition: all 0.3s ease;">
+                        <div class="service-image" style="width: 100%; height: 200px; overflow: hidden;">
+                            <img src="{{ asset('images/services/pharmacy.png') }}" alt="Pharmacy" style="width: 100%; height: 100%; object-fit: cover;">
+                        </div>
+                        <div style="padding: 25px;">
+                            <h3 class="mb-3" style="font-size: 1.4rem; font-weight: 700; color: #1a1a1a;">Pharmacy</h3>
+                            <p class="mb-4" style="color: #666; font-size: 0.95rem; line-height: 1.6;">A fully stocked, in-house pharmacy dispensing genuine medications with expert advice.</p>
+                            <a href="{{ route('services.pharmacy') }}" class="btn btn-sm" style="background: #a8207a; color: white; padding: 10px 25px; border-radius: 8px; font-weight: 600; text-decoration: none; display: inline-block;">Learn More <i class="fas fa-arrow-right ms-2"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- General Lab -->
+                <div class="col-md-6 col-lg-6" data-aos="fade-up" data-aos-delay="100">
+                    <div class="service-card" style="background: white; border-radius: 15px; overflow: hidden; height: 100%; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08); transition: all 0.3s ease;">
+                        <div class="service-image" style="width: 100%; height: 200px; overflow: hidden;">
+                            <img src="{{ asset('images/services/serv9.jpg') }}" alt="General Lab" style="width: 100%; height: 100%; object-fit: cover;">
+                        </div>
+                        <div style="padding: 25px;">
+                            <h3 class="mb-3" style="font-size: 1.4rem; font-weight: 700; color: #1a1a1a;">General Lab</h3>
+                            <p class="mb-4" style="color: #666; font-size: 0.95rem; line-height: 1.6;">State-of-the-art laboratory diagnostics manned by experienced laboratory scientists.</p>
+                            <a href="{{ route('services.laboratory') }}" class="btn btn-sm" style="background: #84a33f; color: white; padding: 10px 25px; border-radius: 8px; font-weight: 600; text-decoration: none; display: inline-block;">Learn More <i class="fas fa-arrow-right ms-2"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Physician's Clinic -->
+                <div class="col-md-6 col-lg-6" data-aos="fade-up" data-aos-delay="200">
+                    <div class="service-card" style="background: white; border-radius: 15px; overflow: hidden; height: 100%; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08); transition: all 0.3s ease;">
+                        <div class="service-image" style="width: 100%; height: 200px; overflow: hidden;">
+                            <img src="{{ asset('images/services/general_p2.png') }}" alt="Physician's Clinic" style="width: 100%; height: 100%; object-fit: cover;">
+                        </div>
+                        <div style="padding: 25px;">
+                            <h3 class="mb-3" style="font-size: 1.4rem; font-weight: 700; color: #1a1a1a;">Physician's Clinic</h3>
+                            <p class="mb-4" style="color: #666; font-size: 0.95rem; line-height: 1.6;">Consultant-led physician care for the diagnosis and management of adult medical conditions.</p>
+                            <a href="{{ route('services.physician-clinic') }}" class="btn btn-sm" style="background: #a8207a; color: white; padding: 10px 25px; border-radius: 8px; font-weight: 600; text-decoration: none; display: inline-block;">Learn More <i class="fas fa-arrow-right ms-2"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Dietetics -->
+                <div class="col-md-6 col-lg-6" data-aos="fade-up" data-aos-delay="300">
+                    <div class="service-card" style="background: white; border-radius: 15px; overflow: hidden; height: 100%; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08); transition: all 0.3s ease;">
+                        <div class="service-image" style="width: 100%; height: 200px; overflow: hidden;">
+                            <img src="{{ asset('images/services/se.png') }}" alt="Dietetics" style="width: 100%; height: 100%; object-fit: cover;">
+                        </div>
+                        <div style="padding: 25px;">
+                            <h3 class="mb-3" style="font-size: 1.4rem; font-weight: 700; color: #1a1a1a;">Dietetics</h3>
+                            <p class="mb-4" style="color: #666; font-size: 0.95rem; line-height: 1.6;">Personalized nutrition counselling and medical diet therapy from qualified dietitians.</p>
+                            <a href="{{ route('services.dietetics') }}" class="btn btn-sm" style="background: #84a33f; color: white; padding: 10px 25px; border-radius: 8px; font-weight: 600; text-decoration: none; display: inline-block;">Learn More <i class="fas fa-arrow-right ms-2"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Endoscopy -->
+                <div class="col-md-6 col-lg-6" data-aos="fade-up" data-aos-delay="100">
+                    <div class="service-card" style="background: white; border-radius: 15px; overflow: hidden; height: 100%; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08); transition: all 0.3s ease;">
+                        <div style="padding: 25px; padding-top: 40px;">
+                            <div class="service-icon-large mb-3" style="width: 70px; height: 70px; background: #f3e5f5; border-radius: 15px; display: flex; align-items: center; justify-content: center; font-size: 1.8rem; color: #a8207a;">
+                                <i class="fas fa-microscope"></i>
+                            </div>
+                            <h3 class="mb-3" style="font-size: 1.4rem; font-weight: 700; color: #1a1a1a;">Endoscopy</h3>
+                            <p class="mb-4" style="color: #666; font-size: 0.95rem; line-height: 1.6;">Minimally invasive scope procedures for accurate diagnosis of the digestive tract.</p>
+                            <a href="{{ route('services.endoscopy') }}" class="btn btn-sm" style="background: #a8207a; color: white; padding: 10px 25px; border-radius: 8px; font-weight: 600; text-decoration: none; display: inline-block;">Learn More <i class="fas fa-arrow-right ms-2"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Radiology & Medical Imaging -->
+                <div class="col-md-6 col-lg-6" data-aos="fade-up" data-aos-delay="200">
+                    <div class="service-card" style="background: white; border-radius: 15px; overflow: hidden; height: 100%; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08); transition: all 0.3s ease;">
+                        <div style="padding: 25px; padding-top: 40px;">
+                            <div class="service-icon-large mb-3" style="width: 70px; height: 70px; background: #f3e5f5; border-radius: 15px; display: flex; align-items: center; justify-content: center; font-size: 1.8rem; color: #a8207a;">
+                                <i class="fas fa-x-ray"></i>
+                            </div>
+                            <h3 class="mb-3" style="font-size: 1.4rem; font-weight: 700; color: #1a1a1a;">Radiology & Medical Imaging</h3>
+                            <p class="mb-4" style="color: #666; font-size: 0.95rem; line-height: 1.6;">X-Ray and CT imaging that turns radiation and sound waves into clear answers.</p>
+                            <a href="{{ route('services.radiology') }}" class="btn btn-sm" style="background: #84a33f; color: white; padding: 10px 25px; border-radius: 8px; font-weight: 600; text-decoration: none; display: inline-block;">Learn More <i class="fas fa-arrow-right ms-2"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Ambulance Service -->
+                <div class="col-md-6 col-lg-6" data-aos="fade-up" data-aos-delay="300">
+                    <div class="service-card" style="background: white; border-radius: 15px; overflow: hidden; height: 100%; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08); transition: all 0.3s ease;">
+                        <div style="padding: 25px; padding-top: 40px;">
+                            <div class="service-icon-large mb-3" style="width: 70px; height: 70px; background: #f3e5f5; border-radius: 15px; display: flex; align-items: center; justify-content: center; font-size: 1.8rem; color: #a8207a;">
+                                <i class="fas fa-ambulance"></i>
+                            </div>
+                            <h3 class="mb-3" style="font-size: 1.4rem; font-weight: 700; color: #1a1a1a;">Ambulance Service</h3>
+                            <p class="mb-4" style="color: #666; font-size: 0.95rem; line-height: 1.6;">Rapid emergency response and safe patient transport, day or night.</p>
+                            <a href="{{ route('services.ambulance-service') }}" class="btn btn-sm" style="background: #a8207a; color: white; padding: 10px 25px; border-radius: 8px; font-weight: 600; text-decoration: none; display: inline-block;">Learn More <i class="fas fa-arrow-right ms-2"></i></a>
+                        </div>
+                    </div>
+                </div>
                     </div>
                 </div>
 
                 <!-- Sidebar -->
                 <div class="col-lg-4" data-aos="fade-left">
-                    <!-- All Services Menu -->
-                    <div class="services-menu mb-4" style="background: white; border-radius: 20px; padding: 30px; box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);">
-                        <h4 class="mb-4" style="font-weight: 700; color: #2d3e50;">All Services</h4>
-                        <div class="services-list">
-                            <a href="{{ route('services.general-practice') }}" class="service-link" style="display: flex; align-items: center; padding: 12px 15px; margin-bottom: 8px; border-radius: 10px; text-decoration: none; background: #f8f9fa; transition: all 0.3s ease;">
-                                <i class="fas fa-stethoscope me-3" style="color: #666; font-size: 1.1rem;"></i>
-                                <span style="color: #666; font-weight: 500;">General Practice</span>
-                            </a>
-                            <a href="{{ route('services.general-surgery') }}" class="service-link" style="display: flex; align-items: center; padding: 12px 15px; margin-bottom: 8px; border-radius: 10px; text-decoration: none; background: #f8f9fa; transition: all 0.3s ease;">
-                                <i class="fas fa-user-md me-3" style="color: #666; font-size: 1.1rem;"></i>
-                                <span style="color: #666; font-weight: 500;">General Surgery</span>
-                            </a>
-                            <a href="{{ route('services.obstetrics-gynaecology') }}" class="service-link" style="display: flex; align-items: center; padding: 12px 15px; margin-bottom: 8px; border-radius: 10px; text-decoration: none; background: #f8f9fa; transition: all 0.3s ease;">
-                                <i class="fas fa-baby me-3" style="color: #666; font-size: 1.1rem;"></i>
-                                <span style="color: #666; font-weight: 500;">Obstetrics & Gynaecology</span>
-                            </a>
-                            <a href="{{ route('services.geriatric-care') }}" class="service-link" style="display: flex; align-items: center; padding: 12px 15px; margin-bottom: 8px; border-radius: 10px; text-decoration: none; background: #f8f9fa; transition: all 0.3s ease;">
-                                <i class="fas fa-user-friends me-3" style="color: #666; font-size: 1.1rem;"></i>
-                                <span style="color: #666; font-weight: 500;">Geriatric Care</span>
-                            </a>
-                            <a href="{{ route('services.paediatrics') }}" class="service-link" style="display: flex; align-items: center; padding: 12px 15px; margin-bottom: 8px; border-radius: 10px; text-decoration: none; background: #f8f9fa; transition: all 0.3s ease;">
-                                <i class="fas fa-child me-3" style="color: #666; font-size: 1.1rem;"></i>
-                                <span style="color: #666; font-weight: 500;">Paediatrics</span>
-                            </a>
-                            <a href="{{ route('services.urology') }}" class="service-link" style="display: flex; align-items: center; padding: 12px 15px; margin-bottom: 8px; border-radius: 10px; text-decoration: none; background: #f8f9fa; transition: all 0.3s ease;">
-                                <i class="fas fa-kidneys me-3" style="color: #666; font-size: 1.1rem;"></i>
-                                <span style="color: #666; font-weight: 500;">Urology</span>
-                            </a>
-                            <a href="{{ route('services.orthopaedic') }}" class="service-link" style="display: flex; align-items: center; padding: 12px 15px; margin-bottom: 8px; border-radius: 10px; text-decoration: none; background: #f8f9fa; transition: all 0.3s ease;">
-                                <i class="fas fa-bone me-3" style="color: #666; font-size: 1.1rem;"></i>
-                                <span style="color: #666; font-weight: 500;">Orthopaedic</span>
-                            </a>
-                            <a href="{{ route('services.ent-care') }}" class="service-link" style="display: flex; align-items: center; padding: 12px 15px; margin-bottom: 8px; border-radius: 10px; text-decoration: none; background: #f8f9fa; transition: all 0.3s ease;">
-                                <i class="fas fa-head-side-mask me-3" style="color: #666; font-size: 1.1rem;"></i>
-                                <span style="color: #666; font-weight: 500;">ENT Care</span>
-                            </a>
-                            <a href="{{ route('services.eye-care') }}" class="service-link" style="display: flex; align-items: center; padding: 12px 15px; margin-bottom: 8px; border-radius: 10px; text-decoration: none; background: #f8f9fa; transition: all 0.3s ease;">
-                                <i class="fas fa-eye me-3" style="color: #666; font-size: 1.1rem;"></i>
-                                <span style="color: #666; font-weight: 500;">Eye Clinic</span>
-                            </a>
-                            <a href="{{ route('services.plastic-surgery') }}" class="service-link" style="display: flex; align-items: center; padding: 12px 15px; margin-bottom: 8px; border-radius: 10px; text-decoration: none; background: #f8f9fa; transition: all 0.3s ease;">
-                                <i class="fas fa-user-md me-3" style="color: #666; font-size: 1.1rem;"></i>
-                                <span style="color: #666; font-weight: 500;">Plastic Surgery</span>
-                            </a>
-                        </div>
-                    </div>
+                    @include('partials.services-sidebar')
 
                     <!-- Specialist Clinics -->
                     <div class="specialist-clinics mb-4" style="background: white; border-radius: 20px; padding: 30px; box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);">

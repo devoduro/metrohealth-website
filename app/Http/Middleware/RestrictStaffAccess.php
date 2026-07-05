@@ -18,6 +18,13 @@ class RestrictStaffAccess
         'admin.logout',
         'admin.staff-dashboard',
         'admin.staff-dashboard.quick-add',
+        'admin.profile.edit',
+        'admin.profile.update',
+        'admin.profile.password',
+        'admin.appointments.patient-search',
+        'admin.appointments.past',
+        'admin.appointments.edit',
+        'admin.appointments.update',
     ];
 
     /**

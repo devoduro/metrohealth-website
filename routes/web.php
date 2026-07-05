@@ -147,6 +147,18 @@ Route::prefix('services')->name('services.')->group(function () {
     Route::get('/pharmacy', function () {
         return view('services.pharmacy');
     })->name('pharmacy');
+    Route::get('/physician-clinic', function () {
+        return view('services.physician-clinic');
+    })->name('physician-clinic');
+    Route::get('/dietetics', function () {
+        return view('services.dietetics');
+    })->name('dietetics');
+    Route::get('/endoscopy', function () {
+        return view('services.endoscopy');
+    })->name('endoscopy');
+    Route::get('/ambulance-service', function () {
+        return view('services.ambulance-service');
+    })->name('ambulance-service');
     Route::get('/{slug}', [ServiceController::class, 'show'])->name('show');
 });
 
@@ -226,6 +238,11 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
         Route::post('/logout', [AdminController::class, 'logout'])->name('logout');
 
+        // My Profile — every logged-in user can view/edit their own name, email, phone, and password.
+        Route::get('/profile', [\App\Http\Controllers\Admin\ProfileController::class, 'edit'])->name('profile.edit');
+        Route::put('/profile', [\App\Http\Controllers\Admin\ProfileController::class, 'update'])->name('profile.update');
+        Route::put('/profile/password', [\App\Http\Controllers\Admin\ProfileController::class, 'updatePassword'])->name('profile.password');
+
         // Clinical staff (doctor/nurse) scoped mini-dashboard + quick-add
         Route::get('/my-dashboard', [\App\Http\Controllers\Admin\StaffDashboardController::class, 'dashboard'])->name('staff-dashboard');
         Route::post('/my-dashboard/quick-add', [\App\Http\Controllers\Admin\StaffDashboardController::class, 'quickAdd'])->name('staff-dashboard.quick-add');
@@ -243,6 +260,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::post('/patients/import', [\App\Http\Controllers\Admin\PatientController::class, 'import'])->name('patients.import');
         Route::get('/patients/import/template', [\App\Http\Controllers\Admin\PatientController::class, 'importTemplate'])->name('patients.import-template');
         Route::get('/patients/export/csv', [\App\Http\Controllers\Admin\PatientController::class, 'export'])->name('patients.export');
+        Route::get('/patients/registered/{patient}', [\App\Http\Controllers\Admin\PatientController::class, 'showRegistered'])->name('patients.show-registered');
         Route::get('/patients/{email}', [\App\Http\Controllers\Admin\PatientController::class, 'show'])->name('patients.show');
         
         // Email Campaign Management
@@ -259,6 +277,9 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::resource('appointments', \App\Http\Controllers\Admin\AppointmentController::class)->except(['show']);
         Route::patch('/appointments/{appointment}/status', [\App\Http\Controllers\Admin\AppointmentController::class, 'updateStatus'])->name('appointments.update-status');
         Route::get('/appointments-patient-search', [\App\Http\Controllers\Admin\AppointmentController::class, 'searchPatient'])->name('appointments.patient-search');
+        Route::get('/appointments/bulk-create', [\App\Http\Controllers\Admin\AppointmentController::class, 'bulkCreate'])->name('appointments.bulk-create');
+        Route::post('/appointments/bulk-store', [\App\Http\Controllers\Admin\AppointmentController::class, 'bulkStore'])->name('appointments.bulk-store');
+        Route::get('/appointments/past', [\App\Http\Controllers\Admin\AppointmentController::class, 'past'])->name('appointments.past');
 
         // Doctor Registry
         Route::resource('doctors', \App\Http\Controllers\Admin\DoctorController::class)->except(['show']);

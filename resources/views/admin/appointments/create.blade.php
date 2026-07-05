@@ -24,9 +24,14 @@
             <div class="admin-card">
                 <div class="admin-card-header">
                     <h5><i class="fas fa-calendar-plus me-2"></i>Book Internal Appointment</h5>
-                    <a href="{{ route('admin.appointments.index') }}" class="btn btn-secondary">
-                        <i class="fas fa-arrow-left me-2"></i>Back to Appointments
-                    </a>
+                    <div class="d-flex gap-2">
+                        <a href="{{ route('admin.appointments.bulk-create') }}" class="btn btn-outline-success">
+                            <i class="fas fa-users me-2"></i>Bulk Add Patients Instead
+                        </a>
+                        <a href="{{ route('admin.appointments.index') }}" class="btn btn-secondary">
+                            <i class="fas fa-arrow-left me-2"></i>Back to Appointments
+                        </a>
+                    </div>
                 </div>
                 <div class="admin-card-body">
                     <form action="{{ route('admin.appointments.store') }}" method="POST" id="appointmentForm">
@@ -114,6 +119,68 @@
         const servicesList = document.getElementById('servicesList');
         const sameDateTimeBtn = document.getElementById('sameDateTimeBtn');
 
+        function hourOptionsHtml() {
+            let html = '';
+            for (let h = 1; h <= 12; h++) {
+                const hh = String(h).padStart(2, '0');
+                html += `<option value="${hh}">${h}</option>`;
+            }
+            return html;
+        }
+
+        function minuteOptionsHtml() {
+            return [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55].map(function(m) {
+                const mm = String(m).padStart(2, '0');
+                return `<option value="${mm}">${mm}</option>`;
+            }).join('');
+        }
+
+        function periodOptionsHtml() {
+            return '<option value="AM">AM</option><option value="PM">PM</option>';
+        }
+
+        function to24Hour(hour12, period) {
+            let h = parseInt(hour12, 10) % 12;
+            if (period === 'PM') h += 12;
+            return String(h).padStart(2, '0');
+        }
+
+        function to12Hour(hour24) {
+            const h24 = parseInt(hour24, 10);
+            const period = h24 >= 12 ? 'PM' : 'AM';
+            let h12 = h24 % 12;
+            h12 = h12 === 0 ? 12 : h12;
+            return { hour12: String(h12).padStart(2, '0'), period: period };
+        }
+
+        function wireTimePicker(row) {
+            const hourSelect = row.querySelector('.service-time-hour');
+            const minuteSelect = row.querySelector('.service-time-minute');
+            const periodSelect = row.querySelector('.service-time-period');
+            const hidden = row.querySelector('.service-time');
+
+            function sync() {
+                hidden.value = to24Hour(hourSelect.value, periodSelect.value) + ':' + minuteSelect.value;
+                hidden.dispatchEvent(new Event('change', { bubbles: true }));
+            }
+
+            hourSelect.addEventListener('change', sync);
+            minuteSelect.addEventListener('change', sync);
+            periodSelect.addEventListener('change', sync);
+            sync();
+        }
+
+        function setTimeValue(row, timeStr) {
+            if (!timeStr) return;
+            const [h, m] = timeStr.split(':');
+            const nearestMinute = String(Math.round(parseInt(m, 10) / 5) * 5 % 60).padStart(2, '0');
+            const { hour12, period } = to12Hour(h);
+            row.querySelector('.service-time-hour').value = hour12;
+            row.querySelector('.service-time-minute').value = nearestMinute;
+            row.querySelector('.service-time-period').value = period;
+            row.querySelector('.service-time').value = to24Hour(hour12, period) + ':' + nearestMinute;
+        }
+
         function doctorOptionsList(matches) {
             if (!matches.length) {
                 return '<option value="">No doctors registered for this service</option>';
@@ -164,9 +231,14 @@
                             <label class="form-label small mb-1">Date</label>
                             <input type="date" class="form-control form-control-sm service-date" min="${todayStr}" disabled>
                         </div>
-                        <div class="col-md-2">
+                        <div class="col-md-3">
                             <label class="form-label small mb-1">Time</label>
-                            <input type="time" class="form-control form-control-sm service-time" disabled>
+                            <div class="d-flex gap-1">
+                                <select class="form-select form-select-sm service-time-hour" disabled>${hourOptionsHtml()}</select>
+                                <select class="form-select form-select-sm service-time-minute" disabled>${minuteOptionsHtml()}</select>
+                                <select class="form-select form-select-sm service-time-period" disabled>${periodOptionsHtml()}</select>
+                            </div>
+                            <input type="hidden" class="service-time" value="00:00">
                         </div>
                         <div class="col-md-3">
                             ${doctorColumnFor(service)}
@@ -178,17 +250,24 @@
                 </div>`;
             }).join('');
 
+            servicesList.querySelectorAll('.service-row').forEach(function(row) {
+                wireTimePicker(row);
+            });
+
             servicesList.querySelectorAll('.service-toggle').forEach(function(checkbox) {
                 checkbox.addEventListener('change', function() {
                     const row = this.closest('.service-row');
                     const dateInput = row.querySelector('.service-date');
-                    const timeInput = row.querySelector('.service-time');
+                    const timeHourSelect = row.querySelector('.service-time-hour');
+                    const timeMinuteSelect = row.querySelector('.service-time-minute');
+                    const timePeriodSelect = row.querySelector('.service-time-period');
                     const doctorSelect = row.querySelector('.service-doctor');
                     dateInput.disabled = !this.checked;
-                    timeInput.disabled = !this.checked;
+                    timeHourSelect.disabled = !this.checked;
+                    timeMinuteSelect.disabled = !this.checked;
+                    timePeriodSelect.disabled = !this.checked;
                     doctorSelect.disabled = !this.checked;
                     dateInput.required = this.checked;
-                    timeInput.required = this.checked;
                     updateSameDateTimeButton();
                 });
             });
@@ -241,7 +320,7 @@
 
             checkedRows.forEach(function(row) {
                 row.querySelector('.service-date').value = firstDate;
-                row.querySelector('.service-time').value = firstTime;
+                setTimeValue(row, firstTime);
             });
         });
 

@@ -122,54 +122,52 @@
                         <h1 style="font-size: 2.5rem; font-weight: 800; color: #28a745; margin-bottom: 15px;">Appointment Confirmed!</h1>
                         <p style="font-size: 1.2rem; color: #666; margin-bottom: 30px;">Your appointment has been successfully scheduled</p>
 
-                        @if(session('appointment'))
-                        @php $appointment = session('appointment'); @endphp
-                        
+                        @if(session('appointments') && session('appointments')->count())
+                        @php $appointments = session('appointments'); $first = $appointments->first(); @endphp
+
                         <div class="appointment-summary">
-                            <h4 style="font-weight: 700; color: #1a1a1a; margin-bottom: 20px; text-align: center;">Appointment Details</h4>
-                            
-                            <div class="summary-row">
-                                <span class="summary-label">Booking Reference:</span>
-                                <span class="summary-value">#{{ str_pad($appointment->id, 6, '0', STR_PAD_LEFT) }}</span>
-                            </div>
-                            
-                            <div class="summary-row">
-                                <span class="summary-label">Service:</span>
-                                <span class="summary-value">{{ $appointment->service_name }}</span>
-                            </div>
-                            
-                            <div class="summary-row">
-                                <span class="summary-label">Day:</span>
-                                <span class="summary-value">{{ $appointment->appointment_day }}</span>
-                            </div>
-                            
-                            <div class="summary-row">
-                                <span class="summary-label">Time:</span>
-                                <span class="summary-value">{{ $appointment->appointment_time }}</span>
-                            </div>
-                            
-                            <div class="summary-row">
-                                <span class="summary-label">Estimated Consultation Fee:</span>
-                                <span class="summary-value">GH₵ {{ number_format($appointment->service_fee, 2) }}</span>
-                            </div>
-                            
+                            <h4 style="font-weight: 700; color: #1a1a1a; margin-bottom: 20px; text-align: center;">
+                                {{ $appointments->count() > 1 ? 'Appointment Details (' . $appointments->count() . ' services)' : 'Appointment Details' }}
+                            </h4>
+
                             <div class="summary-row">
                                 <span class="summary-label">Patient Name:</span>
-                                <span class="summary-value">{{ $appointment->full_name }}</span>
+                                <span class="summary-value">{{ $first->full_name }}</span>
                             </div>
+
+                            @foreach($appointments as $appointment)
+                            <div class="summary-row" style="{{ $loop->first ? '' : 'border-top: 2px solid #e9ecef; padding-top: 20px;' }} display: block;">
+                                <div class="d-flex justify-content-between">
+                                    <span class="summary-label">Booking Reference:</span>
+                                    <span class="summary-value">#{{ str_pad($appointment->id, 6, '0', STR_PAD_LEFT) }}</span>
+                                </div>
+                                <div class="d-flex justify-content-between mt-2">
+                                    <span class="summary-label">Service:</span>
+                                    <span class="summary-value">{{ $appointment->service_name }}</span>
+                                </div>
+                                <div class="d-flex justify-content-between mt-2">
+                                    <span class="summary-label">Day:</span>
+                                    <span class="summary-value">{{ $appointment->appointment_day }}</span>
+                                </div>
+                                <div class="d-flex justify-content-between mt-2">
+                                    <span class="summary-label">Time:</span>
+                                    <span class="summary-value">{{ $appointment->appointment_time }}</span>
+                                </div>
+                            </div>
+                            @endforeach
                         </div>
 
                         <div style="background: #e8f4f8; padding: 20px; border-radius: 15px; margin-top: 30px;">
                             <p style="margin: 0; color: #0b814c;">
                                 <i class="fas fa-envelope me-2"></i>
-                                A confirmation email has been sent to <strong>{{ $appointment->email }}</strong>
+                                A confirmation email has been sent to <strong>{{ $first->email }}</strong>
                             </p>
                         </div>
 
                         <div style="margin-top: 30px; padding: 20px; background: #fff3cd; border-radius: 15px;">
                             <p style="margin: 0; color: #856404;">
                                 <i class="fas fa-info-circle me-2"></i>
-                                <strong>Important:</strong> Please arrive 15 minutes before your scheduled time. Bring a valid ID and any relevant medical records. No payment is required to book — the consultation fee is paid at the hospital during your visit.
+                                <strong>Important:</strong> Please arrive 15 minutes before your scheduled time. Bring a valid ID and any relevant medical records. No payment is required to book — consultation fees are paid at the hospital during your visit.
                             </p>
                         </div>
                         @endif
