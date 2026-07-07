@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\ClinicService;
 use App\Models\Doctor;
+use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -12,12 +13,17 @@ use Illuminate\Validation\Rule;
 
 class StaffController extends Controller
 {
-    private const ASSIGNABLE_ROLES = ['admin', 'doctor', 'nurse', 'receptionist'];
+    /**
+     * 'editor' and 'viewer' are left over from this app's original non-hospital
+     * template and aren't assignable from the Staff Accounts screen — every
+     * other role (built-in or admin-created) is fair game.
+     */
+    private const EXCLUDED_ROLE_SLUGS = ['editor', 'viewer'];
 
     public function index()
     {
         $staff = User::with(['clinicServices', 'doctor'])
-            ->whereIn('role', self::ASSIGNABLE_ROLES)
+            ->whereIn('role', $this->assignableRoles()->pluck('slug'))
             ->orderBy('name')
             ->get();
 
@@ -28,8 +34,9 @@ class StaffController extends Controller
     {
         $clinicServices = ClinicService::active()->ordered()->get();
         $doctors = Doctor::active()->orderBy('name')->get();
+        $roles = $this->assignableRoles();
 
-        return view('admin.staff.create', compact('clinicServices', 'doctors'));
+        return view('admin.staff.create', compact('clinicServices', 'doctors', 'roles'));
     }
 
     public function store(Request $request)
@@ -57,9 +64,10 @@ class StaffController extends Controller
     {
         $clinicServices = ClinicService::active()->ordered()->get();
         $doctors = Doctor::active()->orderBy('name')->get();
+        $roles = $this->assignableRoles();
         $staff->load('clinicServices');
 
-        return view('admin.staff.edit', compact('staff', 'clinicServices', 'doctors'));
+        return view('admin.staff.edit', compact('staff', 'clinicServices', 'doctors', 'roles'));
     }
 
     public function update(Request $request, User $staff)
@@ -97,6 +105,11 @@ class StaffController extends Controller
         return redirect()->route('admin.staff.index')->with('success', 'Staff account removed successfully!');
     }
 
+    private function assignableRoles()
+    {
+        return Role::whereNotIn('slug', self::EXCLUDED_ROLE_SLUGS)->orderBy('name')->get();
+    }
+
     private function validateStaff(Request $request, ?User $staff = null): array
     {
         return $request->validate([
@@ -104,7 +117,7 @@ class StaffController extends Controller
             'email' => ['required', 'email', Rule::unique('users', 'email')->ignore($staff?->id)],
             'phone' => 'nullable|string|max:20',
             'password' => $staff ? 'nullable|string|min:8' : 'required|string|min:8',
-            'role' => ['required', Rule::in(self::ASSIGNABLE_ROLES)],
+            'role' => ['required', Rule::in($this->assignableRoles()->pluck('slug'))],
             'doctor_id' => 'nullable|exists:doctors,id',
             'clinic_service_ids' => 'nullable|array',
             'clinic_service_ids.*' => 'exists:clinic_services,id',
@@ -112,12 +125,14 @@ class StaffController extends Controller
     }
 
     /**
-     * Doctors and nurses can each be assigned one or more clinic services
-     * (clinic_service_ids[]); admin/receptionist get none.
+     * Clinical and front-desk scoped roles can each be assigned one or more
+     * clinic services; fully-scoped roles (admin-like) get none.
      */
     private function resolveServiceIds(array $validated): array
     {
-        if (in_array($validated['role'], ['doctor', 'nurse'])) {
+        $scope = Role::where('slug', $validated['role'])->value('dashboard_scope');
+
+        if (in_array($scope, ['clinical', 'frontdesk'], true)) {
             return $validated['clinic_service_ids'] ?? [];
         }
 

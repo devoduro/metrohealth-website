@@ -31,7 +31,7 @@
 
             <div class="alert border-0 shadow-sm mb-4" style="background: linear-gradient(135deg, #84a33f 0%, #6b8a32 100%);">
                 <h4 class="text-white mb-1"><i class="fas fa-user-md me-2"></i>Welcome, <?php echo e($user->name); ?></h4>
-                <p class="text-white-50 mb-0"><?php echo e(ucfirst($user->role)); ?> &mdash; <?php echo e($services->pluck('name')->implode(', ') ?: 'No service assigned'); ?></p>
+                <p class="text-white-50 mb-0"><?php echo e($user->roleRecord->name ?? ucfirst($user->role)); ?> &mdash; <?php echo e($services->pluck('name')->implode(', ') ?: 'No service assigned'); ?></p>
             </div>
 
             <?php if($services->isEmpty()): ?>

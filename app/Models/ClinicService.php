@@ -14,6 +14,7 @@ class ClinicService extends Model
         'order',
         'is_active',
         'has_multiple_doctors',
+        'service_category_id',
     ];
 
     protected $casts = [
@@ -24,6 +25,11 @@ class ClinicService extends Model
     public function doctors()
     {
         return $this->hasMany(Doctor::class);
+    }
+
+    public function serviceCategory()
+    {
+        return $this->belongsTo(ServiceCategory::class);
     }
 
     public function appointments()

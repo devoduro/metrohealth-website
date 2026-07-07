@@ -113,21 +113,41 @@ class User extends Model implements AuthenticatableContract
     /**
      * Front-desk-style access: full Patients/Appointments across all services,
      * but not the purely administrative sections (Doctors, Clinic Services,
-     * Bulk SMS, Email Campaigns, Reviews, Blog, Contact Messages, Staff Accounts).
-     * Nurses need to see appointments/patients beyond their own assigned service,
-     * so they're treated the same as receptionists here.
+     * Bulk SMS, Email Campaigns, Reviews, Blog, Contact Messages, Staff Accounts)
+     * unless the role has been granted the matching permission.
      */
     public function isFrontDeskStaff()
     {
-        return in_array($this->role, ['nurse', 'receptionist']);
+        return $this->dashboardScope() === 'frontdesk';
     }
 
     /**
-     * Check if user is clinical staff (doctor or nurse) — scoped to their own service(s)
+     * Clinical staff (doctor, and any admin-created clinical role such as a
+     * Physician Assistant or Sonographer) — locked to their own mini-dashboard,
+     * scoped to their assigned clinic service(s).
      */
     public function isClinicalStaff()
     {
-        return in_array($this->role, ['doctor', 'nurse']);
+        return $this->dashboardScope() === 'clinical';
+    }
+
+    /**
+     * The role record (built-in or admin-created) matching this user's role slug.
+     */
+    public function roleRecord()
+    {
+        return $this->belongsTo(Role::class, 'role', 'slug');
+    }
+
+    /**
+     * 'full' (admin-like, unrestricted), 'clinical' (doctor-like, locked to own
+     * dashboard), or 'frontdesk' (nurse/receptionist-like, broad non-admin access).
+     * Defaults to 'full' if the role string doesn't match any row in `roles` —
+     * matches the historical behavior of unrecognized roles passing through unrestricted.
+     */
+    public function dashboardScope(): string
+    {
+        return $this->roleRecord?->dashboard_scope ?? 'full';
     }
 
     /**
@@ -163,38 +183,25 @@ class User extends Model implements AuthenticatableContract
     }
 
     /**
-     * Check if user has a specific permission
+     * Check if this user's role has been granted a specific permission.
+     * Admins (dashboard_scope 'full') always pass.
      */
     public function hasPermission($permission)
     {
-        // Admin has all permissions
-        if ($this->isAdmin()) {
+        if ($this->dashboardScope() === 'full') {
             return true;
         }
 
-        // Check if permission exists in user's permissions array
-        $permissions = $this->permissions ?? [];
+        $permissions = $this->roleRecord?->permissions ?? [];
         return in_array($permission, $permissions);
     }
 
     /**
-     * Get all available permissions
+     * Get all available permissions a role can be granted.
      */
     public static function getAvailablePermissions()
     {
-        return [
-            'manage_blog' => 'Manage Blog Posts',
-            'manage_sermons' => 'Manage Sermons',
-            'manage_videos' => 'Manage Videos',
-            'manage_gallery' => 'Manage Gallery',
-            'manage_ministries' => 'Manage Ministries',
-            'manage_leadership' => 'Manage Leadership',
-            'manage_events' => 'Manage Events',
-            'manage_prayers' => 'Manage Prayer Requests',
-            'manage_contact' => 'Manage Contact Messages',
-            'manage_users' => 'Manage Users',
-            'view_logs' => 'View Activity Logs',
-        ];
+        return Role::availablePermissions();
     }
 
     /**
@@ -209,6 +216,8 @@ class User extends Model implements AuthenticatableContract
             'doctor' => 'success',
             'nurse' => 'info',
             'receptionist' => 'warning',
+            'physician_assistant' => 'success',
+            'sonographer' => 'info',
             default => 'secondary',
         };
     }

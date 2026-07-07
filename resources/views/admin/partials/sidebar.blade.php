@@ -5,7 +5,7 @@
     </div>
 
     <nav class="sidebar-nav">
-        @if(auth()->user()->isDoctor())
+        @if(auth()->user()->isClinicalStaff())
             <a href="{{ route('admin.staff-dashboard') }}" class="sidebar-link {{ request()->routeIs('admin.staff-dashboard') || request()->routeIs('admin.dashboard') ? 'active' : '' }}">
                 <i class="fas fa-home"></i>
                 <span>My Dashboard</span>
@@ -21,7 +21,7 @@
                 <span>Dashboard</span>
             </a>
 
-            @if(auth()->user()->isNurse())
+            @if(auth()->user()->isFrontDeskStaff() && auth()->user()->clinicServices->isNotEmpty())
             <a href="{{ route('admin.staff-dashboard') }}" class="sidebar-link {{ request()->routeIs('admin.staff-dashboard') ? 'active' : '' }}">
                 <i class="fas fa-user-nurse"></i>
                 <span>My Dashboard</span>
@@ -48,34 +48,48 @@
                 <span>Past Appointments</span>
             </a>
 
-            @unless(auth()->user()->isFrontDeskStaff())
+            @php $fullAccess = auth()->user()->dashboardScope() === 'full'; @endphp
+
+            @if($fullAccess || auth()->user()->hasPermission('manage_doctors'))
             <a href="{{ route('admin.doctors.index') }}" class="sidebar-link {{ request()->routeIs('admin.doctors.*') ? 'active' : '' }}">
                 <i class="fas fa-user-md"></i>
                 <span>Doctors</span>
             </a>
+            @endif
 
-            <a href="{{ route('admin.clinic-services.index') }}" class="sidebar-link {{ request()->routeIs('admin.clinic-services.*') ? 'active' : '' }}">
+            @if($fullAccess || auth()->user()->hasPermission('manage_clinic_services'))
+            <a href="{{ route('admin.clinic-services.index') }}" class="sidebar-link {{ request()->routeIs('admin.clinic-services.*') || request()->routeIs('admin.service-categories.*') ? 'active' : '' }}">
                 <i class="fas fa-list-alt"></i>
-                <span>Clinic Services</span>
+                <span>Our Services</span>
             </a>
-            @endunless
+            @endif
 
-            @unless(auth()->user()->isFrontDeskStaff())
+            @if($fullAccess
+                || auth()->user()->hasPermission('manage_emails')
+                || auth()->user()->hasPermission('manage_sms')
+                || auth()->user()->hasPermission('manage_contact_messages')
+                || auth()->user()->hasPermission('manage_reviews')
+                || auth()->user()->hasPermission('manage_blog'))
             <!-- Communication Section -->
             <div class="sidebar-section">
                 <p style="padding: 0.5rem 1.5rem; margin: 0.5rem 0; font-size: 0.7rem; color: #84a33f; text-transform: uppercase; font-weight: 600; letter-spacing: 0.5px;">Communication</p>
             </div>
 
+            @if($fullAccess || auth()->user()->hasPermission('manage_emails'))
             <a href="{{ route('admin.emails.index') }}" class="sidebar-link {{ request()->routeIs('admin.emails.*') ? 'active' : '' }}">
                 <i class="fas fa-envelope"></i>
                 <span>Email Campaigns</span>
             </a>
+            @endif
 
+            @if($fullAccess || auth()->user()->hasPermission('manage_sms'))
             <a href="{{ route('admin.sms.index') }}" class="sidebar-link {{ request()->routeIs('admin.sms.*') ? 'active' : '' }}">
                 <i class="fas fa-sms"></i>
                 <span>Bulk SMS</span>
             </a>
+            @endif
 
+            @if($fullAccess || auth()->user()->hasPermission('manage_contact_messages'))
             <a href="{{ route('admin.contact-messages.index') }}" class="sidebar-link {{ request()->routeIs('admin.contact-messages.*') ? 'active' : '' }}">
                 <i class="fas fa-envelope"></i>
                 <span>Contact Messages</span>
@@ -86,7 +100,9 @@
                 <span class="badge bg-danger ms-auto">{{ $new_messages }}</span>
                 @endif
             </a>
+            @endif
 
+            @if($fullAccess || auth()->user()->hasPermission('manage_reviews'))
             <a href="{{ route('admin.reviews.index') }}" class="sidebar-link {{ request()->routeIs('admin.reviews.*') ? 'active' : '' }}">
                 <i class="fas fa-star"></i>
                 <span>Reviews</span>
@@ -97,7 +113,9 @@
                 <span class="badge bg-warning text-dark ms-auto">{{ $pending_reviews }}</span>
                 @endif
             </a>
+            @endif
 
+            @if($fullAccess || auth()->user()->hasPermission('manage_blog'))
             <a href="{{ route('admin.blog.index') }}" class="sidebar-link {{ request()->routeIs('admin.blog.*') ? 'active' : '' }}">
                 <i class="fas fa-newspaper"></i>
                 <span>News & Articles</span>
@@ -108,7 +126,8 @@
                 <span class="badge bg-info text-dark ms-auto">{{ $draft_posts }}</span>
                 @endif
             </a>
-            @endunless
+            @endif
+            @endif
 
             @if(auth()->user()->isAdmin())
             <!-- Administration Section -->
@@ -119,6 +138,11 @@
             <a href="{{ route('admin.staff.index') }}" class="sidebar-link {{ request()->routeIs('admin.staff.*') ? 'active' : '' }}">
                 <i class="fas fa-user-shield"></i>
                 <span>Staff Accounts</span>
+            </a>
+
+            <a href="{{ route('admin.roles.index') }}" class="sidebar-link {{ request()->routeIs('admin.roles.*') ? 'active' : '' }}">
+                <i class="fas fa-user-tag"></i>
+                <span>Roles & Permissions</span>
             </a>
             @endif
         @endif

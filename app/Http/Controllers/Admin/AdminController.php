@@ -52,7 +52,9 @@ class AdminController extends Controller
 
     public function dashboard()
     {
-        if (Auth::user()->isDoctor()) {
+        // Clinical-scoped roles (doctor, and any admin-created equivalent like
+        // Physician Assistant or Sonographer) land on their own mini-dashboard.
+        if (Auth::user()->isClinicalStaff()) {
             return redirect()->route('admin.staff-dashboard');
         }
 

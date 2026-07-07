@@ -5,13 +5,14 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\ClinicService;
 use App\Models\Doctor;
+use App\Models\ServiceCategory;
 use Illuminate\Http\Request;
 
 class ClinicServiceController extends Controller
 {
     public function index()
     {
-        $clinicServices = ClinicService::orderBy('order')->withCount('doctors')->get();
+        $clinicServices = ClinicService::orderBy('order')->with('serviceCategory')->withCount('doctors')->get();
 
         return view('admin.clinic-services.index', compact('clinicServices'));
     }
@@ -19,14 +20,16 @@ class ClinicServiceController extends Controller
     public function create()
     {
         $allDoctors = Doctor::with('clinicService')->orderBy('name')->get();
+        $categories = ServiceCategory::ordered()->get();
 
-        return view('admin.clinic-services.create', compact('allDoctors'));
+        return view('admin.clinic-services.create', compact('allDoctors', 'categories'));
     }
 
     public function store(Request $request)
     {
         $validated = $request->validate([
             'name' => 'required|string|max:255',
+            'service_category_id' => 'nullable|exists:service_categories,id',
             'order' => 'nullable|integer|min:0',
             'doctor_ids' => 'nullable|array',
             'doctor_ids.*' => 'exists:doctors,id',
@@ -50,14 +53,16 @@ class ClinicServiceController extends Controller
     public function edit(ClinicService $clinicService)
     {
         $allDoctors = Doctor::with('clinicService')->orderBy('name')->get();
+        $categories = ServiceCategory::ordered()->get();
 
-        return view('admin.clinic-services.edit', compact('clinicService', 'allDoctors'));
+        return view('admin.clinic-services.edit', compact('clinicService', 'allDoctors', 'categories'));
     }
 
     public function update(Request $request, ClinicService $clinicService)
     {
         $validated = $request->validate([
             'name' => 'required|string|max:255',
+            'service_category_id' => 'nullable|exists:service_categories,id',
             'order' => 'nullable|integer|min:0',
             'doctor_ids' => 'nullable|array',
             'doctor_ids.*' => 'exists:doctors,id',

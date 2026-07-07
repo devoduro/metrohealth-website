@@ -60,7 +60,7 @@
                                     </td>
                                     <td>{{ $member->email }}</td>
                                     <td>
-                                        <span class="badge bg-{{ $member->getRoleBadgeColor() }}">{{ ucfirst($member->role) }}</span>
+                                        <span class="badge bg-{{ $member->getRoleBadgeColor() }}">{{ $member->roleRecord->name ?? ucfirst($member->role) }}</span>
                                     </td>
                                     <td>
                                         @forelse($member->clinicServices as $service)

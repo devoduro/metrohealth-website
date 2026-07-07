@@ -9,11 +9,12 @@ use Symfony\Component\HttpFoundation\Response;
 class RestrictStaffAccess
 {
     /**
-     * Routes a doctor account is allowed to reach. Doctors are scoped to their
-     * own service only — anything else in /admin/* redirects them back to
-     * their own dashboard. (Nurses are NOT locked down this way — see below.)
+     * Routes a 'clinical' scoped account is allowed to reach (doctor, and any
+     * admin-created equivalent such as Physician Assistant or Sonographer).
+     * They're scoped to their own service only — anything else in /admin/*
+     * redirects them back to their own dashboard.
      */
-    private const DOCTOR_ALLOWED_ROUTES = [
+    private const CLINICAL_ALLOWED_ROUTES = [
         'admin.dashboard',
         'admin.logout',
         'admin.staff-dashboard',
@@ -28,18 +29,29 @@ class RestrictStaffAccess
     ];
 
     /**
-     * Route name prefixes front-desk staff (receptionist/nurse) may not access —
-     * purely administrative or configuration sections, not day-to-day duties.
+     * Route name prefixes blocked for 'frontdesk' scoped accounts (nurse,
+     * receptionist, or any admin-created equivalent) — purely administrative
+     * or configuration sections, not day-to-day duties — unless the role has
+     * been explicitly granted the matching permission.
      */
-    private const RESTRICTED_SECTION_PREFIXES = [
-        'admin.doctors.',
-        'admin.clinic-services.',
-        'admin.sms.',
-        'admin.emails.',
-        'admin.reviews.',
-        'admin.blog.',
-        'admin.contact-messages.',
+    private const RESTRICTED_SECTION_PERMISSIONS = [
+        'admin.doctors.' => 'manage_doctors',
+        'admin.clinic-services.' => 'manage_clinic_services',
+        'admin.service-categories.' => 'manage_clinic_services',
+        'admin.sms.' => 'manage_sms',
+        'admin.emails.' => 'manage_emails',
+        'admin.reviews.' => 'manage_reviews',
+        'admin.blog.' => 'manage_blog',
+        'admin.contact-messages.' => 'manage_contact_messages',
+    ];
+
+    /**
+     * Route name prefixes that are always admin-only, regardless of scope or
+     * permission — managing staff accounts and the roles they can hold.
+     */
+    private const ADMIN_ONLY_PREFIXES = [
         'admin.staff.',
+        'admin.roles.',
     ];
 
     /**
@@ -57,22 +69,25 @@ class RestrictStaffAccess
 
         $routeName = $request->route()?->getName();
 
-        // Staff account management is sensitive — true admins only, regardless of role.
-        if ($routeName && str_starts_with($routeName, 'admin.staff.') && !$user->isAdmin()) {
-            return redirect()->route('admin.dashboard')->with('error', 'Unauthorized. Admin access required.');
+        foreach (self::ADMIN_ONLY_PREFIXES as $prefix) {
+            if ($routeName && str_starts_with($routeName, $prefix) && !$user->isAdmin()) {
+                return redirect()->route('admin.dashboard')->with('error', 'Unauthorized. Admin access required.');
+            }
         }
 
-        if ($user->isDoctor()) {
-            if (!in_array($routeName, self::DOCTOR_ALLOWED_ROUTES, true)) {
+        $scope = $user->dashboardScope();
+
+        if ($scope === 'clinical') {
+            if (!in_array($routeName, self::CLINICAL_ALLOWED_ROUTES, true)) {
                 return redirect()->route('admin.dashboard')->with('info', 'Please use your dashboard.');
             }
 
             return $next($request);
         }
 
-        if ($user->isFrontDeskStaff() && $routeName) {
-            foreach (self::RESTRICTED_SECTION_PREFIXES as $prefix) {
-                if (str_starts_with($routeName, $prefix)) {
+        if ($scope === 'frontdesk' && $routeName) {
+            foreach (self::RESTRICTED_SECTION_PERMISSIONS as $prefix => $permission) {
+                if (str_starts_with($routeName, $prefix) && !$user->hasPermission($permission)) {
                     return redirect()->route('admin.dashboard')->with('error', 'Not authorized for this section.');
                 }
             }

@@ -23,22 +23,33 @@
         <div class="container-fluid p-4">
             <div class="admin-card">
                 <div class="admin-card-header">
-                    <h5><i class="fas fa-plus me-2"></i>Add Clinic Service</h5>
+                    <h5><i class="fas fa-plus me-2"></i>Add Service</h5>
                     <a href="{{ route('admin.clinic-services.index') }}" class="btn btn-secondary">
-                        <i class="fas fa-arrow-left me-2"></i>Back to Clinic Services
+                        <i class="fas fa-arrow-left me-2"></i>Back to Services
                     </a>
                 </div>
                 <div class="admin-card-body">
                     <form action="{{ route('admin.clinic-services.store') }}" method="POST">
                         @csrf
                         <div class="row g-4">
-                            <div class="col-md-8">
+                            <div class="col-md-6">
                                 <label class="form-label">Service Name *</label>
                                 <input type="text" name="name" class="form-control" value="{{ old('name') }}" required>
                                 @error('name')<span class="text-danger small">{{ $message }}</span>@enderror
                             </div>
 
                             <div class="col-md-4">
+                                <label class="form-label">Category</label>
+                                <select name="service_category_id" class="form-select">
+                                    <option value="">No category</option>
+                                    @foreach($categories as $category)
+                                    <option value="{{ $category->id }}" {{ old('service_category_id') == $category->id ? 'selected' : '' }}>{{ $category->name }}</option>
+                                    @endforeach
+                                </select>
+                                @error('service_category_id')<span class="text-danger small">{{ $message }}</span>@enderror
+                            </div>
+
+                            <div class="col-md-2">
                                 <label class="form-label">Display Order</label>
                                 <input type="number" name="order" class="form-control" min="0" value="{{ old('order', 0) }}">
                                 @error('order')<span class="text-danger small">{{ $message }}</span>@enderror

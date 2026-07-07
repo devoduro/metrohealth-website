@@ -5,7 +5,7 @@
     </div>
 
     <nav class="sidebar-nav">
-        <?php if(auth()->user()->isDoctor()): ?>
+        <?php if(auth()->user()->isClinicalStaff()): ?>
             <a href="<?php echo e(route('admin.staff-dashboard')); ?>" class="sidebar-link <?php echo e(request()->routeIs('admin.staff-dashboard') || request()->routeIs('admin.dashboard') ? 'active' : ''); ?>">
                 <i class="fas fa-home"></i>
                 <span>My Dashboard</span>
@@ -21,7 +21,7 @@
                 <span>Dashboard</span>
             </a>
 
-            <?php if(auth()->user()->isNurse()): ?>
+            <?php if(auth()->user()->isFrontDeskStaff() && auth()->user()->clinicServices->isNotEmpty()): ?>
             <a href="<?php echo e(route('admin.staff-dashboard')); ?>" class="sidebar-link <?php echo e(request()->routeIs('admin.staff-dashboard') ? 'active' : ''); ?>">
                 <i class="fas fa-user-nurse"></i>
                 <span>My Dashboard</span>
@@ -48,34 +48,48 @@
                 <span>Past Appointments</span>
             </a>
 
-            <?php if (! (auth()->user()->isFrontDeskStaff())): ?>
+            <?php $fullAccess = auth()->user()->dashboardScope() === 'full'; ?>
+
+            <?php if($fullAccess || auth()->user()->hasPermission('manage_doctors')): ?>
             <a href="<?php echo e(route('admin.doctors.index')); ?>" class="sidebar-link <?php echo e(request()->routeIs('admin.doctors.*') ? 'active' : ''); ?>">
                 <i class="fas fa-user-md"></i>
                 <span>Doctors</span>
             </a>
+            <?php endif; ?>
 
-            <a href="<?php echo e(route('admin.clinic-services.index')); ?>" class="sidebar-link <?php echo e(request()->routeIs('admin.clinic-services.*') ? 'active' : ''); ?>">
+            <?php if($fullAccess || auth()->user()->hasPermission('manage_clinic_services')): ?>
+            <a href="<?php echo e(route('admin.clinic-services.index')); ?>" class="sidebar-link <?php echo e(request()->routeIs('admin.clinic-services.*') || request()->routeIs('admin.service-categories.*') ? 'active' : ''); ?>">
                 <i class="fas fa-list-alt"></i>
-                <span>Clinic Services</span>
+                <span>Our Services</span>
             </a>
             <?php endif; ?>
 
-            <?php if (! (auth()->user()->isFrontDeskStaff())): ?>
+            <?php if($fullAccess
+                || auth()->user()->hasPermission('manage_emails')
+                || auth()->user()->hasPermission('manage_sms')
+                || auth()->user()->hasPermission('manage_contact_messages')
+                || auth()->user()->hasPermission('manage_reviews')
+                || auth()->user()->hasPermission('manage_blog')): ?>
             <!-- Communication Section -->
             <div class="sidebar-section">
                 <p style="padding: 0.5rem 1.5rem; margin: 0.5rem 0; font-size: 0.7rem; color: #84a33f; text-transform: uppercase; font-weight: 600; letter-spacing: 0.5px;">Communication</p>
             </div>
 
+            <?php if($fullAccess || auth()->user()->hasPermission('manage_emails')): ?>
             <a href="<?php echo e(route('admin.emails.index')); ?>" class="sidebar-link <?php echo e(request()->routeIs('admin.emails.*') ? 'active' : ''); ?>">
                 <i class="fas fa-envelope"></i>
                 <span>Email Campaigns</span>
             </a>
+            <?php endif; ?>
 
+            <?php if($fullAccess || auth()->user()->hasPermission('manage_sms')): ?>
             <a href="<?php echo e(route('admin.sms.index')); ?>" class="sidebar-link <?php echo e(request()->routeIs('admin.sms.*') ? 'active' : ''); ?>">
                 <i class="fas fa-sms"></i>
                 <span>Bulk SMS</span>
             </a>
+            <?php endif; ?>
 
+            <?php if($fullAccess || auth()->user()->hasPermission('manage_contact_messages')): ?>
             <a href="<?php echo e(route('admin.contact-messages.index')); ?>" class="sidebar-link <?php echo e(request()->routeIs('admin.contact-messages.*') ? 'active' : ''); ?>">
                 <i class="fas fa-envelope"></i>
                 <span>Contact Messages</span>
@@ -86,7 +100,9 @@
                 <span class="badge bg-danger ms-auto"><?php echo e($new_messages); ?></span>
                 <?php endif; ?>
             </a>
+            <?php endif; ?>
 
+            <?php if($fullAccess || auth()->user()->hasPermission('manage_reviews')): ?>
             <a href="<?php echo e(route('admin.reviews.index')); ?>" class="sidebar-link <?php echo e(request()->routeIs('admin.reviews.*') ? 'active' : ''); ?>">
                 <i class="fas fa-star"></i>
                 <span>Reviews</span>
@@ -97,7 +113,9 @@
                 <span class="badge bg-warning text-dark ms-auto"><?php echo e($pending_reviews); ?></span>
                 <?php endif; ?>
             </a>
+            <?php endif; ?>
 
+            <?php if($fullAccess || auth()->user()->hasPermission('manage_blog')): ?>
             <a href="<?php echo e(route('admin.blog.index')); ?>" class="sidebar-link <?php echo e(request()->routeIs('admin.blog.*') ? 'active' : ''); ?>">
                 <i class="fas fa-newspaper"></i>
                 <span>News & Articles</span>
@@ -109,6 +127,7 @@
                 <?php endif; ?>
             </a>
             <?php endif; ?>
+            <?php endif; ?>
 
             <?php if(auth()->user()->isAdmin()): ?>
             <!-- Administration Section -->
@@ -119,6 +138,11 @@
             <a href="<?php echo e(route('admin.staff.index')); ?>" class="sidebar-link <?php echo e(request()->routeIs('admin.staff.*') ? 'active' : ''); ?>">
                 <i class="fas fa-user-shield"></i>
                 <span>Staff Accounts</span>
+            </a>
+
+            <a href="<?php echo e(route('admin.roles.index')); ?>" class="sidebar-link <?php echo e(request()->routeIs('admin.roles.*') ? 'active' : ''); ?>">
+                <i class="fas fa-user-tag"></i>
+                <span>Roles & Permissions</span>
             </a>
             <?php endif; ?>
         <?php endif; ?>

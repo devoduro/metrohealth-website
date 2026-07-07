@@ -86,7 +86,7 @@
             <!-- Clinic Services Summary -->
             <div class="admin-card mb-4">
                 <div class="admin-card-header">
-                    <h5><i class="fas fa-hospital me-2" style="color: #84a33f;"></i>Clinic Services & Fees Summary</h5>
+                    <h5><i class="fas fa-hospital me-2" style="color: #84a33f;"></i>Our Services & Fees Summary</h5>
                 </div>
                 <div class="admin-card-body">
                     <div class="table-responsive">

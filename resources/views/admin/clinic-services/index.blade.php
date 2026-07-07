@@ -17,16 +17,21 @@
     @include('admin.partials.sidebar')
 
     <div class="admin-content">
-        @section('page-title', 'Clinic Services')
+        @section('page-title', 'Our Services')
         @include('admin.partials.topbar')
 
         <div class="container-fluid p-4">
             <div class="admin-card">
                 <div class="admin-card-header">
                     <h5><i class="fas fa-list-alt me-2" style="color: #84a33f;"></i>Clinic Services</h5>
-                    <a href="{{ route('admin.clinic-services.create') }}" class="btn btn-success">
-                        <i class="fas fa-plus me-2"></i>Add Clinic Service
-                    </a>
+                    <div class="d-flex gap-2">
+                        <a href="{{ route('admin.service-categories.index') }}" class="btn btn-outline-secondary">
+                            <i class="fas fa-layer-group me-2"></i>Service Categories
+                        </a>
+                        <a href="{{ route('admin.clinic-services.create') }}" class="btn btn-success">
+                            <i class="fas fa-plus me-2"></i>Add Clinic Service
+                        </a>
+                    </div>
                 </div>
                 <div class="admin-card-body">
                     @if($clinicServices->count() > 0)
@@ -35,11 +40,12 @@
                             <thead class="table-light">
                                 <tr>
                                     <th width="5%">ID</th>
-                                    <th width="25%">Name</th>
+                                    <th width="20%">Name</th>
+                                    <th width="12%">Category</th>
                                     <th width="10%">Doctors</th>
-                                    <th width="15%">Multi-Doctor</th>
-                                    <th width="10%">Order</th>
-                                    <th width="15%">Status</th>
+                                    <th width="13%">Multi-Doctor</th>
+                                    <th width="8%">Order</th>
+                                    <th width="12%">Status</th>
                                     <th width="20%">Actions</th>
                                 </tr>
                             </thead>
@@ -48,6 +54,13 @@
                                 <tr>
                                     <td><strong class="text-muted">#{{ $clinicService->id }}</strong></td>
                                     <td><strong>{{ $clinicService->name }}</strong></td>
+                                    <td>
+                                        @if($clinicService->serviceCategory)
+                                        <span class="badge bg-light text-dark border">{{ $clinicService->serviceCategory->name }}</span>
+                                        @else
+                                        <span class="text-muted">&mdash;</span>
+                                        @endif
+                                    </td>
                                     <td><span class="badge bg-info">{{ $clinicService->doctors_count }}</span></td>
                                     <td>
                                         <span class="badge bg-{{ $clinicService->has_multiple_doctors ? 'success' : 'secondary' }}">

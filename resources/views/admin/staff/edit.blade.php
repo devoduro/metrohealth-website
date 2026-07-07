@@ -60,10 +60,9 @@
                             <div class="col-md-6">
                                 <label class="form-label">Role *</label>
                                 <select name="role" id="roleSelect" class="form-select" required>
-                                    <option value="admin" {{ old('role', $staff->role) == 'admin' ? 'selected' : '' }}>Admin</option>
-                                    <option value="doctor" {{ old('role', $staff->role) == 'doctor' ? 'selected' : '' }}>Doctor</option>
-                                    <option value="nurse" {{ old('role', $staff->role) == 'nurse' ? 'selected' : '' }}>Nurse</option>
-                                    <option value="receptionist" {{ old('role', $staff->role) == 'receptionist' ? 'selected' : '' }}>Receptionist</option>
+                                    @foreach($roles as $roleOption)
+                                    <option value="{{ $roleOption->slug }}" {{ old('role', $staff->role) == $roleOption->slug ? 'selected' : '' }}>{{ $roleOption->name }}</option>
+                                    @endforeach
                                 </select>
                                 @error('role')<span class="text-danger small d-block">{{ $message }}</span>@enderror
                             </div>
@@ -78,23 +77,25 @@
 
                             @php $assignedIds = $staff->clinicServices->pluck('id')->toArray(); @endphp
 
-                            <div class="col-12" id="doctorFields" style="display: none;">
+                            <div class="col-12" id="clinicServiceFields" style="display: none;">
                                 <hr>
-                                <label class="form-label fw-bold">Assigned Clinic Service(s) *</label>
-                                <p class="text-muted small">A doctor can be assigned to one, two, or more services.</p>
+                                <label class="form-label fw-bold">Assigned Clinic Service(s)</label>
+                                <p class="text-muted small">Can be assigned to one, two, or more services.</p>
                                 <div class="row">
                                     @foreach($clinicServices as $clinicService)
                                     <div class="col-md-4 mb-2">
                                         <div class="form-check">
-                                            <input type="checkbox" name="clinic_service_ids[]" value="{{ $clinicService->id }}" class="form-check-input" id="doctorService{{ $clinicService->id }}"
+                                            <input type="checkbox" name="clinic_service_ids[]" value="{{ $clinicService->id }}" class="form-check-input" id="staffService{{ $clinicService->id }}"
                                                 {{ in_array($clinicService->id, old('clinic_service_ids', $assignedIds)) ? 'checked' : '' }}>
-                                            <label class="form-check-label" for="doctorService{{ $clinicService->id }}">{{ $clinicService->name }}</label>
+                                            <label class="form-check-label" for="staffService{{ $clinicService->id }}">{{ $clinicService->name }}</label>
                                         </div>
                                     </div>
                                     @endforeach
                                 </div>
                                 @error('clinic_service_ids')<span class="text-danger small d-block">{{ $message }}</span>@enderror
+                            </div>
 
+                            <div class="col-12" id="doctorFields" style="display: none;">
                                 <div class="mt-3">
                                     <label class="form-label">Link to Doctor Directory Entry</label>
                                     <select name="doctor_id" class="form-select">
@@ -105,23 +106,6 @@
                                     </select>
                                     @error('doctor_id')<span class="text-danger small d-block">{{ $message }}</span>@enderror
                                 </div>
-                            </div>
-
-                            <div class="col-12" id="nurseFields" style="display: none;">
-                                <hr>
-                                <label class="form-label fw-bold">Assigned Clinic Services *</label>
-                                <div class="row">
-                                    @foreach($clinicServices as $clinicService)
-                                    <div class="col-md-4 mb-2">
-                                        <div class="form-check">
-                                            <input type="checkbox" name="clinic_service_ids[]" value="{{ $clinicService->id }}" class="form-check-input" id="nurseService{{ $clinicService->id }}"
-                                                {{ in_array($clinicService->id, old('clinic_service_ids', $assignedIds)) ? 'checked' : '' }}>
-                                            <label class="form-check-label" for="nurseService{{ $clinicService->id }}">{{ $clinicService->name }}</label>
-                                        </div>
-                                    </div>
-                                    @endforeach
-                                </div>
-                                @error('clinic_service_ids')<span class="text-danger small d-block">{{ $message }}</span>@enderror
                             </div>
 
                             <div class="col-12">
@@ -139,9 +123,10 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <script>
+        const roleScopes = @json($roles->pluck('dashboard_scope', 'slug'));
         const roleSelect = document.getElementById('roleSelect');
+        const clinicServiceFields = document.getElementById('clinicServiceFields');
         const doctorFields = document.getElementById('doctorFields');
-        const nurseFields = document.getElementById('nurseFields');
 
         function setFieldsEnabled(container, enabled) {
             container.style.display = enabled ? 'block' : 'none';
@@ -151,8 +136,9 @@
         }
 
         function toggleRoleFields() {
+            const scope = roleScopes[roleSelect.value];
+            setFieldsEnabled(clinicServiceFields, scope === 'clinical' || scope === 'frontdesk');
             setFieldsEnabled(doctorFields, roleSelect.value === 'doctor');
-            setFieldsEnabled(nurseFields, roleSelect.value === 'nurse');
         }
 
         roleSelect.addEventListener('change', toggleRoleFields);

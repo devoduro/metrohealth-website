@@ -250,6 +250,9 @@ Route::prefix('admin')->name('admin.')->group(function () {
         // Staff Account Management (admin only, enforced in RestrictStaffAccess)
         Route::resource('staff', \App\Http\Controllers\Admin\StaffController::class)->except(['show']);
 
+        // Roles & Permissions (admin only, enforced in RestrictStaffAccess)
+        Route::resource('roles', \App\Http\Controllers\Admin\RoleController::class)->except(['show']);
+
         // Appointment/Booking Management
         Route::get('/bookings', [AdminController::class, 'bookings'])->name('bookings');
         Route::put('/bookings/{id}', [AdminController::class, 'updateBookingStatus'])->name('bookings.update');
@@ -286,6 +289,9 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
         // Clinic Services (independent list used by internal appointments & doctors)
         Route::resource('clinic-services', \App\Http\Controllers\Admin\ClinicServiceController::class)->except(['show']);
+
+        // Service Categories (Clinic / Labs / Procedure, etc. — used to group Clinic Services)
+        Route::resource('service-categories', \App\Http\Controllers\Admin\ServiceCategoryController::class)->except(['show']);
 
         // Bulk SMS
         Route::prefix('sms')->name('sms.')->group(function () {
