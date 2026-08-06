@@ -844,6 +844,15 @@
                         <div class="partner-card">
                             <img src="{{ asset('images/brands/apex-logo2.png') }}" alt="APEX Insurance" class="partner-logo">
                         </div>
+                        <div class="partner-card">
+                            <img src="{{ asset('images/brands/olea.png') }}" alt="OLEA Insurance" class="partner-logo">
+                        </div>
+                        <div class="partner-card">
+                            <img src="{{ asset('images/brands/organge_health.png') }}" alt="Orange Health Insurance" class="partner-logo">
+                        </div>
+                        <div class="partner-card">
+                            <img src="{{ asset('images/brands/octaplus.png') }}" alt="OctaPlus Health" class="partner-logo">
+                        </div>
                     </div>
                 </div>
             </div>
