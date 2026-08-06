@@ -126,10 +126,6 @@
                         @php $appointments = session('appointments'); $first = $appointments->first(); @endphp
 
                         <div class="appointment-summary">
-                            <h4 style="font-weight: 700; color: #1a1a1a; margin-bottom: 20px; text-align: center;">
-                                {{ $appointments->count() > 1 ? 'Appointment Details (' . $appointments->count() . ' services)' : 'Appointment Details' }}
-                            </h4>
-
                             <div class="summary-row">
                                 <span class="summary-label">Patient Name:</span>
                                 <span class="summary-value">{{ $first->full_name }}</span>

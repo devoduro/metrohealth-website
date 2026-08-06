@@ -151,10 +151,6 @@
                     <span class="info-value">{{ $appointmentTime }}</span>
                 </div>
                 <div class="info-row">
-                    <span class="info-label">Service Fee:</span>
-                    <span class="info-value">GH¢ {{ number_format($serviceFee, 2) }}</span>
-                </div>
-                <div class="info-row">
                     <span class="info-label">Current Status:</span>
                     <span class="info-value"><strong>{{ $newStatus }}</strong></span>
                 </div>

@@ -74,10 +74,6 @@
                 </div>
                 
                 <div class="detail-row">
-                    <span class="detail-label">Service Fee:</span> GH₵ {{ number_format($appointment->service_fee, 2) }}
-                </div>
-                
-                <div class="detail-row">
                     <span class="detail-label">Status:</span> {{ ucfirst($appointment->status) }}
                 </div>
             </div>
