@@ -35,7 +35,7 @@ class ContactController extends Controller
         // Send email notifications
         try {
             if (config('mail.default') && config('mail.mailers.' . config('mail.default'))) {
-                \Mail::to(['vspoku11@gmail.com', 'stawiah@gmail.com', 'devoduro@gmail.com'])
+                \Mail::to(['admin@metrohealthgh.com', 'stawiah@gmail.com', 'devoduro@gmail.com'])
                     ->send(new \App\Mail\ContactFormNotification($contact));
             }
         } catch (\Exception $e) {

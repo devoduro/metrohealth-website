@@ -89,7 +89,7 @@ class ClinicAppointmentController extends Controller
                     Mail::to($appointment->email)
                         ->send(new \App\Mail\ClinicAppointmentConfirmation($appointment));
 
-                    Mail::to(['vspoku11@gmail.com', 'stawiah@gmail.com', 'devoduro@gmail.com'])
+                    Mail::to(['admin@metrohealthgh.com', 'stawiah@gmail.com', 'devoduro@gmail.com'])
                         ->send(new \App\Mail\ClinicAppointmentNotification($appointment));
                 }
             }
