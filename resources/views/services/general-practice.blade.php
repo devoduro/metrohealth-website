@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -203,7 +203,7 @@
                                 <i class="fas fa-envelope me-3" style="font-size: 1.2rem;"></i>
                                 <div>
                                     <small style="opacity: 0.8;">Email</small>
-                                    <p class="mb-0" style="font-weight: 600;">info@metrohealthgh.com</p>
+                                    <p class="mb-0" style="font-weight: 600;">admin@metrohealthgh.com</p>
                                 </div>
                             </div>
                             <div class="d-flex align-items-center">

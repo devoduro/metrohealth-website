@@ -16,8 +16,8 @@
                     <a href="#" class="top-header-link">
                         <i class="fas fa-clock"></i> 24/7 Hr
                     </a>
-                    <a href="mailto:info@metrohealth.com" class="top-header-link">
-                        <i class="fas fa-envelope"></i> info@metrohealth.com
+                    <a href="mailto:admin@metrohealthgh.com" class="top-header-link">
+                        <i class="fas fa-envelope"></i> admin@metrohealthgh.com
                     </a>
                 </div>
             </div>

@@ -4,11 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    @include('partials.seo', [
+    <?php echo $__env->make('partials.seo', [
         'title' => 'Contact Us - Metro Health Hospital',
         'description' => 'Get in touch with Metro Health Hospital. Call +233 24 185 0091 or visit us at 4 Barekese Road, Abrepo Junction, Kumasi. We are here to help you 24/7.',
         'keywords' => 'contact metro health, hospital contact, medical appointments, emergency services, healthcare contact kumasi'
-    ])
+    ], \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -16,15 +16,15 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <link rel="stylesheet" href="{{ asset('css/ashlocs-custom.css') }}">
+    <link rel="stylesheet" href="<?php echo e(asset('css/ashlocs-custom.css')); ?>">
 </head>
 <body>
 
   <!-- Top Header Bar -->
-    @include('partials.top_header')
+    <?php echo $__env->make('partials.top_header', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
     <!-- Main Navbar -->
  
-    @include('partials.navigation')
+    <?php echo $__env->make('partials.navigation', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
     <!-- Page Hero -->
     <section class="page-hero" style="background: linear-gradient(135deg, rgba(30, 58, 138, 0.9), rgba(9, 54, 126, 0.85)), url('images/services/faqs.jpg') center/cover; padding: 120px 0 80px; position: relative;">
         <div class="container">
@@ -36,7 +36,7 @@
                     </p>
                     <nav aria-label="breadcrumb" style="margin-top: 20px;">
                         <ol class="breadcrumb justify-content-center" style="background: transparent;">
-                            <li class="breadcrumb-item"><a href="{{ route('home') }}" style="color: white; text-decoration: none;">Home</a></li>
+                            <li class="breadcrumb-item"><a href="<?php echo e(route('home')); ?>" style="color: white; text-decoration: none;">Home</a></li>
                             <li class="breadcrumb-item active" style="color: rgba(255,255,255,0.8);">Contact</li>
                         </ol>
                     </nav>
@@ -59,29 +59,44 @@
                             Fill out the form below and our team will respond within 24 hours. We're committed to providing you with prompt and professional service.
                         </p>
 
-                        @if(session('success'))
+                        <?php if(session('success')): ?>
                         <div class="alert alert-success" style="background: #d4edda; border: 2px solid #28a745; border-radius: 15px; padding: 1.5rem; margin-bottom: 2rem;">
                             <div class="d-flex align-items-center">
                                 <i class="fas fa-check-circle me-3" style="font-size: 2rem; color: #28a745;"></i>
                                 <div>
-                                    <strong>Success!</strong> {{ session('success') }}
+                                    <strong>Success!</strong> <?php echo e(session('success')); ?>
+
                                 </div>
                             </div>
                         </div>
-                        @endif
+                        <?php endif; ?>
 
-                        <form action="{{ route('contact.submit') }}" method="POST">
-                            @csrf
+                        <form action="<?php echo e(route('contact.submit')); ?>" method="POST">
+                            <?php echo csrf_field(); ?>
                             <div class="row g-4">
                                 <div class="col-md-6">
                                     <label class="form-label" style="font-weight: 600; color: var(--ashlocs-dark);">Name *</label>
                                     <input type="text" name="name" class="form-control form-control-lg" required style="border-radius: 15px; border: 2px solid #e0e0e0; padding: 1rem 1.5rem;">
-                                    @error('name')<span class="text-danger small">{{ $message }}</span>@enderror
+                                    <?php $__errorArgs = ['name'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?><span class="text-danger small"><?php echo e($message); ?></span><?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                                 </div>
                                 <div class="col-md-6">
                                     <label class="form-label" style="font-weight: 600; color: var(--ashlocs-dark);">Email *</label>
                                     <input type="email" name="email" class="form-control form-control-lg" required style="border-radius: 15px; border: 2px solid #e0e0e0; padding: 1rem 1.5rem;">
-                                    @error('email')<span class="text-danger small">{{ $message }}</span>@enderror
+                                    <?php $__errorArgs = ['email'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?><span class="text-danger small"><?php echo e($message); ?></span><?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                                 </div>
                                 <div class="col-md-6">
                                     <label class="form-label" style="font-weight: 600; color: var(--ashlocs-dark);">Phone</label>
@@ -90,12 +105,26 @@
                                 <div class="col-md-6">
                                     <label class="form-label" style="font-weight: 600; color: var(--ashlocs-dark);">Subject *</label>
                                     <input type="text" name="subject" class="form-control form-control-lg" required style="border-radius: 15px; border: 2px solid #e0e0e0; padding: 1rem 1.5rem;">
-                                    @error('subject')<span class="text-danger small">{{ $message }}</span>@enderror
+                                    <?php $__errorArgs = ['subject'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?><span class="text-danger small"><?php echo e($message); ?></span><?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                                 </div>
                                 <div class="col-12">
                                     <label class="form-label" style="font-weight: 600; color: var(--ashlocs-dark);">Message *</label>
                                     <textarea name="message" rows="6" class="form-control form-control-lg" required style="border-radius: 15px; border: 2px solid #e0e0e0; padding: 1rem 1.5rem;"></textarea>
-                                    @error('message')<span class="text-danger small">{{ $message }}</span>@enderror
+                                    <?php $__errorArgs = ['message'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?><span class="text-danger small"><?php echo e($message); ?></span><?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                                 </div>
                                 <div class="col-12">
                                     <button type="submit" class="btn btn-primary-custom btn-lg">
@@ -184,7 +213,7 @@
                 <div class="col-lg-8 text-center" data-aos="fade-up">
                     <h2>Ready to Book Your Appointment?</h2>
                     <p>Experience quality healthcare with compassion and excellence. Book your appointment today!</p>
-                    <a href="{{ route('clinic-appointments.index') }}" class="btn btn-white-custom btn-lg">
+                    <a href="<?php echo e(route('clinic-appointments.index')); ?>" class="btn btn-white-custom btn-lg">
                         <i class="fas fa-calendar-check me-2"></i>Book an Appointment
                     </a>
                 </div>
@@ -192,7 +221,7 @@
         </div>
     </section>
 
-    @include('partials.footer')
+    <?php echo $__env->make('partials.footer', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
@@ -206,3 +235,4 @@
     </script>
 </body>
 </html>
+<?php /**PATH C:\xampp\htdocs\metrohealth-web\resources\views/contact-redesign.blade.php ENDPATH**/ ?>

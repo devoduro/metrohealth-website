@@ -181,7 +181,7 @@
             <p style="color: #6b7280; font-size: 14px;">
                 If you have any questions about your appointment, please contact us at:<br>
                 📞 Phone: +233 XX XXX XXXX<br>
-                ✉️ Email: info@metrohealth.com
+                ✉️ Email: admin@metrohealthgh.com
             </p>
         </div>
         

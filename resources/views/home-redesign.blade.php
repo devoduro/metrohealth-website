@@ -167,7 +167,7 @@
                                 </li>
                             </ul>
                             <div class="team-image-small">
-                                <img src="{{ asset('images/gallery/resized/IMG_6937.jpg') }}" alt="Medical Team">
+                                <img src="{{ asset('images/about/medical-team.jpg') }}" alt="Medical Team">
                             </div>
                         </div>
                     </div>
@@ -329,6 +329,23 @@
                         <div class="service-card-body">
                             <h3 class="service-card-title">Paediatrics</h3>
                             <p class="service-card-text">Comprehensive healthcare for infants, children, and adolescents with expert pediatric care.</p>
+                            <a href="{{ route('services.index') }}" class="service-explore-link">
+                                Explore Service <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Service 6: Eye Care -->
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="700">
+                    <div class="medical-service-card">
+                        <div class="service-number-badge">06</div>
+                        <div class="service-card-image">
+                            <img src="{{ asset('images/services/eyecare.png') }}" alt="Eye Care">
+                        </div>
+                        <div class="service-card-body">
+                            <h3 class="service-card-title">Eye Care</h3>
+                            <p class="service-card-text">Expert diagnosis and treatment for a full range of eye conditions and vision care needs.</p>
                             <a href="{{ route('services.index') }}" class="service-explore-link">
                                 Explore Service <i class="fas fa-arrow-right"></i>
                             </a>
@@ -981,8 +998,7 @@
                             </div>
                         </div>
 
-                        <a href="https://outlook.office365.com/owa/calendar/MetroHealthHospital@metrohealth.com.gh/bookings/" 
-                           target="_blank" 
+                        <a href="{{ route('contact') }}"
                            class="btn-consult-now">
                             <i class="fas fa-calendar-check"></i>
                             <span>Consult Now</span>

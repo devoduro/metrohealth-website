@@ -74,7 +74,7 @@
             <p style="margin: 0 0 10px 0;"><strong>Metro Health Hospital</strong></p>
             <p style="margin: 0 0 5px 0;">📍 Accra, Ghana</p>
             <p style="margin: 0 0 5px 0;">📞 Contact: +233 XX XXX XXXX</p>
-            <p style="margin: 0 0 5px 0;">✉️ Email: info@metrohealth.com</p>
+            <p style="margin: 0 0 5px 0;">✉️ Email: admin@metrohealthgh.com</p>
             <p style="margin: 15px 0 0 0; font-size: 11px;">
                 You received this email because you are a registered patient at Metro Health Hospital.
             </p>

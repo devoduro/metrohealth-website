@@ -85,16 +85,15 @@
                         <i class="fas fa-phone" style="color: #84a33f; font-size: 1.1rem; margin-right: 12px; margin-top: 3px;"></i>
                         <div>
                             <p style="color: rgba(255, 255, 255, 0.7); font-size: 0.9rem; margin: 0;">+233 24 185 0091</p>
-                            <p style="color: rgba(255, 255, 255, 0.7); font-size: 0.9rem; margin: 0;">+233 24 185 0091</p>
-                            <p style="color: rgba(255, 255, 255, 0.7); font-size: 0.9rem; margin: 0;">+233 24 185 0091</p>
-                            <p style="color: rgba(255, 255, 255, 0.7); font-size: 0.9rem; margin: 0;">+233 24 185 0091</p>
+                            <p style="color: rgba(255, 255, 255, 0.7); font-size: 0.9rem; margin: 0;">+233 24 855 5596</p>
+                            <p style="color: rgba(255, 255, 255, 0.7); font-size: 0.9rem; margin: 0;">+233 26 484 0859</p>
+                            <p style="color: rgba(255, 255, 255, 0.7); font-size: 0.9rem; margin: 0;">+233 50 163 7303</p>
                         </div>
                     </div>
                     <div style="display: flex; align-items: start;">
                         <i class="fas fa-envelope" style="color: #84a33f; font-size: 1.1rem; margin-right: 12px; margin-top: 3px;"></i>
                         <div>
-                            <p style="color: rgba(255, 255, 255, 0.7); font-size: 0.9rem; margin: 0;">info@metrohealthgh.com</p>
-                            <p style="color: rgba(255, 255, 255, 0.7); font-size: 0.9rem; margin: 0;">appointments@metrohealthgh.com</p>
+                            <p style="color: rgba(255, 255, 255, 0.7); font-size: 0.9rem; margin: 0;">admin@metrohealthgh.com</p>
                         </div>
                     </div>
                     <div style="display: flex; align-items: start;">

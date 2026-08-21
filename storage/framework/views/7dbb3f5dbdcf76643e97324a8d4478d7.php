@@ -352,74 +352,29 @@
                 <div class="partner-card" data-aos="zoom-in" data-aos-delay="550">
                     <img src="<?php echo e(asset('images/brands/apex-logo2.png')); ?>" alt="APEX Insurance" class="partner-logo">
                 </div>
+                <div class="partner-card" data-aos="zoom-in" data-aos-delay="600">
+                    <img src="<?php echo e(asset('images/brands/olea.png')); ?>" alt="OLEA Insurance" class="partner-logo">
+                </div>
+                <div class="partner-card" data-aos="zoom-in" data-aos-delay="650">
+                    <img src="<?php echo e(asset('images/brands/organge_health.png')); ?>" alt="Orange Health Insurance" class="partner-logo">
+                </div>
+                <div class="partner-card" data-aos="zoom-in" data-aos-delay="700">
+                    <img src="<?php echo e(asset('images/brands/octaplus.png')); ?>" alt="OctaPlus Health" class="partner-logo">
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Benefits Section -->
-    <section class="benefits-section section-padding">
+    <!-- Insurance & Eldercare Flyers Section -->
+    <section class="section-padding">
         <div class="container">
-            <div class="row align-items-center">
-                <div class="col-lg-6" data-aos="fade-right">
-                    <h2 style="font-size: 2.5rem; font-weight: 800; color: #1a1a1a; margin-bottom: 30px;">Why Partner With Metro Health?</h2>
-                    
-                    <div class="benefit-item">
-                        <div class="benefit-icon">
-                            <i class="fas fa-check-circle"></i>
-                        </div>
-                        <div class="benefit-content">
-                            <h4>Cost-Effective Solutions</h4>
-                            <p>Competitive pricing with flexible payment plans tailored to your budget.</p>
-                        </div>
-                    </div>
-
-                    <div class="benefit-item">
-                        <div class="benefit-icon">
-                            <i class="fas fa-users"></i>
-                        </div>
-                        <div class="benefit-content">
-                            <h4>Experienced Medical Team</h4>
-                            <p>Access to our team of highly qualified specialists and healthcare professionals.</p>
-                        </div>
-                    </div>
-
-                    <div class="benefit-item">
-                        <div class="benefit-icon">
-                            <i class="fas fa-hospital"></i>
-                        </div>
-                        <div class="benefit-content">
-                            <h4>Modern Facilities</h4>
-                            <p>State-of-the-art medical equipment and comfortable treatment environments.</p>
-                        </div>
-                    </div>
-
-                    <div class="benefit-item">
-                        <div class="benefit-icon">
-                            <i class="fas fa-clock"></i>
-                        </div>
-                        <div class="benefit-content">
-                            <h4>Flexible Scheduling</h4>
-                            <p>Convenient appointment times that work around your business operations.</p>
-                        </div>
-                    </div>
-
-                    <div class="benefit-item">
-                        <div class="benefit-icon">
-                            <i class="fas fa-shield-alt"></i>
-                        </div>
-                        <div class="benefit-content">
-                            <h4>Comprehensive Coverage</h4>
-                            <p>Wide range of medical services from preventive care to specialized treatments.</p>
-                        </div>
-                    </div>
+            <div class="row g-4 justify-content-center">
+                <div class="col-lg-5 col-md-6 text-center" data-aos="fade-right">
+                    <img src="<?php echo e(asset('images/brands/insurance.jpeg')); ?>" alt="Metro Health Hospital Insurance Partners" style="width: 100%; max-width: 480px; border-radius: 10px; box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);">
                 </div>
-
-                <div class="col-lg-6" data-aos="fade-left">
-                    <img src="<?php echo e(asset('images/about/IMG_6849.jpg')); ?>" alt="Business Healthcare" style="width: 100%; border-radius: 2px; box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);">
-                
-                   <img src="<?php echo e(asset('images/sliders/slider1-11.jpg')); ?>" alt="Business Healthcare" style="width: 100%; border-radius: 2px; box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);">
-</div>
-                
+                <div class="col-lg-5 col-md-6 text-center" data-aos="fade-left">
+                    <img src="<?php echo e(asset('images/brands/eldercare.jpeg')); ?>" alt="Metro Health Hospital Eldercare" style="width: 100%; max-width: 480px; border-radius: 10px; box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);">
+                </div>
             </div>
         </div>
     </section>

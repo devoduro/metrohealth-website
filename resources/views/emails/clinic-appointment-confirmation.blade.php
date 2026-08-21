@@ -101,14 +101,14 @@
             <p style="margin-top: 30px;">If you need to reschedule or cancel your appointment, please contact us at:</p>
             <p>
                 <strong>Phone:</strong> +233 24 185 0091<br>
-                <strong>Email:</strong> info@metrohealth.com
+                <strong>Email:</strong> admin@metrohealthgh.com
             </p>
         </div>
         
         <div class="footer">
             <p><strong>Metro Health Hospital</strong></p>
             <p>4 Barekese Road, Abrepo Junction, Kumasi</p>
-            <p>Phone: +233 24 185 0091 | Email: info@metrohealth.com</p>
+            <p>Phone: +233 24 185 0091 | Email: admin@metrohealthgh.com</p>
         </div>
     </div>
 </body>

@@ -4,11 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    @include('partials.seo', [
-        'title' => 'General Surgery - Metro Health Hospital',
-        'description' => 'Expert general surgery services at Metro Health Hospital. Comprehensive surgical care with experienced surgeons and modern facilities.',
-        'keywords' => 'general surgery, surgical procedures, metro health kumasi, surgery department'
-    ])
+    <?php echo $__env->make('partials.seo', [
+        'title' => 'Geriatric Care - Metro Health Hospital',
+        'description' => 'Specialized healthcare for older adults at Metro Health Hospital. Comprehensive geriatric care focusing on the unique needs of seniors.',
+        'keywords' => 'geriatric care, elderly care, senior health, aging care, metro health kumasi'
+    ], \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -16,26 +16,26 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <link rel="stylesheet" href="{{ asset('css/ashlocs-custom.css') }}">
+    <link rel="stylesheet" href="<?php echo e(asset('css/ashlocs-custom.css')); ?>">
 </head>
 <body>
     <!-- Top Header Bar -->
-    @include('partials.top_header')
+    <?php echo $__env->make('partials.top_header', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
     
     <!-- Main Navbar -->
-    @include('partials.navigation')
+    <?php echo $__env->make('partials.navigation', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 
     <!-- Page Hero -->
-    <section class="page-hero" style="background: linear-gradient(135deg, rgba(9, 58, 91, 0.9) 0%, rgba(0, 82, 136, 0.85) 100%), url('{{ asset('images/services/page-bg-slider-02.png') }}') center/cover; padding: 120px 0 80px; margin-top: 44px; position: relative;">
+    <section class="page-hero" style="background: linear-gradient(135deg, rgba(9, 58, 91, 0.9) 0%, rgba(0, 82, 136, 0.85) 100%), url('<?php echo e(asset('images/services/page-bg-slider-02.png')); ?>') center/cover; padding: 120px 0 80px; margin-top: 44px; position: relative;">
         <div class="container" style="position: relative; z-index: 2;">
             <div class="row align-items-center justify-content-center text-center">
                 <div class="col-lg-8" data-aos="fade-up">
                     <div class="service-icon-large mx-auto mb-4" style="width: 120px; height: 120px; background: rgba(255, 255, 255, 0.95); border-radius: 20px; display: flex; align-items: center; justify-content: center; font-size: 3.5rem; color: #2980b9; box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);">
-                        <i class="fas fa-user-md"></i>
+                        <i class="fas fa-user-friends"></i>
                     </div>
-                    <h1 class="display-3 fw-bold mb-4" style="color: white; text-shadow: 0 2px 4px rgba(0,0,0,0.1);">General Surgery Department</h1>
+                    <h1 class="display-3 fw-bold mb-4" style="color: white; text-shadow: 0 2px 4px rgba(0,0,0,0.1);">Geriatric Care</h1>
                     <p class="lead" style="font-size: 1.3rem; color: rgba(255, 255, 255, 0.95); text-shadow: 0 1px 2px rgba(0,0,0,0.1);">
-                        Expert surgical care for a wide range of conditions requiring operative treatment.
+                        Specialized HealthCare for Older Adults
                     </p>
                 </div>
             </div>
@@ -48,40 +48,35 @@
             <div class="row g-5">
                 <div class="col-lg-8" data-aos="fade-right">
                     <div class="service-detail-content">
-                        <!-- Service Image -->
+                        <!-- Service Image --> 
                         <div class="service-image mb-5" style="border-radius: 25px; overflow: hidden; box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15); position: relative;">
-                                                    <img src="{{ asset('images/services/surgery.png') }}"       alt="General Surgery at Metro Health" 
+                              <img src="<?php echo e(asset('images/services/aged_care.png')); ?>"       alt="General Surgery at Metro Health" 
                                  class="100%" 
                                  style="height: auto; object-fit: cover;">
-                            <div style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 100%); padding: 30px; color: white;">
-                                <h3 style="font-size: 1.8rem; font-weight: 700; margin-bottom: 10px; color: white;">Advanced Surgical Solutions</h3>
-                                <p style="font-size: 1.1rem; margin: 0; opacity: 0.9;">State-of-the-art surgical care for optimal outcomes</p>
+      <div style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 100%); padding: 30px; color: white;">
+                                <h3 style="font-size: 1.8rem; font-weight: 700; margin-bottom: 10px; color: white;">Compassionate Senior Care</h3>
+                                <p style="font-size: 1.1rem; margin: 0; opacity: 0.9;">Dedicated healthcare for older adults</p>
                             </div>
                         </div>
 
-                        <h2 class="mb-4" style="font-size: 2.5rem; font-weight: 800;">Advanced Surgery. Faster Recovery.</h2>
+                        <h2 class="mb-4" style="font-size: 2.5rem; font-weight: 800;">Geriatric Care</h2>
                         <div class="content-text" style="font-size: 1.1rem; line-height: 1.8; color: #666;">
-                            <p>At Metro Health Hospital, our surgical team utilizes cutting-edge technology to provide comprehensive care. We are committed to excellence in every procedure, prioritizing modern techniques that minimize discomfort and promote rapid healing.</p>
+                            <p>Our Geriatric Care Department is dedicated to the complex medical and social needs of older adults. We take a multidisciplinary approach to aging, focusing on the prevention, diagnosis, and treatment of age-related conditions. From chronic disease management to mobility support, our expert team ensures that every patient receives personalized, coordinated care.</p>
                         </div>
 
-                        <!-- Surgery Team Photo -->
-                        <div class="mb-5" style="border-radius: 20px; overflow: hidden; box-shadow: 0 15px 40px rgba(0,0,0,0.12);">
-                            <img src="{{ asset('images/services/surgery3.png') }}" alt="Metro Health General Surgery Team" style="width: 100%; height: auto; display: block;">
-                        </div>
-
-                        <!-- Surgery Services -->
+                        <!-- Geriatric Services -->
                         <div class="gp-services mt-5">
-                            <h3 class="mb-4" style="font-size: 2rem; font-weight: 700; color: #2d3e50;">Services include:</h3>
+                            <h3 class="mb-4" style="font-size: 2rem; font-weight: 700; color: #2d3e50;">Services Provided:</h3>
                             <div class="row g-4">
                                 <div class="col-md-6">
                                     <div class="service-type-card" style="background: white; border-radius: 12px; padding: 28px; height: 100%; border-left: 3px solid #a8207a; box-shadow: 0 2px 8px rgba(0,0,0,0.06);">
                                         <div class="d-flex align-items-start">
                                             <div style="width: 48px; height: 48px; background: #84a33f; border-radius: 10px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-right: 18px;">
-                                                <i class="fas fa-procedures" style="color: white; font-size: 1.2rem;"></i>
+                                                <i class="fas fa-clipboard-check" style="color: white; font-size: 1.2rem;"></i>
                                             </div>
                                             <div>
-                                                <h5 class="mb-2" style="font-weight: 600; color: #1a1a1a; font-size: 1.05rem;">Abdominal & Gastrointestinal Surgery</h5>
-                                                <p class="mb-0" style="color: #666; font-size: 0.9rem; line-height: 1.5;">(appendicitis, gallbladder issues, and all types of hernia repairs)</p>
+                                                <h5 class="mb-2" style="font-weight: 600; color: #1a1a1a; font-size: 1.05rem;">Multidisciplinary Geriatric Evaluation</h5>
+                                                <p class="mb-0" style="color: #666; font-size: 0.9rem; line-height: 1.5;">A deep-dive assessment of overall health and functional ability.</p>
                                             </div>
                                         </div>
                                     </div>
@@ -91,11 +86,11 @@
                                     <div class="service-type-card" style="background: white; border-radius: 12px; padding: 28px; height: 100%; border-left: 3px solid #84a33f; box-shadow: 0 2px 8px rgba(0,0,0,0.06);">
                                         <div class="d-flex align-items-start">
                                             <div style="width: 48px; height: 48px; background: #84a33f; border-radius: 10px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-right: 18px;">
-                                                <i class="fas fa-briefcase-medical" style="color: white; font-size: 1.2rem;"></i>
+                                                <i class="fas fa-tasks" style="color: white; font-size: 1.2rem;"></i>
                                             </div>
                                             <div>
-                                                <h5 class="mb-2" style="font-weight: 600; color: #1a1a1a; font-size: 1.05rem;">Endocrine & Thyroid Surgery</h5>
-                                                <p class="mb-0" style="color: #666; font-size: 0.9rem; line-height: 1.5;"></p>
+                                                <h5 class="mb-2" style="font-weight: 600; color: #1a1a1a; font-size: 1.05rem;">Complex Case Management</h5>
+                                                <p class="mb-0" style="color: #666; font-size: 0.9rem; line-height: 1.5;">Integrated care for patients navigating multiple, overlapping chronic illnesses.</p>
                                             </div>
                                         </div>
                                     </div>
@@ -105,11 +100,11 @@
                                     <div class="service-type-card" style="background: white; border-radius: 12px; padding: 28px; height: 100%; border-left: 3px solid #84a33f; box-shadow: 0 2px 8px rgba(0,0,0,0.06);">
                                         <div class="d-flex align-items-start">
                                             <div style="width: 48px; height: 48px; background: #84a33f; border-radius: 10px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-right: 18px;">
-                                                <i class="fas fa-hand-holding-medical" style="color: white; font-size: 1.2rem;"></i>
+                                                <i class="fas fa-pills" style="color: white; font-size: 1.2rem;"></i>
                                             </div>
                                             <div>
-                                                <h5 class="mb-2" style="font-weight: 600; color: #1a1a1a; font-size: 1.05rem;">Breast & Soft Tissue Care</h5>
-                                                <p class="mb-0" style="color: #666; font-size: 0.9rem; line-height: 1.5;">(surgical intervention for breast health, cysts, and soft tissue masses)</p>
+                                                <h5 class="mb-2" style="font-weight: 600; color: #1a1a1a; font-size: 1.05rem;">Pharmacological Oversight</h5>
+                                                <p class="mb-0" style="color: #666; font-size: 0.9rem; line-height: 1.5;">Careful oversight of medication regimens to maximize efficacy and minimize side effects.</p>
                                             </div>
                                         </div>
                                     </div>
@@ -119,11 +114,11 @@
                                     <div class="service-type-card" style="background: white; border-radius: 12px; padding: 28px; height: 100%; border-left: 3px solid #a8207a; box-shadow: 0 2px 8px rgba(0,0,0,0.06);">
                                         <div class="d-flex align-items-start">
                                             <div style="width: 48px; height: 48px; background: #84a33f; border-radius: 10px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-right: 18px;">
-                                                <i class="fas fa-hospital" style="color: white; font-size: 1.2rem;"></i>
+                                                <i class="fas fa-brain" style="color: white; font-size: 1.2rem;"></i>
                                             </div>
                                             <div>
-                                                <h5 class="mb-2" style="font-weight: 600; color: #1a1a1a; font-size: 1.05rem;">Emergency Surgical Intervention</h5>
-                                                <p class="mb-0" style="color: #666; font-size: 0.9rem; line-height: 1.5;"></p>
+                                                <h5 class="mb-2" style="font-weight: 600; color: #1a1a1a; font-size: 1.05rem;">Neurological & Cognitive Health</h5>
+                                                <p class="mb-0" style="color: #666; font-size: 0.9rem; line-height: 1.5;">Clinical screening and long-term management for cognitive decline and dementia.</p>
                                             </div>
                                         </div>
                                     </div>
@@ -133,11 +128,39 @@
                                     <div class="service-type-card" style="background: white; border-radius: 12px; padding: 28px; height: 100%; border-left: 3px solid #a8207a; box-shadow: 0 2px 8px rgba(0,0,0,0.06);">
                                         <div class="d-flex align-items-start">
                                             <div style="width: 48px; height: 48px; background: #84a33f; border-radius: 10px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-right: 18px;">
-                                                <i class="fas fa-cut" style="color: white; font-size: 1.2rem;"></i>
+                                                <i class="fas fa-apple-alt" style="color: white; font-size: 1.2rem;"></i>
                                             </div>
                                             <div>
-                                                <h5 class="mb-2" style="font-weight: 600; color: #1a1a1a; font-size: 1.05rem;">Laparoscopic (Minimally Invasive) Surgery</h5>
-                                                <p class="mb-0" style="color: #666; font-size: 0.9rem; line-height: 1.5;"></p>
+                                                <h5 class="mb-2" style="font-weight: 600; color: #1a1a1a; font-size: 1.05rem;">Nutritional & Wellness Counseling</h5>
+                                                <p class="mb-0" style="color: #666; font-size: 0.9rem; line-height: 1.5;">Science-based dietary guidance to support strength and vitality in the golden years.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="service-type-card" style="background: white; border-radius: 12px; padding: 28px; height: 100%; border-left: 3px solid #84a33f; box-shadow: 0 2px 8px rgba(0,0,0,0.06);">
+                                        <div class="d-flex align-items-start">
+                                            <div style="width: 48px; height: 48px; background: #84a33f; border-radius: 10px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-right: 18px;">
+                                                <i class="fas fa-walking" style="color: white; font-size: 1.2rem;"></i>
+                                            </div>
+                                            <div>
+                                                <h5 class="mb-2" style="font-weight: 600; color: #1a1a1a; font-size: 1.05rem;">Physical Safety Assessments</h5>
+                                                <p class="mb-0" style="color: #666; font-size: 0.9rem; line-height: 1.5;">Data-driven mobility and fall-risk evaluations.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="service-type-card" style="background: white; border-radius: 12px; padding: 28px; height: 100%; border-left: 3px solid #84a33f; box-shadow: 0 2px 8px rgba(0,0,0,0.06);">
+                                        <div class="d-flex align-items-start">
+                                            <div style="width: 48px; height: 48px; background: #84a33f; border-radius: 10px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-right: 18px;">
+                                                <i class="fas fa-hands-helping" style="color: white; font-size: 1.2rem;"></i>
+                                            </div>
+                                            <div>
+                                                <h5 class="mb-2" style="font-weight: 600; color: #1a1a1a; font-size: 1.05rem;">Integrated Care Coordination</h5>
+                                                <p class="mb-0" style="color: #666; font-size: 0.9rem; line-height: 1.5;">Dedicated communication channels between our medical team and your family.</p>
                                             </div>
                                         </div>
                                     </div>
@@ -148,27 +171,21 @@
 
 
                          <div class="service-image mt-5 mb-5" style="border-radius: 25px; box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);">
-                            <img src="{{ asset('images/services/surgery2.png') }}" 
+                            <img src="<?php echo e(asset('images/services/geriatric-nursing-hero-1-1.jpg')); ?>" 
                                  alt="General Practice Services at Metro Health" 
                                  style="width: 100%; height: 100%; display: block; border-radius: 25px;">
                         </div>
                         <!-- Our Approach Section -->
                         <div class="expertise-section mt-5" style="background: #f9f9f9; border-radius: 12px; padding: 35px; border-left: 4px solid #a8207a;">
-                            <h3 class="mb-3" style="font-size: 1.85rem; font-weight: 600; color: #1a1a1a;">Our Approach</h3>
-                            <h4 class="mb-3" style="font-size: 1.4rem; font-weight: 600; color: #a8207a;">Your Safety, Our Priority</h4>
-                            <p style="font-size: 1.05rem; line-height: 1.7; color: #555; margin: 0;">We understand that surgery is a significant event. Our approach to general surgery centers on a patient-first model that prioritizes your safety and comfort at every stage. We utilize the latest surgical innovations not just for technical success, but to ensure you experience a faster, smoother return to your daily life.</p>
-                        </div>
-
-                        <!-- Surgery Team Photo 2 -->
-                        <div class="mt-5" style="border-radius: 20px; overflow: hidden; box-shadow: 0 15px 40px rgba(0,0,0,0.12);">
-                            <img src="{{ asset('images/services/surgery4.png') }}" alt="Metro Health Surgery in Progress" style="width: 100%; height: auto; display: block;">
+                            <h3 class="mb-3" style="font-size: 1.85rem; font-weight: 600; color: #1a1a1a;">Comprehensive Care for Seniors</h3>
+                            <p style="font-size: 1.05rem; line-height: 1.7; color: #555; margin: 0;">At Metro Health Hospital, we understand that aging brings unique healthcare challenges. Our geriatric care team is specially trained to address the physical, mental, and social aspects of aging, providing holistic care that enhances quality of life and promotes independence for older adults.</p>
                         </div>
                     </div>
                 </div>
 
                 <!-- Sidebar -->
                 <div class="col-lg-4" data-aos="fade-left">
-                    @include('partials.services-sidebar', ['active' => 'general-surgery'])
+                    <?php echo $__env->make('partials.services-sidebar', ['active' => 'geriatric-care'], \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 
                     <!-- Contact Card -->
                     <div class="contact-card mb-4" style="background: #a8207a; border-radius: 12px; padding: 32px; color: white; box-shadow: 0 4px 12px rgba(168, 32, 122, 0.2);">
@@ -197,7 +214,7 @@
                                 </div>
                             </div>
                         </div>
-                        <a href="{{ route('contact') }}" class="btn btn-light w-100" style="padding: 13px; font-weight: 600; border-radius: 8px; transition: all 0.3s ease;">Contact Us</a>
+                        <a href="<?php echo e(route('contact')); ?>" class="btn btn-light w-100" style="padding: 13px; font-weight: 600; border-radius: 8px; transition: all 0.3s ease;">Contact Us</a>
                     </div>
 
                     <!-- Specialist Clinics Card -->
@@ -252,7 +269,7 @@
         </div>
     </section>
 
-    @include('partials.footer')
+    <?php echo $__env->make('partials.footer', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
@@ -361,3 +378,4 @@
     </style>
 </body>
 </html>
+<?php /**PATH C:\xampp\htdocs\metrohealth-web\resources\views/services/geriatric-care.blade.php ENDPATH**/ ?>

@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -343,7 +343,7 @@
                         </button>
                         <div class="faq-answer">
                             <div class="faq-answer-content">
-                                Call us on <a href="tel:+233241850091">+233 24 185 0091</a> or send an Email to <a href="mailto:info@metrohealthgh.com">info@metrohealthgh.com</a>.
+                                Call us on <a href="tel:+233241850091">+233 24 185 0091</a> or send an Email to <a href="mailto:admin@metrohealthgh.com">admin@metrohealthgh.com</a>.
                             </div>
                         </div>
                     </div>
@@ -566,7 +566,7 @@
                         </div>
                         <div style="margin-bottom: 20px;">
                             <i class="fas fa-envelope me-2"></i>
-                            <a href="mailto:info@metrohealthgh.com" style="color: white; text-decoration: none; font-weight: 600;">info@metrohealthgh.com</a>
+                            <a href="mailto:admin@metrohealthgh.com" style="color: white; text-decoration: none; font-weight: 600;">admin@metrohealthgh.com</a>
                         </div>
                         <a href="{{ route('contact') }}" class="btn btn-light w-100" style="padding: 12px; font-weight: 600; border-radius: 8px; text-decoration: none; display: inline-block; text-align: center;">
                             Contact Us
