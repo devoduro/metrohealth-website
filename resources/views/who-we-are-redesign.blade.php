@@ -12,7 +12,7 @@
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Rubik:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
@@ -179,12 +179,13 @@
                 <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="500">
                     <div class="feature-card">
                         <div class="feature-icon">
-                            <i class="fas fa-hand-holding-heart"></i>
+                            <i class="fas fa-house-medical"></i>
                         </div>
-                        <h4 class="feature-title">Compassionate Care</h4>
+                        <h4 class="feature-title">Center for Ageing</h4>
                         <p class="feature-text">
-                            Patient-centered approach with empathy and respect for every individual we serve.
+                            Our dedicated Center for Ageing &amp; Geriatric Care delivers specialized, compassionate care designed for the unique needs of older adults.
                         </p>
+                        <a href="{{ route('services.geriatric-care') }}" style="display: inline-block; margin-top: 10px; font-weight: 600; color: #84a33f; text-decoration: none;">Learn More <i class="fas fa-arrow-right ms-1"></i></a>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="600">
@@ -213,65 +214,164 @@
                     </p>
                 </div>
             </div>
-            <div class="row g-4">
-                <div class="col-lg-3 col-md-4 col-sm-6" data-aos="zoom-in" data-aos-delay="100">
-                    <div class="specialty-badge">
-                        <i class="fas fa-stethoscope"></i>
-                        <span>General Practice</span>
+            <div class="specialty-category mb-5">
+                <h4 class="specialty-category-title" data-aos="fade-up">Inpatient &amp; Operative Care</h4>
+                <div class="row g-4">
+                    <div class="col-lg-3 col-md-4 col-sm-6" data-aos="zoom-in" data-aos-delay="100">
+                        <div class="specialty-badge">
+                            <i class="fas fa-user-md"></i>
+                            <span>General and Specialized Surgery</span>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-4 col-sm-6" data-aos="zoom-in" data-aos-delay="150">
+                        <div class="specialty-badge">
+                            <i class="fas fa-user-doctor"></i>
+                            <span>Internal Medicine Department</span>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-4 col-sm-6" data-aos="zoom-in" data-aos-delay="200">
+                        <div class="specialty-badge">
+                            <i class="fas fa-syringe"></i>
+                            <span>Anesthesiology &amp; Perioperative Care Department</span>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-4 col-sm-6" data-aos="zoom-in" data-aos-delay="250">
+                        <div class="specialty-badge">
+                            <i class="fas fa-female"></i>
+                            <span>Obstetrics &amp; Gynecology Department</span>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-4 col-sm-6" data-aos="zoom-in" data-aos-delay="300">
+                        <div class="specialty-badge">
+                            <i class="fas fa-baby"></i>
+                            <span>General Pediatrics</span>
+                        </div>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-4 col-sm-6" data-aos="zoom-in" data-aos-delay="150">
-                    <div class="specialty-badge">
-                        <i class="fas fa-user-md"></i>
-                        <span>General Surgery</span>
+            </div>
+
+            <div class="specialty-category mb-5">
+                <h4 class="specialty-category-title" data-aos="fade-up">Emergency &amp; Critical Care</h4>
+                <div class="row g-4">
+                    <div class="col-lg-3 col-md-4 col-sm-6" data-aos="zoom-in" data-aos-delay="100">
+                        <div class="specialty-badge">
+                            <i class="fas fa-kit-medical"></i>
+                            <span>Emergency Medicine</span>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-4 col-sm-6" data-aos="zoom-in" data-aos-delay="150">
+                        <div class="specialty-badge">
+                            <i class="fas fa-ambulance"></i>
+                            <span>Ambulance Service</span>
+                        </div>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-4 col-sm-6" data-aos="zoom-in" data-aos-delay="200">
-                    <div class="specialty-badge">
-                        <i class="fas fa-female"></i>
-                        <span>Obstetrics & Gynaecology</span>
+            </div>
+
+            <div class="specialty-category mb-5">
+                <h4 class="specialty-category-title" data-aos="fade-up">Advanced Diagnostics</h4>
+                <div class="row g-4">
+                    <div class="col-lg-3 col-md-4 col-sm-6" data-aos="zoom-in" data-aos-delay="100">
+                        <div class="specialty-badge">
+                            <i class="fas fa-x-ray"></i>
+                            <span>Radiology &amp; Medical Imaging</span>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-4 col-sm-6" data-aos="zoom-in" data-aos-delay="150">
+                        <div class="specialty-badge">
+                            <i class="fas fa-flask"></i>
+                            <span>General Laboratory</span>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-4 col-sm-6" data-aos="zoom-in" data-aos-delay="200">
+                        <div class="specialty-badge">
+                            <i class="fas fa-heart-pulse"></i>
+                            <span>Electrocardiogram (EKG/ECG)</span>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-4 col-sm-6" data-aos="zoom-in" data-aos-delay="250">
+                        <div class="specialty-badge">
+                            <i class="fas fa-lungs"></i>
+                            <span>Spirometry &amp; Pulmonary/Lung Function Test</span>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-4 col-sm-6" data-aos="zoom-in" data-aos-delay="300">
+                        <div class="specialty-badge">
+                            <i class="fas fa-microscope"></i>
+                            <span>Gastrointestinal Endoscopy (Upper and Lower GI)</span>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-4 col-sm-6" data-aos="zoom-in" data-aos-delay="350">
+                        <div class="specialty-badge">
+                            <i class="fas fa-heartbeat"></i>
+                            <span>Echocardiography (Echo)</span>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-4 col-sm-6" data-aos="zoom-in" data-aos-delay="400">
+                        <div class="specialty-badge">
+                            <i class="fas fa-wave-square"></i>
+                            <span>Holter Monitoring</span>
+                        </div>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-4 col-sm-6" data-aos="zoom-in" data-aos-delay="250">
-                    <div class="specialty-badge">
-                        <i class="fas fa-user-injured"></i>
-                        <span>Geriatric Care</span>
+            </div>
+
+            <div class="specialty-category mb-5">
+                <h4 class="specialty-category-title" data-aos="fade-up">Outpatient &amp; Ambulatory Care</h4>
+                <div class="row g-4">
+                    <div class="col-lg-3 col-md-4 col-sm-6" data-aos="zoom-in" data-aos-delay="100">
+                        <div class="specialty-badge">
+                            <i class="fas fa-stethoscope"></i>
+                            <span>General Outpatient Department (OPD)</span>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-4 col-sm-6" data-aos="zoom-in" data-aos-delay="150">
+                        <div class="specialty-badge">
+                            <i class="fas fa-user-doctor"></i>
+                            <span>Specialist Outpatient Clinics</span>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-4 col-sm-6" data-aos="zoom-in" data-aos-delay="200">
+                        <div class="specialty-badge">
+                            <i class="fas fa-house-medical"></i>
+                            <span>Family Medicine Specialist Outpatient Clinics</span>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-4 col-sm-6" data-aos="zoom-in" data-aos-delay="250">
+                        <div class="specialty-badge">
+                            <i class="fas fa-eye"></i>
+                            <span>Eye Care</span>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-4 col-sm-6" data-aos="zoom-in" data-aos-delay="300">
+                        <div class="specialty-badge">
+                            <i class="fas fa-ear-listen"></i>
+                            <span>ENT</span>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-4 col-sm-6" data-aos="zoom-in" data-aos-delay="350">
+                        <div class="specialty-badge">
+                            <i class="fas fa-house-chimney-medical"></i>
+                            <span>Home Health Services (Home Visit)</span>
+                        </div>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-4 col-sm-6" data-aos="zoom-in" data-aos-delay="350">
-                    <div class="specialty-badge">
-                        <i class="fas fa-baby"></i>
-                        <span>Paediatrics</span>
+            </div>
+
+            <div class="specialty-category">
+                <h4 class="specialty-category-title" data-aos="fade-up">Therapeutics &amp; Allied Health Support</h4>
+                <div class="row g-4">
+                    <div class="col-lg-3 col-md-4 col-sm-6" data-aos="zoom-in" data-aos-delay="100">
+                        <div class="specialty-badge">
+                            <i class="fas fa-pills"></i>
+                            <span>Pharmacy</span>
+                        </div>
                     </div>
-                </div>
-                <div class="col-lg-3 col-md-4 col-sm-6" data-aos="zoom-in" data-aos-delay="400">
-                    <div class="specialty-badge">
-                        <i class="fas fa-procedures"></i>
-                        <span>Urology</span>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-4 col-sm-6" data-aos="zoom-in" data-aos-delay="450">
-                    <div class="specialty-badge">
-                        <i class="fas fa-bone"></i>
-                        <span>Orthopaedic</span>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-4 col-sm-6" data-aos="zoom-in" data-aos-delay="500">
-                    <div class="specialty-badge">
-                        <i class="fas fa-ear-listen"></i>
-                        <span>ENT Care</span>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-4 col-sm-6" data-aos="zoom-in" data-aos-delay="550">
-                    <div class="specialty-badge">
-                        <i class="fas fa-eye"></i>
-                        <span>Eye Care</span>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-4 col-sm-6" data-aos="zoom-in" data-aos-delay="600">
-                    <div class="specialty-badge">
-                        <i class="fas fa-hand-sparkles"></i>
-                        <span>Plastic Surgery</span>
+                    <div class="col-lg-3 col-md-4 col-sm-6" data-aos="zoom-in" data-aos-delay="150">
+                        <div class="specialty-badge">
+                            <i class="fas fa-apple-alt"></i>
+                            <span>Clinical Nutrition</span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -525,6 +625,15 @@
         padding: 80px 0;
         background: linear-gradient(135deg, #84a33f, #6b8230);
         position: relative;
+    }
+
+    .specialty-category-title {
+        color: white;
+        font-weight: 700;
+        font-size: 1.3rem;
+        margin-bottom: 20px;
+        padding-bottom: 10px;
+        border-bottom: 2px solid rgba(255, 255, 255, 0.3);
     }
 
     .specialty-badge {

@@ -35,8 +35,8 @@ export default {
         },
       },
       fontFamily: {
-        'sans': ['Inter', 'system-ui', 'sans-serif'],
-        'serif': ['Merriweather', 'Georgia', 'serif'],
+        'sans': ['Rubik', 'system-ui', 'sans-serif'],
+        'heading': ['Nunito', 'system-ui', 'sans-serif'],
       },
     },
   },

@@ -3,7 +3,7 @@
         ['route' => 'general-practice', 'icon' => 'fas fa-stethoscope', 'label' => 'General Practice'],
         ['route' => 'general-surgery', 'icon' => 'fas fa-user-md', 'label' => 'General Surgery'],
         ['route' => 'obstetrics-gynaecology', 'icon' => 'fas fa-baby', 'label' => 'Obstetrics & Gynaecology'],
-        ['route' => 'geriatric-care', 'icon' => 'fas fa-user-friends', 'label' => 'Geriatric Care'],
+        ['route' => 'geriatric-care', 'icon' => 'fas fa-user-friends', 'label' => 'Center for Ageing & Geriatric Care (Elderly Care)'],
         ['route' => 'paediatrics', 'icon' => 'fas fa-child', 'label' => 'Paediatrics'],
         ['route' => 'urology', 'icon' => 'fas fa-kidneys', 'label' => 'Urology'],
         ['route' => 'orthopaedic', 'icon' => 'fas fa-bone', 'label' => 'Orthopaedic'],
@@ -17,6 +17,7 @@
         ['route' => 'endoscopy', 'icon' => 'fas fa-microscope', 'label' => 'Endoscopy'],
         ['route' => 'radiology', 'icon' => 'fas fa-x-ray', 'label' => 'Radiology & Medical Imaging'],
         ['route' => 'ambulance-service', 'icon' => 'fas fa-ambulance', 'label' => 'Ambulance Service'],
+        ['route' => 'family-medicine-clinic', 'icon' => 'fas fa-house-medical', 'label' => 'Family Medicine Specialist Clinic'],
     ];
 ?>
 <div class="services-menu mb-4" style="background: white; border-radius: 20px; padding: 30px; box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);">

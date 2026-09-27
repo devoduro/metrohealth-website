@@ -19,7 +19,7 @@
 }
 
 body {
-    font-family: 'Inter', sans-serif;
+    font-family: 'Rubik', sans-serif;
     color: var(--ashlocs-dark);
     background-color: var(--ashlocs-white);
     line-height: 1.6;
@@ -64,9 +64,16 @@ html {
 }
 
 h1, h2, h3, h4, h5, h6 {
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Nunito', sans-serif;
     font-weight: 700;
     color: var(--ashlocs-dark);
+}
+
+.nav-link,
+.btn,
+[class^='btn-'],
+[class*=' btn-'] {
+    font-family: 'Nunito', sans-serif;
 }
 
 /* Top Header Bar */
@@ -146,7 +153,7 @@ h1, h2, h3, h4, h5, h6 {
 .navbar-brand {
     font-size: 1.8rem;
     font-weight: 800;
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Nunito', sans-serif;
     display: flex;
     align-items: center;
     padding: 0;
@@ -205,6 +212,88 @@ h1, h2, h3, h4, h5, h6 {
 .dropdown-item:hover {
     background: var(--metro-purple);
     color: white;
+}
+
+.services-dropdown-grouped {
+    min-width: 300px;
+    max-height: none;
+    overflow: visible;
+}
+
+.services-dropdown-grouped .dropdown-item {
+    font-size: 0.9rem;
+    white-space: normal;
+}
+
+/* Category (level 1) items double as submenu toggles */
+.dropdown-submenu {
+    position: relative;
+}
+
+.dropdown-submenu > .dropdown-item.dropdown-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: var(--metro-purple);
+    font-weight: 700;
+    font-size: 0.85rem;
+}
+
+.dropdown-submenu > .dropdown-item.dropdown-toggle::after {
+    margin-left: 10px;
+}
+
+.dropdown-submenu > .dropdown-item.dropdown-toggle:hover {
+    background: var(--metro-purple);
+    color: white;
+}
+
+/* Level 2 flyout: hidden until hovered/clicked */
+.dropdown-submenu > .dropdown-menu {
+    display: none;
+    margin: 0;
+}
+
+.dropdown-submenu.show > .dropdown-menu {
+    display: block;
+}
+
+@media (min-width: 992px) {
+    .services-dropdown-grouped {
+        overflow: visible;
+    }
+
+    .dropdown-submenu > .dropdown-menu {
+        position: absolute;
+        top: -8px;
+        left: 100%;
+        margin-left: 2px;
+        min-width: 280px;
+    }
+
+    .dropdown-submenu > .dropdown-menu.dropdown-submenu-left {
+        left: auto;
+        right: 100%;
+        margin-left: 0;
+        margin-right: 2px;
+    }
+
+    @media (hover: hover) {
+        .dropdown-submenu:hover > .dropdown-menu {
+            display: block;
+        }
+    }
+}
+
+@media (max-width: 991.98px) {
+    .dropdown-submenu > .dropdown-menu {
+        position: static;
+        box-shadow: none;
+        border-left: 2px solid var(--metro-purple);
+        margin-left: 12px;
+        width: auto;
+        min-width: 0;
+    }
 }
 
 .btn-primary-custom {

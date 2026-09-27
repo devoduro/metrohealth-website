@@ -45,10 +45,7 @@ Route::middleware('dashboard.auth')->group(function () {
         Route::resource('sermons', SermonController::class);
         Route::post('sermons/{sermon}/toggle-featured', [SermonController::class, 'toggleFeatured'])->name('sermons.toggle-featured');
 
-        // Ministries Management - Commented out (not needed for Ashlocs)
-        // Route::resource('ministries', MinistryController::class);
-        // Route::post('ministries/{ministry}/toggle-active', [MinistryController::class, 'toggleActive'])->name('ministries.toggle-active');
-
+        
         // Gallery Management
         Route::resource('gallery', GalleryController::class)->names([
             'index' => 'galleries.index',

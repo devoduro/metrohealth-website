@@ -12,7 +12,7 @@
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Rubik:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
@@ -59,14 +59,14 @@
                             </div>
                         </div>
 
-                        <h2 class="mb-4" style="font-size: 2.5rem; font-weight: 800;">Geriatric Care</h2>
+                        <h2 class="mb-4" style="font-size: 2.5rem; font-weight: 800;">Specialized, All-In-One Healthcare Tailored for Older Adults</h2>
                         <div class="content-text" style="font-size: 1.1rem; line-height: 1.8; color: #666;">
-                            <p>Our Geriatric Care Department is dedicated to the complex medical and social needs of older adults. We take a multidisciplinary approach to aging, focusing on the prevention, diagnosis, and treatment of age-related conditions. From chronic disease management to mobility support, our expert team ensures that every patient receives personalized, coordinated care.</p>
+                            <p>At Metro Health Hospital, our dedicated Center for Ageing provides comprehensive medical, preventive, and rehabilitative care designed specifically for the unique needs of seniors. From managing complex chronic conditions to enhancing daily mobility and independence, our specialist team ensures your loved ones receive the dignity, comfort, and clinical excellence they deserve&mdash;all in one accessible location.</p>
                         </div>
 
-                        <!-- Geriatric Services -->
+                        <!-- Key Services Offered -->
                         <div class="gp-services mt-5">
-                            <h3 class="mb-4" style="font-size: 2rem; font-weight: 700; color: #2d3e50;">Services Provided:</h3>
+                            <h3 class="mb-4" style="font-size: 2rem; font-weight: 700; color: #2d3e50;">Key Services Offered</h3>
                             <div class="row g-4">
                                 <div class="col-md-6">
                                     <div class="service-type-card" style="background: white; border-radius: 12px; padding: 28px; height: 100%; border-left: 3px solid #a8207a; box-shadow: 0 2px 8px rgba(0,0,0,0.06);">
@@ -75,8 +75,8 @@
                                                 <i class="fas fa-clipboard-check" style="color: white; font-size: 1.2rem;"></i>
                                             </div>
                                             <div>
-                                                <h5 class="mb-2" style="font-weight: 600; color: #1a1a1a; font-size: 1.05rem;">Multidisciplinary Geriatric Evaluation</h5>
-                                                <p class="mb-0" style="color: #666; font-size: 0.9rem; line-height: 1.5;">A deep-dive assessment of overall health and functional ability.</p>
+                                                <h5 class="mb-2" style="font-weight: 600; color: #1a1a1a; font-size: 1.05rem;">Comprehensive Geriatric Assessments</h5>
+                                                <p class="mb-0" style="color: #666; font-size: 0.9rem; line-height: 1.5;">Whole-person evaluations covering physical health, memory, cognitive well-being, mobility, and medication safety.</p>
                                             </div>
                                         </div>
                                     </div>
@@ -86,11 +86,11 @@
                                     <div class="service-type-card" style="background: white; border-radius: 12px; padding: 28px; height: 100%; border-left: 3px solid #84a33f; box-shadow: 0 2px 8px rgba(0,0,0,0.06);">
                                         <div class="d-flex align-items-start">
                                             <div style="width: 48px; height: 48px; background: #84a33f; border-radius: 10px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-right: 18px;">
-                                                <i class="fas fa-tasks" style="color: white; font-size: 1.2rem;"></i>
+                                                <i class="fas fa-notes-medical" style="color: white; font-size: 1.2rem;"></i>
                                             </div>
                                             <div>
-                                                <h5 class="mb-2" style="font-weight: 600; color: #1a1a1a; font-size: 1.05rem;">Complex Case Management</h5>
-                                                <p class="mb-0" style="color: #666; font-size: 0.9rem; line-height: 1.5;">Integrated care for patients navigating multiple, overlapping chronic illnesses.</p>
+                                                <h5 class="mb-2" style="font-weight: 600; color: #1a1a1a; font-size: 1.05rem;">Chronic &amp; Complex Condition Management</h5>
+                                                <p class="mb-0" style="color: #666; font-size: 0.9rem; line-height: 1.5;">Integrated care plans for diabetes, hypertension, arthritis, heart health, and osteoporosis.</p>
                                             </div>
                                         </div>
                                     </div>
@@ -98,27 +98,13 @@
 
                                 <div class="col-md-6">
                                     <div class="service-type-card" style="background: white; border-radius: 12px; padding: 28px; height: 100%; border-left: 3px solid #84a33f; box-shadow: 0 2px 8px rgba(0,0,0,0.06);">
-                                        <div class="d-flex align-items-start">
-                                            <div style="width: 48px; height: 48px; background: #84a33f; border-radius: 10px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-right: 18px;">
-                                                <i class="fas fa-pills" style="color: white; font-size: 1.2rem;"></i>
-                                            </div>
-                                            <div>
-                                                <h5 class="mb-2" style="font-weight: 600; color: #1a1a1a; font-size: 1.05rem;">Pharmacological Oversight</h5>
-                                                <p class="mb-0" style="color: #666; font-size: 0.9rem; line-height: 1.5;">Careful oversight of medication regimens to maximize efficacy and minimize side effects.</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-md-6">
-                                    <div class="service-type-card" style="background: white; border-radius: 12px; padding: 28px; height: 100%; border-left: 3px solid #a8207a; box-shadow: 0 2px 8px rgba(0,0,0,0.06);">
                                         <div class="d-flex align-items-start">
                                             <div style="width: 48px; height: 48px; background: #84a33f; border-radius: 10px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-right: 18px;">
                                                 <i class="fas fa-brain" style="color: white; font-size: 1.2rem;"></i>
                                             </div>
                                             <div>
-                                                <h5 class="mb-2" style="font-weight: 600; color: #1a1a1a; font-size: 1.05rem;">Neurological & Cognitive Health</h5>
-                                                <p class="mb-0" style="color: #666; font-size: 0.9rem; line-height: 1.5;">Clinical screening and long-term management for cognitive decline and dementia.</p>
+                                                <h5 class="mb-2" style="font-weight: 600; color: #1a1a1a; font-size: 1.05rem;">Memory &amp; Cognitive Care</h5>
+                                                <p class="mb-0" style="color: #666; font-size: 0.9rem; line-height: 1.5;">Specialized diagnosis and ongoing support for dementia, Alzheimer&rsquo;s, and age-related memory loss.</p>
                                             </div>
                                         </div>
                                     </div>
@@ -128,25 +114,25 @@
                                     <div class="service-type-card" style="background: white; border-radius: 12px; padding: 28px; height: 100%; border-left: 3px solid #a8207a; box-shadow: 0 2px 8px rgba(0,0,0,0.06);">
                                         <div class="d-flex align-items-start">
                                             <div style="width: 48px; height: 48px; background: #84a33f; border-radius: 10px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-right: 18px;">
-                                                <i class="fas fa-apple-alt" style="color: white; font-size: 1.2rem;"></i>
+                                                <i class="fas fa-walking" style="color: white; font-size: 1.2rem;"></i>
                                             </div>
                                             <div>
-                                                <h5 class="mb-2" style="font-weight: 600; color: #1a1a1a; font-size: 1.05rem;">Nutritional & Wellness Counseling</h5>
-                                                <p class="mb-0" style="color: #666; font-size: 0.9rem; line-height: 1.5;">Science-based dietary guidance to support strength and vitality in the golden years.</p>
+                                                <h5 class="mb-2" style="font-weight: 600; color: #1a1a1a; font-size: 1.05rem;">Mobility &amp; Fall Prevention</h5>
+                                                <p class="mb-0" style="color: #666; font-size: 0.9rem; line-height: 1.5;">Dedicated physical therapy and rehabilitation programs to maintain strength, balance, and independence.</p>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
 
                                 <div class="col-md-6">
-                                    <div class="service-type-card" style="background: white; border-radius: 12px; padding: 28px; height: 100%; border-left: 3px solid #84a33f; box-shadow: 0 2px 8px rgba(0,0,0,0.06);">
+                                    <div class="service-type-card" style="background: white; border-radius: 12px; padding: 28px; height: 100%; border-left: 3px solid #a8207a; box-shadow: 0 2px 8px rgba(0,0,0,0.06);">
                                         <div class="d-flex align-items-start">
                                             <div style="width: 48px; height: 48px; background: #84a33f; border-radius: 10px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-right: 18px;">
-                                                <i class="fas fa-walking" style="color: white; font-size: 1.2rem;"></i>
+                                                <i class="fas fa-pills" style="color: white; font-size: 1.2rem;"></i>
                                             </div>
                                             <div>
-                                                <h5 class="mb-2" style="font-weight: 600; color: #1a1a1a; font-size: 1.05rem;">Physical Safety Assessments</h5>
-                                                <p class="mb-0" style="color: #666; font-size: 0.9rem; line-height: 1.5;">Data-driven mobility and fall-risk evaluations.</p>
+                                                <h5 class="mb-2" style="font-weight: 600; color: #1a1a1a; font-size: 1.05rem;">Medication Rationalization</h5>
+                                                <p class="mb-0" style="color: #666; font-size: 0.9rem; line-height: 1.5;">Expert reviews to prevent drug interactions and streamline multiple daily prescriptions.</p>
                                             </div>
                                         </div>
                                     </div>
@@ -159,8 +145,8 @@
                                                 <i class="fas fa-hands-helping" style="color: white; font-size: 1.2rem;"></i>
                                             </div>
                                             <div>
-                                                <h5 class="mb-2" style="font-weight: 600; color: #1a1a1a; font-size: 1.05rem;">Integrated Care Coordination</h5>
-                                                <p class="mb-0" style="color: #666; font-size: 0.9rem; line-height: 1.5;">Dedicated communication channels between our medical team and your family.</p>
+                                                <h5 class="mb-2" style="font-weight: 600; color: #1a1a1a; font-size: 1.05rem;">Family &amp; Caregiver Support</h5>
+                                                <p class="mb-0" style="color: #666; font-size: 0.9rem; line-height: 1.5;">Guidance and counseling to help families make informed, compassionate care decisions.</p>
                                             </div>
                                         </div>
                                     </div>
@@ -169,16 +155,65 @@
                             </div>
                         </div>
 
-
-                         <div class="service-image mt-5 mb-5" style="border-radius: 25px; box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);">
-                            <img src="{{ asset('images/services/geriatric-nursing-hero-1-1.jpg') }}" 
-                                 alt="General Practice Services at Metro Health" 
+                        <div class="service-image mt-5 mb-5" style="border-radius: 25px; box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);">
+                            <img src="{{ asset('images/services/geriatric-nursing-hero-1-1.jpg') }}"
+                                 alt="General Practice Services at Metro Health"
                                  style="width: 100%; height: 100%; display: block; border-radius: 25px;">
                         </div>
-                        <!-- Our Approach Section -->
-                        <div class="expertise-section mt-5" style="background: #f9f9f9; border-radius: 12px; padding: 35px; border-left: 4px solid #a8207a;">
-                            <h3 class="mb-3" style="font-size: 1.85rem; font-weight: 600; color: #1a1a1a;">Comprehensive Care for Seniors</h3>
-                            <p style="font-size: 1.05rem; line-height: 1.7; color: #555; margin: 0;">At Metro Health Hospital, we understand that aging brings unique healthcare challenges. Our geriatric care team is specially trained to address the physical, mental, and social aspects of aging, providing holistic care that enhances quality of life and promotes independence for older adults.</p>
+
+                        <!-- Why Choose Our Center for Ageing -->
+                        <div class="gp-services mt-5">
+                            <h3 class="mb-4" style="font-size: 2rem; font-weight: 700; color: #2d3e50;">Why Choose Our Center for Ageing?</h3>
+                            <div class="row g-4">
+                                <div class="col-md-6">
+                                    <div class="service-type-card" style="background: white; border-radius: 12px; padding: 28px; height: 100%; border-left: 3px solid #a8207a; box-shadow: 0 2px 8px rgba(0,0,0,0.06);">
+                                        <div class="d-flex align-items-start">
+                                            <div style="width: 48px; height: 48px; background: #84a33f; border-radius: 10px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-right: 18px;">
+                                                <i class="fas fa-hospital" style="color: white; font-size: 1.2rem;"></i>
+                                            </div>
+                                            <div>
+                                                <h5 class="mb-2" style="font-weight: 600; color: #1a1a1a; font-size: 1.05rem;">On-Site Multidisciplinary Support</h5>
+                                                <p class="mb-0" style="color: #666; font-size: 0.9rem; line-height: 1.5;">Immediate, seamless access to Metro Health&rsquo;s advanced diagnostics, laboratory, emergency, and surgical departments.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="service-type-card" style="background: white; border-radius: 12px; padding: 28px; height: 100%; border-left: 3px solid #84a33f; box-shadow: 0 2px 8px rgba(0,0,0,0.06);">
+                                        <div class="d-flex align-items-start">
+                                            <div style="width: 48px; height: 48px; background: #84a33f; border-radius: 10px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-right: 18px;">
+                                                <i class="fas fa-wheelchair" style="color: white; font-size: 1.2rem;"></i>
+                                            </div>
+                                            <div>
+                                                <h5 class="mb-2" style="font-weight: 600; color: #1a1a1a; font-size: 1.05rem;">Senior-Friendly Environment</h5>
+                                                <p class="mb-0" style="color: #666; font-size: 0.9rem; line-height: 1.5;">Designed for easy physical access, comfort, and reduced stress for older patients.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="service-type-card" style="background: white; border-radius: 12px; padding: 28px; height: 100%; border-left: 3px solid #a8207a; box-shadow: 0 2px 8px rgba(0,0,0,0.06);">
+                                        <div class="d-flex align-items-start">
+                                            <div style="width: 48px; height: 48px; background: #84a33f; border-radius: 10px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-right: 18px;">
+                                                <i class="fas fa-user-md" style="color: white; font-size: 1.2rem;"></i>
+                                            </div>
+                                            <div>
+                                                <h5 class="mb-2" style="font-weight: 600; color: #1a1a1a; font-size: 1.05rem;">Dedicated Specialist Team</h5>
+                                                <p class="mb-0" style="color: #666; font-size: 0.9rem; line-height: 1.5;">Compassionate physicians, nurses, and physical therapists trained specifically in elder care.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Closing CTA -->
+                        <div class="expertise-section mt-5 text-center" style="background: #f9f9f9; border-radius: 12px; padding: 35px; border-left: 4px solid #a8207a;">
+                            <h3 class="mb-3" style="font-size: 1.85rem; font-weight: 600; color: #1a1a1a;">Take the Next Step for Your Family's Health</h3>
+                            <p style="font-size: 1.05rem; line-height: 1.7; color: #555; margin-bottom: 25px;">Consult with our senior care specialists or book a comprehensive assessment today.</p>
+                            <a href="{{ route('clinic-appointments.index') }}" class="btn" style="background: #a8207a; color: white; padding: 13px 32px; font-weight: 600; border-radius: 8px;">Book an Assessment</a>
                         </div>
                     </div>
                 </div>

@@ -159,6 +159,9 @@ Route::prefix('services')->name('services.')->group(function () {
     Route::get('/ambulance-service', function () {
         return view('services.ambulance-service');
     })->name('ambulance-service');
+    Route::get('/family-medicine-clinic', function () {
+        return view('services.family-medicine-clinic');
+    })->name('family-medicine-clinic');
     Route::get('/{slug}', [ServiceController::class, 'show'])->name('show');
 });
 

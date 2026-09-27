@@ -51,7 +51,7 @@
                     <a href="{{ route('services.general-practice') }}" style="color: rgba(255, 255, 255, 0.7); text-decoration: none; font-size: 0.9rem; transition: all 0.3s ease; display: block;">General Practice</a>
                     <a href="{{ route('services.general-surgery') }}" style="color: rgba(255, 255, 255, 0.7); text-decoration: none; font-size: 0.9rem; transition: all 0.3s ease; display: block;">General Surgery</a>
                     <a href="{{ route('services.obstetrics-gynaecology') }}" style="color: rgba(255, 255, 255, 0.7); text-decoration: none; font-size: 0.9rem; transition: all 0.3s ease; display: block;">Obstetrics & Gynaecology</a>
-                    <a href="{{ route('services.geriatric-care') }}" style="color: rgba(255, 255, 255, 0.7); text-decoration: none; font-size: 0.9rem; transition: all 0.3s ease; display: block;">Geriatric Care</a>
+                    <a href="{{ route('services.geriatric-care') }}" style="color: rgba(255, 255, 255, 0.7); text-decoration: none; font-size: 0.9rem; transition: all 0.3s ease; display: block;">Center for Ageing & Geriatric Care (Elderly Care)</a>
                     <a href="{{ route('services.paediatrics') }}" style="color: rgba(255, 255, 255, 0.7); text-decoration: none; font-size: 0.9rem; transition: all 0.3s ease; display: block;">Paediatrics</a>
                     <a href="{{ route('services.urology') }}" style="color: rgba(255, 255, 255, 0.7); text-decoration: none; font-size: 0.9rem; transition: all 0.3s ease; display: block;">Urology</a>
                     <a href="{{ route('services.orthopaedic') }}" style="color: rgba(255, 255, 255, 0.7); text-decoration: none; font-size: 0.9rem; transition: all 0.3s ease; display: block;">Orthopaedic</a>

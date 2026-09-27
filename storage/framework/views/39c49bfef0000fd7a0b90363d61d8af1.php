@@ -21,27 +21,57 @@
                         </ul>
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="servicesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <a class="nav-link dropdown-toggle" href="#" id="servicesDropdown" role="button" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
                             Services
                         </a>
-                        <ul class="dropdown-menu" aria-labelledby="servicesDropdown">
-                            <li><a class="dropdown-item" href="<?php echo e(route('services.general-practice')); ?>">General Practice</a></li>
-                            <li><a class="dropdown-item" href="<?php echo e(route('services.general-surgery')); ?>">General Surgery</a></li>
-                            <li><a class="dropdown-item" href="<?php echo e(route('services.obstetrics-gynaecology')); ?>">Obstetrics & Gynaecology</a></li>
-                            <li><a class="dropdown-item" href="<?php echo e(route('services.geriatric-care')); ?>">Geriatric Care</a></li>
-                            <li><a class="dropdown-item" href="<?php echo e(route('services.paediatrics')); ?>">Paediatrics</a></li>
-                            <li><a class="dropdown-item" href="<?php echo e(route('services.urology')); ?>">Urology</a></li>
-                            <li><a class="dropdown-item" href="<?php echo e(route('services.orthopaedic')); ?>">Orthopaedic</a></li>
-                            <li><a class="dropdown-item" href="<?php echo e(route('services.ent-care')); ?>">ENT Care</a></li>
-                            <li><a class="dropdown-item" href="<?php echo e(route('services.eye-care')); ?>">Eye Care</a></li>
-                            <li><a class="dropdown-item" href="<?php echo e(route('services.plastic-surgery')); ?>">Plastic Surgery</a></li>
-                            <li><a class="dropdown-item" href="<?php echo e(route('services.pharmacy')); ?>">Pharmacy</a></li>
-                            <li><a class="dropdown-item" href="<?php echo e(route('services.laboratory')); ?>">General Lab</a></li>
-                            <li><a class="dropdown-item" href="<?php echo e(route('services.physician-clinic')); ?>">Physician's Clinic</a></li>
-                            <li><a class="dropdown-item" href="<?php echo e(route('services.dietetics')); ?>">Dietetics</a></li>
-                            <li><a class="dropdown-item" href="<?php echo e(route('services.endoscopy')); ?>">Endoscopy</a></li>
-                            <li><a class="dropdown-item" href="<?php echo e(route('services.radiology')); ?>">Radiology & Medical Imaging</a></li>
-                            <li><a class="dropdown-item" href="<?php echo e(route('services.ambulance-service')); ?>">Ambulance Service</a></li>
+                        <ul class="dropdown-menu services-dropdown-grouped" aria-labelledby="servicesDropdown">
+                            <li class="dropdown-submenu">
+                                <a class="dropdown-item dropdown-toggle" href="#">Inpatient &amp; Operative Care</a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="<?php echo e(route('services.general-surgery')); ?>">General and Specialized Surgery</a></li>
+                                    <li><a class="dropdown-item" href="<?php echo e(route('services.physician-clinic')); ?>">Internal Medicine Department</a></li>
+                                    <li><a class="dropdown-item" href="<?php echo e(route('services.general-surgery')); ?>">Anesthesiology &amp; Perioperative Care Department</a></li>
+                                    <li><a class="dropdown-item" href="<?php echo e(route('services.obstetrics-gynaecology')); ?>">Obstetrics &amp; Gynecology Department</a></li>
+                                    <li><a class="dropdown-item" href="<?php echo e(route('services.paediatrics')); ?>">General Pediatrics</a></li>
+                                </ul>
+                            </li>
+                            <li class="dropdown-submenu">
+                                <a class="dropdown-item dropdown-toggle" href="#">Emergency &amp; Critical Care</a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="<?php echo e(route('services.ambulance-service')); ?>">Emergency Medicine</a></li>
+                                    <li><a class="dropdown-item" href="<?php echo e(route('services.ambulance-service')); ?>">Ambulance Service</a></li>
+                                </ul>
+                            </li>
+                            <li class="dropdown-submenu">
+                                <a class="dropdown-item dropdown-toggle" href="#">Advanced Diagnostics</a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="<?php echo e(route('services.radiology')); ?>">Radiology &amp; Medical Imaging</a></li>
+                                    <li><a class="dropdown-item" href="<?php echo e(route('services.laboratory')); ?>">General Laboratory</a></li>
+                                    <li><a class="dropdown-item" href="<?php echo e(route('services.laboratory')); ?>">Electrocardiogram (EKG/ECG)</a></li>
+                                    <li><a class="dropdown-item" href="<?php echo e(route('services.laboratory')); ?>">Spirometry &amp; Pulmonary/Lung Function Test</a></li>
+                                    <li><a class="dropdown-item" href="<?php echo e(route('services.endoscopy')); ?>">Gastrointestinal Endoscopy (Upper and Lower GI)</a></li>
+                                    <li><a class="dropdown-item" href="<?php echo e(route('services.radiology')); ?>">Echocardiography (Echo)</a></li>
+                                    <li><a class="dropdown-item" href="<?php echo e(route('services.laboratory')); ?>">Holter Monitoring</a></li>
+                                </ul>
+                            </li>
+                            <li class="dropdown-submenu">
+                                <a class="dropdown-item dropdown-toggle" href="#">Outpatient &amp; Ambulatory Care</a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="<?php echo e(route('services.general-practice')); ?>">General Outpatient Department (OPD)</a></li>
+                                    <li><a class="dropdown-item" href="<?php echo e(route('services.physician-clinic')); ?>">Specialist Outpatient Clinics</a></li>
+                                    <li><a class="dropdown-item" href="<?php echo e(route('services.family-medicine-clinic')); ?>">Family Medicine Specialist Outpatient Clinics</a></li>
+                                    <li><a class="dropdown-item" href="<?php echo e(route('services.eye-care')); ?>">Eye Care</a></li>
+                                    <li><a class="dropdown-item" href="<?php echo e(route('services.ent-care')); ?>">ENT</a></li>
+                                    <li><a class="dropdown-item" href="<?php echo e(route('services.index')); ?>">Home Health Services (Home Visit)</a></li>
+                                </ul>
+                            </li>
+                            <li class="dropdown-submenu">
+                                <a class="dropdown-item dropdown-toggle" href="#">Therapeutics &amp; Allied Health Support</a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="<?php echo e(route('services.pharmacy')); ?>">Pharmacy</a></li>
+                                    <li><a class="dropdown-item" href="<?php echo e(route('services.dietetics')); ?>">Clinical Nutrition</a></li>
+                                </ul>
+                            </li>
 
                             <li><hr class="dropdown-divider"></li>
                             <li><a class="dropdown-item" href="<?php echo e(route('services.index')); ?>">View All Services</a></li>
@@ -76,4 +106,50 @@
             </div>
         </div>
     </nav>
+
+    <script>
+    (function () {
+        document.querySelectorAll('.dropdown-submenu > .dropdown-item.dropdown-toggle').forEach(function (toggle) {
+            toggle.addEventListener('click', function (e) {
+                e.preventDefault();
+                e.stopPropagation();
+
+                var submenu = toggle.parentElement;
+                var isOpen = submenu.classList.contains('show');
+
+                submenu.parentElement.querySelectorAll(':scope > .dropdown-submenu.show').forEach(function (sibling) {
+                    if (sibling !== submenu) sibling.classList.remove('show');
+                });
+
+                submenu.classList.toggle('show', !isOpen);
+
+                if (!isOpen) {
+                    var flyout = submenu.querySelector(':scope > .dropdown-menu');
+                    if (flyout && window.innerWidth >= 992) {
+                        flyout.classList.remove('dropdown-submenu-left');
+                        var rect = flyout.getBoundingClientRect();
+                        if (rect.right > window.innerWidth) {
+                            flyout.classList.add('dropdown-submenu-left');
+                        }
+                    }
+                }
+            });
+        });
+
+        document.getElementById('navbarNav').addEventListener('hidden.bs.collapse', function () {
+            document.querySelectorAll('.dropdown-submenu.show').forEach(function (submenu) {
+                submenu.classList.remove('show');
+            });
+        });
+
+        var servicesDropdown = document.getElementById('servicesDropdown');
+        if (servicesDropdown) {
+            servicesDropdown.addEventListener('hidden.bs.dropdown', function () {
+                document.querySelectorAll('.dropdown-submenu.show').forEach(function (submenu) {
+                    submenu.classList.remove('show');
+                });
+            });
+        }
+    })();
+    </script>
 <?php /**PATH C:\xampp\htdocs\metrohealth-web\resources\views/partials/navigation.blade.php ENDPATH**/ ?>
