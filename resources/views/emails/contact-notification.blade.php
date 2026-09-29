@@ -95,7 +95,7 @@
         
         <div class="content">
             <p>Hello,</p>
-            <p>You have received a new message through the Ashlocs contact form.</p>
+            <p>You have received a new message through the contact form.</p>
             
             <div class="contact-details">
                 <h3 style="margin-top: 0; color: #2C2C2C;">Contact Information</h3>
@@ -148,7 +148,7 @@
         </div>
         
         <div class="footer">
-            <p>&copy; {{ date('Y') }} Ashlocs. All Rights Reserved.</p>
+            <p>&copy; {{ date('Y') }} Metro Health. All Rights Reserved.</p>
             <p>This is an automated notification from your contact form.</p>
         </div>
     </div>
