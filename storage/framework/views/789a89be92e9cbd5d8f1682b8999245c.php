@@ -4,26 +4,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    @include('partials.seo', [
+    <?php echo $__env->make('partials.seo', [
         'title' => $member['name'] . ' - ' . $member['position'] . ' - Metro Health Hospital',
         'description' => $member['bio'] ?? 'Meet ' . $member['name'] . ', ' . $member['position'] . ' at Metro Health Hospital.',
         'keywords' => 'metro health team, ' . $member['name'] . ', ' . $member['position'] . ', healthcare professionals'
-    ])
+    ], \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Rubik:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <link rel="stylesheet" href="{{ asset('css/ashlocs-custom.css') }}">
+    <link rel="stylesheet" href="<?php echo e(asset('css/ashlocs-custom.css')); ?>">
 </head>
 <body>
     <!-- Top Header Bar -->
-    @include('partials.top_header')
+    <?php echo $__env->make('partials.top_header', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
     
     <!-- Main Navbar -->
-    @include('partials.navigation')
+    <?php echo $__env->make('partials.navigation', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
     
     <!-- Page Hero -->
     <section class="member-hero">
@@ -33,9 +33,9 @@
                     </br></br>
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb justify-content-center">
-                            <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
-                            <li class="breadcrumb-item"><a href="{{ route('team') }}">Our Team</a></li>
-                            <li class="breadcrumb-item active">{{ $member['name'] }}</li>
+                            <li class="breadcrumb-item"><a href="<?php echo e(route('home')); ?>">Home</a></li>
+                            <li class="breadcrumb-item"><a href="<?php echo e(route('team')); ?>">Our Team</a></li>
+                            <li class="breadcrumb-item active"><?php echo e($member['name']); ?></li>
                         </ol>
                     </nav>
                 </div>
@@ -51,35 +51,35 @@
                 <div class="col-lg-4" data-aos="fade-right">
                     <div class="member-profile-card">
                         <div class="member-profile-image">
-                            <img src="{{ $member['image'] }}" alt="{{ $member['name'] }}">
+                            <img src="<?php echo e($member['image']); ?>" alt="<?php echo e($member['name']); ?>">
                         </div>
                         <div class="member-profile-info">
-                            <h2 class="member-profile-name">{{ $member['name'] }}</h2>
-                            <p class="member-profile-position">{{ $member['position'] }}</p>
+                            <h2 class="member-profile-name"><?php echo e($member['name']); ?></h2>
+                            <p class="member-profile-position"><?php echo e($member['position']); ?></p>
                             
-                            @if($member['phone'] || $member['email'] || $member['address'])
+                            <?php if($member['phone'] || $member['email'] || $member['address']): ?>
                             <div class="member-contact-info">
                                 <h4 class="contact-heading">Contact Information</h4>
-                                @if($member['phone'])
+                                <?php if($member['phone']): ?>
                                 <div class="contact-detail">
                                     <i class="fas fa-phone"></i>
-                                    <a href="tel:{{ $member['phone'] }}">{{ $member['phone'] }}</a>
+                                    <a href="tel:<?php echo e($member['phone']); ?>"><?php echo e($member['phone']); ?></a>
                                 </div>
-                                @endif
-                                @if($member['email'])
+                                <?php endif; ?>
+                                <?php if($member['email']): ?>
                                 <div class="contact-detail">
                                     <i class="fas fa-envelope"></i>
-                                    <a href="mailto:{{ $member['email'] }}">{{ $member['email'] }}</a>
+                                    <a href="mailto:<?php echo e($member['email']); ?>"><?php echo e($member['email']); ?></a>
                                 </div>
-                                @endif
-                                @if($member['address'])
+                                <?php endif; ?>
+                                <?php if($member['address']): ?>
                                 <div class="contact-detail">
                                     <i class="fas fa-map-marker-alt"></i>
-                                    <span>{{ $member['address'] }}</span>
+                                    <span><?php echo e($member['address']); ?></span>
                                 </div>
-                                @endif
+                                <?php endif; ?>
                             </div>
-                            @endif
+                            <?php endif; ?>
                         </div>
                     </div>
                 </div>
@@ -87,20 +87,20 @@
                 <!-- Right Column: Bio and Details -->
                 <div class="col-lg-8" data-aos="fade-left">
                     <div class="member-bio-section">
-                        <h3 class="bio-title">About {{ explode(' ', $member['name'])[0] }}</h3>
-                        <p class="bio-specialty">{{ $member['specialty'] }}</p>
+                        <h3 class="bio-title">About <?php echo e(explode(' ', $member['name'])[0]); ?></h3>
+                        <p class="bio-specialty"><?php echo e($member['specialty']); ?></p>
                         
-                        @if($member['bio'])
+                        <?php if($member['bio']): ?>
                         <div class="bio-content">
-                            <p>{{ $member['bio'] }}</p>
+                            <p><?php echo e($member['bio']); ?></p>
                         </div>
-                        @endif
+                        <?php endif; ?>
 
                         <div class="member-cta">
-                            <a href="{{ route('contact') }}" class="btn-schedule">
+                            <a href="<?php echo e(route('contact')); ?>" class="btn-schedule">
                                 <i class="fas fa-calendar-check"></i> Schedule Appointment
                             </a>
-                            <a href="{{ route('team') }}" class="btn-back">
+                            <a href="<?php echo e(route('team')); ?>" class="btn-back">
                                 <i class="fas fa-arrow-left"></i> Back to Team
                             </a>
                         </div>
@@ -110,7 +110,7 @@
         </div>
     </section>
 
-    @include('partials.footer')
+    <?php echo $__env->make('partials.footer', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
@@ -348,3 +348,4 @@
     </style>
 </body>
 </html>
+<?php /**PATH C:\xampp\htdocs\metrohealth-web\resources\views/team-member-detail.blade.php ENDPATH**/ ?>

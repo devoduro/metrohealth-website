@@ -35,8 +35,8 @@ export default {
         },
       },
       fontFamily: {
-        'sans': ['Rubik', 'system-ui', 'sans-serif'],
-        'heading': ['Nunito', 'system-ui', 'sans-serif'],
+        'sans': ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        'heading': ['"Plus Jakarta Sans"', 'Inter', 'ui-sans-serif', 'sans-serif'],
       },
     },
   },

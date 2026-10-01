@@ -36,8 +36,9 @@
         h4,
         h5,
         h6 {
-            font-family: 'Poppins', sans-serif;
-            font-weight: 700;
+            font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
+            font-weight: 800;
+            letter-spacing: -0.02em;
         }
 
         a {
@@ -56,9 +57,10 @@
         }
 
         .navbar-brand {
-            font-family: 'Poppins', sans-serif;
+            font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
             font-weight: 800;
             font-size: 1.8rem;
+            letter-spacing: -0.02em;
         }
 
         .brand-hi {

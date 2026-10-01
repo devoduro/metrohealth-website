@@ -4,7 +4,11 @@
     {
       "name": "metrohealth",
       "runtimeExecutable": "php",
-      "runtimeArgs": ["artisan", "serve", "--port=8010"],
+      "runtimeArgs": [
+        "artisan",
+        "serve",
+        "--port=8010"
+      ],
       "port": 8010
     }
   ]
